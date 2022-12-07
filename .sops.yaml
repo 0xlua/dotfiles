@@ -1,0 +1,7 @@
+keys:
+  - &callisto age1l5zk9s02re60lll8y7d9uvmk3xjp8g2ctgsvask8gfdlu9uhhgzsdsmaha
+creation_rules:
+  - path_regex: secrets.yaml$
+    key_groups:
+    - age:
+      - *callisto
