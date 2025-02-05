@@ -23,12 +23,37 @@
       europa = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
-        modules = [./europa];
+        modules = [
+          ./hardware/europa.nix
+          inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          ./hosts/europa.nix
+          ./base.nix
+          ./graphical.nix
+          ./niri.nix
+          ./home/base.home.nix
+          ./home/graphical.home.nix
+          ./home/niri.home.nix
+          ./home/dev.home.nix
+          ./home/browser.home.nix
+          ./home/neovim.home.nix
+        ];
       };
       callisto = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
-        modules = [./callisto];
+        modules = [
+          ./hardware/callisto.nix
+          ./hosts/callisto.nix
+          ./base.nix
+          ./graphical.nix
+          ./cosmic.nix
+          ./games.nix
+          ./home/base.home.nix
+          ./home/graphical.home.nix
+          ./home/dev.home.nix
+          ./home/browser.home.nix
+          ./home/neovim.home.nix
+        ];
       };
     };
   };
