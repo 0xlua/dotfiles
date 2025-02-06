@@ -12,7 +12,6 @@
         # Desktop
         delfin
         scrcpy
-        zed-editor
         rnote
         rustdesk-flutter
         oculante
@@ -62,6 +61,8 @@
     };
 
     programs.wpaperd.enable = true;
+
+    programs.zed-editor.enable = true;
 
     services.syncthing = {
       enable = true;
