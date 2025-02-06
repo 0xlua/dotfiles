@@ -26,8 +26,6 @@ For the sake of consistency, I might switch `ganymede` to NixOS, if I get around
 
 This is my VPS hosted by Hetzner. It runs services I want to access no matter where I am.
 
-While `galileo` does run NixOS, it is currently not included in this flake. I want to clean up a bit, before I do so.
-
 ## About
 
 I like the Nord color scheme and use it basically everywhere. My preferred shell is fish together with the starship prompt. On desktops I use alacritty as the terminal emulator. Helix is my main text editor.

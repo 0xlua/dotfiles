@@ -55,6 +55,18 @@
           ./home/neovim.home.nix
         ];
       };
+      galileo = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./hardware/galileo.nix
+          ./hosts/galileo.nix
+          ./base.nix
+          ./home/base.home.nix
+          ./home/dev.home.nix
+          ./podman
+        ];
+      };
     };
   };
 }

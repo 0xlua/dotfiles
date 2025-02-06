@@ -13,10 +13,6 @@
 
   nix.settings.experimental-features = "nix-command flakes";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # nix.gc = {
@@ -41,7 +37,7 @@
 
   sops = {
     defaultSopsFile = ./secrets.yaml;
-    age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519"];
+    age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
     age.keyFile = "/home/lua/.config/sops/age/keys.txt";
     secrets = {
       hashedPassword.neededForUsers = true;
@@ -53,7 +49,6 @@
     description = "Lua";
     hashedPasswordFile = config.sops.secrets.hashedPassword.path;
     extraGroups = ["networkmanager" "wheel"];
-    packages = [];
   };
 
   home-manager = {
@@ -65,6 +60,8 @@
 
   stylix = {
     enable = true;
+    # see https://github.com/danth/stylix/pull/717
+    image = lib.mkDefault ./wallpaper/caffeine.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   };
 }
