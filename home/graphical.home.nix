@@ -64,7 +64,7 @@
     programs.wpaperd.enable = true;
 
     services.syncthing = {
-      enable = false;
+      enable = true;
       settings = {
         folders = {
           "default" = {
