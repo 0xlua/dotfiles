@@ -11,6 +11,10 @@
     imports = [
       inputs.nixvim.homeManagerModules.nixvim
     ];
+
+    programs.neovide.enable = true;
+    programs.neovide.settings = {};
+
     programs.nixvim = {
       enable = true;
       # extraPlugins = [pkgs.vimPlugins.onenord-nvim];
