@@ -2,12 +2,15 @@
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
+  boot.loader.grub.configurationLimit = 10;
 
   system.autoUpgrade = {
     enable = true;
     allowReboot = true;
     dates = "Mon 04:00 Europe/Berlin";
   };
+
+  nix.settings.auto-optimise-store = true;
 
   nix.gc = {
     automatic = true;
@@ -61,12 +64,6 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJlfUoi3tLKbWSaqrGbqy76GbeDua/LZvOVkSGfX1J2p"
     ];
   };
-
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    tailspin
-    podman-tui
-  ];
 
   # Enable the OpenSSH daemon.
   services.openssh = {
