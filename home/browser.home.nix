@@ -8,6 +8,7 @@
       enable = true;
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
       policies = {
+        Cookies.Behavior = "reject-foreign";
         DisableTelemetry = true;
         DisablefirefoxStudies = true;
         DisablePocket = true;
@@ -21,6 +22,7 @@
         DisableAccounts = true;
         DisplayBookmarksToolbar = "always";
         DisplayMenuBar = "never";
+        DisableFormHistory = true;
         SearchBar = "unified";
         AutofillAddressEnabled = false;
         AutofillCreditCardEnabled = false;
@@ -42,6 +44,8 @@
         HttpsOnlyMode = "enabled";
         OfferToSaveLogins = false;
         ShowHomeButton = true;
+        TranslateEnabled = false;
+        PictureInPicture.Enabled = false;
         Preferences = {
           "browser.contentblocking.category" = "strict";
           "general.autoScroll" = true;
@@ -60,6 +64,18 @@
         desy = {
           id = 1;
           isDefault = false;
+          search = {
+            default = "DuckDuckGo";
+            force = true;
+          };
+          settings = {
+            "network.proxy.socks" = "localhost";
+            "network.proxy.socks_port" = 2280;
+            "network.proxy.type" = 1;
+            "network.proxy.socks5_remote_dns" = true;
+            "network.proxy.socks_version" = 5;
+          };
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin multi-account-containers];
           containersForce = true;
           containers = {
             admin = {
