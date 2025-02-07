@@ -203,6 +203,7 @@
     xdg.configFile."rustypaste/config.toml".source = (pkgs.formats.toml {}).generate "rustypaste-cli-config" {
       server = {
         address = "https://share.lua.one";
+        # TODO: https://github.com/orhun/rustypaste-cli/pull/171
         auth_token = "{{rustypaste_token}}";
       };
       paste.oneshot = false;
