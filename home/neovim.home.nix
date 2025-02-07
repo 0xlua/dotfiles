@@ -27,11 +27,12 @@
         number = true; # line numbers
         signcolumn = "yes"; # for git signs
         showmode = false; # let lualine handle this
+        conceallevel = 2; # hide markdown links
         fileencoding = "utf-8";
         termguicolors = true;
         cursorline = true;
         laststatus = 3;
-        guifont = "Hack NFM:h14"; # font for neovide
+        guifont = "Hack Nerd Font:h14"; # font for neovide
 
         # search
         ignorecase = true;
