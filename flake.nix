@@ -63,6 +63,7 @@
           ./hosts/galileo.nix
           ./base.nix
           ./home/base.home.nix
+          ./home/server.home.nix
           ./home/dev.home.nix
           ./podman
         ];
