@@ -39,7 +39,7 @@
         rules: \"\",
         model: \"pc104\",
         layout: \"us\",
-        variant: \"alt-intl\",
+        variant: \"intl\",
         options: Some(\"terminate:ctrl_alt_bksp,caps:escape\"),
         repeat_delay: 600,
         repeat_rate: 25,
