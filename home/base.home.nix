@@ -37,6 +37,7 @@
       packages = with pkgs; [
         ouch
         mdcat
+        numbat
         dysk
         dua
         television
