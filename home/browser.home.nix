@@ -60,7 +60,7 @@
             default = "DuckDuckGo";
             force = true;
           };
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin linkding-extension];
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin linkding-extension tridactyl];
         };
         desy = {
           id = 1;
@@ -76,7 +76,7 @@
             "network.proxy.socks5_remote_dns" = true;
             "network.proxy.socks_version" = 5;
           };
-          extensions = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin multi-account-containers];
+          extensions = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin multi-account-containers tridactyl];
           containersForce = true;
           containers = {
             admin = {
