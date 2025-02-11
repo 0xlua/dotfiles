@@ -28,6 +28,9 @@
         wl-clipboard
         libnotify
         xwayland-satellite
+
+        # terminal
+        viu
       ];
     };
 
