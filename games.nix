@@ -12,9 +12,15 @@
   home-manager.users.lua = {pkgs, ...}: {
     home.packages = with pkgs; [
       discord-ptb
+      lact
       bottles # TODO: Bottles next
       # mangohud
     ];
+  };
+
+  programs.corectrl = {
+    enable = true;
+    gpuOverclock.enable = true;
   };
 
   programs.gamemode = {
