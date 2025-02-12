@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -8,11 +12,36 @@
   home-manager.users.lua = {pkgs, ...}: {
     home.packages = with pkgs; [
       discord-ptb
+      bottles # TODO: Bottles next
+      # mangohud
     ];
+  };
+
+  programs.gamemode = {
+    enable = true;
+    settings.general.inhibit_screensaver = 0;
+  };
+
+  users.users.lua.extraGroups = ["gamemode"];
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
   };
 
   programs.steam = {
     enable = true;
+    # extest.enable = true; # steam input wayland compat
+    gamescopeSession = {
+      enable = true;
+      args = [
+        "--adaptive-sync"
+        "--hdr-enabled"
+        # "--mangoapp"
+        "--rt"
+      ];
+    };
+    extraCompatPackages = with pkgs; [proton-ge-bin];
   };
 
   services.sunshine = {
