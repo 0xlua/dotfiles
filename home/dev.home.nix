@@ -33,6 +33,8 @@
         gitu
         jnv
         jaq
+        qsv
+        tabiew
         devenv
       ];
     };
