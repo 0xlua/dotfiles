@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    hl.url = "github:pamburus/hl";
     stylix.url = "github:danth/stylix";
     nur.url = "github:nix-community/NUR";
     ironbar.url = "github:JakeStanger/ironbar";
