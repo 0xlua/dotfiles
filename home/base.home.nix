@@ -55,6 +55,18 @@
     # Let home Manager install and manage itself.
     programs.home-manager.enable = true;
 
+    programs.atuin = {
+      enable = true;
+      enableFishIntegration = true;
+      settings = {
+        # key_path = secrets.path;
+        update_check = false;
+        sync_address = "https://atuin.lua.one";
+        keymap_mode = "vim-insert";
+        dotfiles.enabled = false;
+      };
+    };
+
     programs.bat.enable = true;
 
     programs.bottom = {

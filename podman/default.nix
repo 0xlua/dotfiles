@@ -1,6 +1,7 @@
 {...}: {
   # TODO: Import *.container.nix
   imports = [
+    ./atuin.container.nix
     ./backup.container.nix
     ./bore.container.nix
     ./caddy.container.nix
