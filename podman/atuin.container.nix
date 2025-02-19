@@ -20,7 +20,7 @@
       ];
       environment = {
         ATUIN_HOST = "0.0.0.0";
-        ATUIN_OPEN_REGISTRATION = "true";
+        ATUIN_OPEN_REGISTRATION = "false";
       };
     };
     atuin-db = {

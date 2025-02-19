@@ -1,7 +1,16 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
+  sops.secrets."atuin/key" = {
+    mode = "0440";
+    owner = config.users.users.lua.name;
+    group = config.users.users.lua.group;
+  };
   home-manager.users.lua = {pkgs, ...}: {
     home = {
       username = "lua";
@@ -59,7 +68,7 @@
       enable = true;
       enableFishIntegration = true;
       settings = {
-        # key_path = secrets.path;
+        key_path = config.sops.secrets."atuin/key".path;
         update_check = false;
         sync_address = "https://atuin.lua.one";
         keymap_mode = "vim-insert";
