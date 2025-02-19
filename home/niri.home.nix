@@ -16,9 +16,6 @@
         # Desktop
         centerpiece
         gtklock
-
-        ulauncher
-        anyrun
       ];
 
       shellAliases = {
