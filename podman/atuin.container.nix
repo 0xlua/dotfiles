@@ -3,7 +3,7 @@
   sops.secrets."atuin/password" = {};
   sops.secrets."atuin/user" = {};
   sops.templates."atuin-env".content = ''
-    ATUIN_DB_URI=postgres://${config.sops.placeholder."db/user"}:${config.sops.placeholder."db/password"}@atuin-db/${config.sops.placeholder."atuin/db"}?sslmode=disable
+    ATUIN_DB_URI=postgres://${config.sops.placeholder."atuin/user"}:${config.sops.placeholder."atuin/password"}@atuin-db/${config.sops.placeholder."atuin/db"}?sslmode=disable
   '';
 
   virtualisation.oci-containers.containers = {
@@ -11,7 +11,7 @@
       image = "ghcr.io/atuinsh/atuin:v18.4.0";
       autoStart = true;
       dependsOn = ["atuin-db"];
-      cmd = "server start";
+      cmd = ["server" "start"];
       labels = {
         "io.containers.autoupdate" = "registry";
       };
@@ -19,6 +19,7 @@
         config.sops.templates."atuin-env".path
       ];
       environment = {
+        ATUIN_HOST = "0.0.0.0";
         ATUIN_OPEN_REGISTRATION = "true";
       };
     };
