@@ -126,6 +126,7 @@
       settings = [
         {
           profile.name = "undocked";
+          profile.exec = ["wpaperctl reload"];
           profile.outputs = [
             {
               criteria = "eDP-1";
@@ -137,6 +138,7 @@
         }
         {
           profile.name = "work";
+          profile.exec = ["wpaperctl reload"];
           profile.outputs = [
             {
               criteria = "eDP-1";
@@ -156,6 +158,7 @@
         }
         {
           profile.name = "002";
+          profile.exec = ["wpaperctl reload"];
           profile.outputs = [
             {
               criteria = "eDP-1";
