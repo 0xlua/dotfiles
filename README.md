@@ -1,6 +1,6 @@
 # <p align="center"> 🌌 Dotfiles </p>
 
-My Nix config. Currently this includes two systems: `callisto` and `europa`. I plan to also include `galileo` and `ganymede` in the future.
+My Nix config. Currently this includes three systems: `callisto`, `europa` and `galileo`. I plan to also include `ganymede` in the future.
 
 ## Systems
 
