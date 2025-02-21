@@ -36,6 +36,7 @@
         qsv
         tabiew
         devenv
+        rainfrog
       ];
     };
 
