@@ -13,6 +13,8 @@
     home.packages = with pkgs; [
       discord-ptb
       lact
+      mumble
+      teamspeak6-client
       bottles # TODO: Bottles next
       # mangohud
     ];
