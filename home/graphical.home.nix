@@ -10,6 +10,7 @@
 
       packages = with pkgs; [
         # Desktop
+        anki-bin
         delfin
         scrcpy
         rnote
