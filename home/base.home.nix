@@ -109,7 +109,28 @@
       userName = "0xlua";
       userEmail = "dev@lukasjordan.com";
       difftastic.enable = true;
-      extraConfig.help.autocorrect = "prompt";
+      extraConfig = {
+        help.autocorrect = "prompt";
+        column.ui = "auto";
+        branch.sort = "-committerdate";
+        tag.sort = "version:refname";
+        init.defaultBranch = "main";
+        push = {
+          autoSetupRemote = true;
+          followTags = true;
+        };
+        fetch = {
+          prune = true;
+          pruneTags = true;
+          all = true;
+        };
+        rebase = {
+          autoSquash = true;
+          autoStash = true;
+          updateRefs = true;
+        };
+        pull.rebase = true;
+      };
     };
 
     programs.helix = {
