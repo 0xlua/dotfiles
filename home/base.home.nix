@@ -109,6 +109,7 @@
       userName = "0xlua";
       userEmail = "dev@lukasjordan.com";
       difftastic.enable = true;
+      extraConfig.help.autocorrect = "prompt";
     };
 
     programs.helix = {
