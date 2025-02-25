@@ -64,8 +64,6 @@
       };
     };
 
-    programs.wpaperd.enable = true;
-
     programs.zed-editor = {
       enable = true;
       userSettings = {
@@ -92,5 +90,7 @@
         };
       };
     };
+
+    services.wpaperd.enable = true;
   };
 }
