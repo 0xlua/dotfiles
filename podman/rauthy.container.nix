@@ -3,6 +3,8 @@
   sops.secrets."rauthy/api" = {};
   sops.secrets."rauthy/active_key" = {};
   sops.secrets."rauthy/keys" = {};
+  sops.secrets."rauthy/smtp/username" = {};
+  sops.secrets."rauthy/smtp/password" = {};
   sops.templates."rauthy-cfg" = {
     mode = "0666";
     content = ''
@@ -10,6 +12,8 @@
       HQL_SECRET_API=${config.sops.placeholder."rauthy/api"}
       ENC_KEY_ACTIVE=${config.sops.placeholder."rauthy/active_key"}
       ENC_KEYS=${config.sops.placeholder."rauthy/keys"}
+      SMTP_USERNAME=${config.sops.placeholder."rauthy/smtp/username"}
+      SMTP_PASSWORD="${config.sops.placeholder."rauthy/smtp/password"}"
     '';
   };
   virtualisation.oci-containers.containers.rauthy = {
@@ -27,6 +31,8 @@
       HQL_NODE_ID = "1";
       HQL_NODES = "1 localhost:8100 localhost:8200\n";
       LISTEN_SCHEME = "http";
+      SMTP_URL = "mail.lua.one";
+      SMTP_FROM = "Lua Account Service <auth@lua.one>";
     };
     volumes = [
       "/home/lua/podman/rauthy:/app/data"
