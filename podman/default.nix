@@ -9,7 +9,7 @@
     ./linkding.container.nix
     ./littlelink.container.nix
     ./miniflux.container.nix
-    ./ocular.container.nix
+    ./rauthy.container.nix
     ./podfetch.container.nix
     ./redlib.container.nix
     ./rustypaste.container.nix
