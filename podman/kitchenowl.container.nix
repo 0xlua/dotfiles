@@ -18,7 +18,7 @@
     ];
     environment = {
       FRONT_URL = "https://kitchen.lua.one";
-      OIDC_ISSUER = "http://mail.lua.one";
+      OIDC_ISSUER = "https://auth.lua.one/auth/v1";
       OIDC_CLIENT_ID = "kitchenowl";
     };
     volumes = [
