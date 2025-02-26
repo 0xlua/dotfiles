@@ -1,4 +1,7 @@
 {config, ...}: {
+  sops.secrets."miniflux/oidcSecret" = {
+    mode = "0444";
+  };
   sops.secrets."miniflux/db" = {};
   sops.secrets."miniflux/password" = {};
   sops.secrets."miniflux/user" = {};
@@ -19,13 +22,17 @@
       ];
       environment = {
         OAUTH2_CLIENT_ID = "miniflux";
-        OAUTH2_OIDC_DISCOVERY_ENDPOINT = "http://mail.lua.one";
+        OAUTH2_CLIENT_SECRET_FILE = "/run/secrets/oidc";
+        OAUTH2_OIDC_DISCOVERY_ENDPOINT = "https://auth.lua.one/auth/v1";
         OAUTH2_PROVIDER = "oidc";
         OAUTH2_REDIRECT_URL = "https://rss.lua.one/oauth2/oidc/callback";
         OAUTH2_USER_CREATION = "1";
         DISABLE_LOCAL_AUTH = "true";
         RUN_MIGRATIONS = "1";
       };
+      volumes = [
+        "${config.sops.secrets."miniflux/oidcSecret".path}:/run/secrets/oidc"
+      ];
     };
     miniflux-db = {
       image = "docker.io/postgres:17-alpine";
