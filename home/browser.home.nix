@@ -57,6 +57,101 @@
       profiles = {
         default = {
           isDefault = true;
+          bookmarks = [
+            {
+              toolbar = true;
+              bookmarks = [
+                {
+                  url = "http://ganymede:3000/";
+                  name = "";
+                }
+                {
+                  url = "https://b.lua.one/bookmarks";
+                  name = "";
+                }
+                {
+                  url = "https://rss.lua.one/unread";
+                  name = "";
+                }
+                {
+                  url = "https://letterboxd.com/";
+                  name = "";
+                }
+                {
+                  url = "https://account.proton.me/";
+                  name = "";
+                }
+                {
+                  url = "https://github.com/";
+                  name = "";
+                }
+                {
+                  url = "https://codeberg.org/";
+                  name = "";
+                }
+                {
+                  url = "https://web.whatsapp.com/";
+                  name = "";
+                }
+                {
+                  url = "https://www.hvv.de/";
+                  name = "";
+                }
+                {
+                  url = "https://www.openstreetmap.org/";
+                  name = "";
+                }
+                {
+                  url = "https://www.inwx.de/";
+                  name = "";
+                }
+                {
+                  url = "https://console.hetzner.cloud/";
+                  name = "";
+                }
+                {
+                  url = "https://www.mydealz.de/";
+                  name = "";
+                }
+                {
+                  url = "https://geizhals.de/";
+                  name = "";
+                }
+                {
+                  url = "http://store.steampowered.com/";
+                  name = "";
+                }
+                {
+                  url = "https://www.comdirect.de/";
+                  name = "";
+                }
+                {
+                  url = "https://savoy.premiumkino.de/";
+                  name = "";
+                }
+                {
+                  url = "https://www.kino-zeit.de/";
+                  name = "";
+                }
+                {
+                  url = "https://kachelmannwetter.com/de/wetter/2911298-hamburg";
+                  name = "";
+                }
+                {
+                  url = "https://lichess.org/";
+                  name = "";
+                }
+                {
+                  url = "https://grondilu.github.io/memchess/";
+                  name = "";
+                }
+                {
+                  url = "https://listudy.org/en";
+                  name = "";
+                }
+              ];
+            }
+          ];
           search = {
             default = "DuckDuckGo";
             force = true;
@@ -65,6 +160,21 @@
         };
         desy = {
           id = 1;
+          bookmarks = [
+            {
+              toolbar = true;
+              bookmarks = [
+                {
+                  url = "https://mail.desy.de/";
+                  name = "";
+                }
+                {
+                  url = "https://chat.desy.de/";
+                  name = "";
+                }
+              ];
+            }
+          ];
           isDefault = false;
           search = {
             default = "DuckDuckGo";
