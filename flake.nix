@@ -52,6 +52,7 @@
           ./games.nix
           ./home/base.home.nix
           ./home/graphical.home.nix
+          ./home/mail.home.nix
           ./home/dev.home.nix
           ./home/browser.home.nix
           ./home/neovim.home.nix
