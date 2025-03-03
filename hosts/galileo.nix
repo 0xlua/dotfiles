@@ -74,5 +74,8 @@
   # TODO: don't rely on cloud firewall
   networking.firewall.enable = false;
 
+  # TODO: enable fail2ban
+  services.fail2ban.enable = false;
+
   system.stateVersion = "24.05"; # Don't change
 }
