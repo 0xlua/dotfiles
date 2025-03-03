@@ -74,6 +74,10 @@
                   name = "";
                 }
                 {
+                  url = "https://reddit.lua.one/";
+                  name = "";
+                }
+                {
                   url = "https://letterboxd.com/";
                   name = "";
                 }
@@ -166,11 +170,35 @@
               bookmarks = [
                 {
                   url = "https://mail.desy.de/";
-                  name = "";
+                  name = "Mail";
                 }
                 {
                   url = "https://chat.desy.de/";
-                  name = "";
+                  name = "Chat";
+                }
+                {
+                  url = "https://syncandshare.desy.de/";
+                  name = "Sync & Share";
+                }
+                {
+                  url = "https://rt-system.desy.de/";
+                  name = "RT";
+                }
+                {
+                  url = "https://www.desy.de/~ucoxwiki/PRkTMFwbOIUGoUd/";
+                  name = "Migrationstabelle";
+                }
+                {
+                  url = "https://git.xwikisas.com/xwiki-sas-cpt/desy/-/issues";
+                  name = "XWiki Issues";
+                }
+                {
+                  url = "https://it-xwiki-tst.desy.de/xwiki/bin/view/Main/";
+                  name = "XWiki Test";
+                }
+                {
+                  url = "https://xwiki.desy.de/xwiki/bin/view/Main/";
+                  name = "XWiki Prod";
                 }
               ];
             }
