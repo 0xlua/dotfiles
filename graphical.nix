@@ -63,10 +63,12 @@
       };
       sansSerif = {
         # package = pkgs.atkinson-hyperlegible;
+        # package = pkgs.atkinson-hyperlegible-next;
         package = pkgs.inter;
         name = "Inter";
       };
       monospace = {
+        # package = pkgs.atkinson-hyperlegible-mono;
         package = pkgs.nerd-fonts.hack;
         name = "Hack Nerd Font";
       };
