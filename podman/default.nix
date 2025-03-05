@@ -10,7 +10,6 @@
     ./littlelink.container.nix
     ./miniflux.container.nix
     ./rauthy.container.nix
-    ./podfetch.container.nix
     ./redlib.container.nix
     ./rustypaste.container.nix
     ./stalwart.container.nix
