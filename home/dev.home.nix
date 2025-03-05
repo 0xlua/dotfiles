@@ -54,7 +54,7 @@
     };
 
     programs.papis = {
-      enable = true;
+      enable = false;
       libraries = {
         "default" = {
           isDefault = true;
