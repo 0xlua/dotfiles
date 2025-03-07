@@ -5,6 +5,7 @@
   home-manager.users.lua = {
     pkgs,
     inputs,
+    config,
     ...
   }: {
     imports = [
@@ -26,6 +27,100 @@
     programs.niri = {
       enable = true;
       package = pkgs.niri;
+      settings = {
+        binds = with config.lib.niri.actions; {
+          "Mod+Shift+Slash".action = show-hotkey-overlay;
+          "Mod+Return".action = spawn "alacritty";
+          "Mod+D".action = spawn "centerpiece";
+          "Mod+Escape".action = spawn "gtklock";
+          XF86AudioRaiseVolume = {
+            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
+            allow-when-locked = true;
+          };
+          XF86AudioLowerVolume = {
+            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
+            allow-when-locked = true;
+          };
+          XF86AudioMute = {
+            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
+            allow-when-locked = true;
+          };
+          XF86AudioMicMute = {
+            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
+            allow-when-locked = true;
+          };
+
+          "Mod+Q".action = close-window;
+
+          "Mod+H".action = focus-column-left;
+          "Mod+J".action = focus-window-down;
+          "Mod+K".action = focus-window-up;
+          "Mod+L".action = focus-column-right;
+
+          "Mod+Ctrl+H".action = move-column-left;
+          "Mod+Ctrl+J".action = move-window-down;
+          "Mod+Ctrl+K" = move-window-up;
+          "Mod+Ctrl+L" = move-column-right;
+
+          "Mod+Home" = focus-column-first;
+          "Mod+End" = focus-column-last;
+          "Mod+Ctrl+Home" = move-column-to-first;
+          "Mod+Ctrl+End" = move-column-to-last;
+
+          "Mod+Shift+H" = focus-monitor-left;
+          "Mod+Shift+J" = focus-monitor-down;
+          "Mod+Shift+K" = focus-monitor-up;
+          "Mod+Shift+L" = focus-monitor-right;
+
+          "Mod+Shift+Ctrl+H" = move-window-to-monitor-left;
+          "Mod+Shift+Ctrl+J" = move-window-to-monitor-down;
+          "Mod+Shift+Ctrl+K" = move-window-to-monitor-up;
+          "Mod+Shift+Ctrl+L" = move-window-to-monitor-right;
+
+          "Mod+U" = focus-workspace-down;
+          "Mod+I" = focus-workspace-up;
+          "Mod+Ctrl+U" = move-window-to-workspace-down;
+          "Mod+Ctrl+I" = move-window-to-workspace-up;
+
+          "Mod+Shift+U" = move-workspace-down;
+          "Mod+Shift+I" = move-workspace-up;
+        };
+        hotkey-overlay.skip-at-startup = true;
+        prefer-no-csd = true;
+        spawn-at-startup = [
+          {command = "ironbar";}
+          {command = "xwayland-satellite";}
+        ];
+        input = {
+          keyboard.xkb = {
+            layout = "us";
+            variant = "intl";
+            options = "caps:escape";
+          };
+          touchpad = {
+            tap = true;
+            natural-scroll = true;
+          };
+          mouse.accel-profile = "flat";
+          warp-mouse-to-focus = true;
+          focus-follows-mouse = {
+            enable = true;
+            focus-follows-mouse.max-scroll-amount = "0%";
+          };
+        };
+        cursor.hide-when-typing = true;
+        layout = {
+          default-column-width = {};
+        };
+        environment.DISPLAY = ":0";
+        window-rules = [
+          {
+            geometry-corner-radius = 12;
+            clip-to-geometry = true;
+            open-maximized = true;
+          }
+        ];
+      };
     };
 
     programs.ironbar = {
@@ -179,11 +274,6 @@
 
     services.swaync = {
       enable = true;
-    };
-
-    # TODO: flake
-    xdg.configFile = {
-      "niri/config.kdl".source = ../niri.kdl;
     };
   };
 }
