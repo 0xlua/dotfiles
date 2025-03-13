@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.cosmic.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
@@ -16,6 +20,7 @@
 
     programs.thunderbird = {
       enable = true;
+      package = pkgs.thunderbird-latest;
       profiles.lua.isDefault = true;
     };
 
