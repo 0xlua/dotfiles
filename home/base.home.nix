@@ -11,6 +11,11 @@
     owner = config.users.users.lua.name;
     group = config.users.users.lua.group;
   };
+  sops.secrets."rustypasteToken" = {
+    mode = "0440";
+    owner = config.users.users.lua.name;
+    group = config.users.users.lua.group;
+  };
   home-manager.users.lua = {pkgs, ...}: {
     home = {
       username = "lua";
@@ -248,8 +253,7 @@
     xdg.configFile."rustypaste/config.toml".source = (pkgs.formats.toml {}).generate "rustypaste-cli-config" {
       server = {
         address = "https://share.lua.one";
-        # TODO: https://github.com/orhun/rustypaste-cli/pull/171
-        auth_token = "{{rustypaste_token}}";
+        auth_token_file = "${config.sops.secrets."rustypasteToken".path}";
       };
       paste.oneshot = false;
       style.prettify = false;
