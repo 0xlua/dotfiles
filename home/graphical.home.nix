@@ -22,6 +22,7 @@
         ventoy
         newsflash
         signal-desktop
+        buffer
 
         # Wayland stuff
         grim
