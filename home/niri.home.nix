@@ -118,7 +118,7 @@
           "Mod+Shift+Equal".action = set-window-height "+10%";
 
           "Print".action = screenshot;
-          "Ctrl+Print".action = screenshot-screen;
+          # "Ctrl+Print".action = screenshot-screen;
           "Alt+Print".action = screenshot-window;
 
           "Mod+Shift+E".action = quit;
@@ -127,8 +127,8 @@
         hotkey-overlay.skip-at-startup = true;
         prefer-no-csd = true;
         spawn-at-startup = [
-          {command = "ironbar";}
-          {command = "xwayland-satellite";}
+          {command = ["ironbar"];}
+          {command = ["xwayland-satellite"];}
         ];
         input = {
           keyboard.xkb = {
@@ -144,7 +144,7 @@
           warp-mouse-to-focus = true;
           focus-follows-mouse = {
             enable = true;
-            focus-follows-mouse.max-scroll-amount = "0%";
+            max-scroll-amount = "0%";
           };
         };
         cursor.hide-when-typing = true;
@@ -154,7 +154,12 @@
         environment.DISPLAY = ":0";
         window-rules = [
           {
-            geometry-corner-radius = 12;
+            geometry-corner-radius = {
+              bottom-left = 12.0;
+              bottom-right = 12.0;
+              top-left = 12.0;
+              top-right = 12.0;
+            };
             clip-to-geometry = true;
             open-maximized = true;
           }
