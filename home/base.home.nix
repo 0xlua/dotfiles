@@ -156,8 +156,8 @@
       };
       settings = {
         # theme = "nord";
-        lsp.display-inlay-hints = true;
         editor = {
+          lsp.display-inlay-hints = true;
           bufferline = "always";
           true-color = true;
         };
