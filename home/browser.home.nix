@@ -5,6 +5,7 @@
   ];
   home-manager.users.lua = {pkgs, ...}: {
     # TODO: use ${system}
+    stylix.targets.firefox.profileNames = ["default" "desy"];
     home.packages = [inputs.zen-browser.packages."x86_64-linux".default];
     programs.firefox = {
       enable = true;
