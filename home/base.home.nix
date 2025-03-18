@@ -156,8 +156,14 @@
       };
       settings = {
         # theme = "nord";
+        keys.normal = {
+          ret = "goto_word";
+          space.o = "file_picker_in_current_buffer_directory";
+        };
         editor = {
           lsp.display-inlay-hints = true;
+          inline-diagnostics.cursor-line = "hint";
+          cursorline = true;
           bufferline = "always";
           true-color = true;
         };
