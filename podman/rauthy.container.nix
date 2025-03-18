@@ -17,7 +17,7 @@
     '';
   };
   virtualisation.oci-containers.containers.rauthy = {
-    image = "ghcr.io/sebadob/rauthy:0.27.3";
+    image = "ghcr.io/sebadob/rauthy:latest";
     labels = {
       "io.containers.autoupdate" = "registry";
     };
