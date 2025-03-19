@@ -55,6 +55,10 @@
 
     programs.zathura = {
       enable = true;
+      options = {
+        synctex = true;
+        synctex-editor-command = "texlab inverse-search -i %{input} -l %{line}";
+      };
     };
 
     programs.alacritty = {

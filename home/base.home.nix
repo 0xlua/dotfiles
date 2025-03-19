@@ -153,6 +153,23 @@
             formatter = {command = "alejandra";};
           }
         ];
+        language-server.texlab.config.texlab = {
+          forwardSearch = {
+            executable = "zathura";
+            args = ["--synctex-forward" "%l:1:%f" "%p"];
+          };
+          build = {
+            onSave = true;
+            forwardSearchAfter = true;
+            executable = "tectonic";
+            args = [
+              "-X"
+              "build"
+              "--keep-logs"
+              "--keep-intermediates"
+            ];
+          };
+        };
       };
       settings = {
         # theme = "nord";
