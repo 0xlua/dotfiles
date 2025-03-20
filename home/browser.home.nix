@@ -7,9 +7,11 @@
     # TODO: use ${system}
     stylix.targets.firefox.profileNames = ["default" "desy"];
     home.packages = [inputs.zen-browser.packages."x86_64-linux".default];
+    xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
     programs.firefox = {
       enable = true;
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
+      nativeMessagingHosts = [pkgs.tridactyl-native];
       policies = {
         Cookies.Behavior = "reject-foreign";
         DisableTelemetry = true;
