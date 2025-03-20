@@ -99,8 +99,57 @@
 
     services.wpaperd.enable = true;
 
-    xdg.mimeApps.defaultApplications = {
-      "application/pdf" = ["org.pwmt.zathura.desktop"];
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplications = let
+        browser = ["firefox.desktop"];
+        imageViewer = ["oculante.desktop"];
+        videoPlayer = ["mpv.desktop"];
+      in {
+        # XDG MIME types
+        "application/x-extension-htm" = browser;
+        "application/x-extension-html" = browser;
+        "application/x-extension-shtml" = browser;
+        "application/x-extension-xht" = browser;
+        "application/x-extension-xhtml" = browser;
+        "application/xhtml+xml" = browser;
+        "text/html" = browser;
+        "x-scheme-handler/about" = browser;
+        "x-scheme-handler/chrome" = browser;
+        "x-scheme-handler/ftp" = browser;
+        "x-scheme-handler/http" = browser;
+        "x-scheme-handler/https" = browser;
+        "x-scheme-handler/unknown" = browser;
+
+        "application/json" = browser;
+
+        "application/pdf" = ["org.pwmt.zathura.desktop"];
+
+        # Images
+        "image/jpeg" = imageViewer;
+        "image/png" = imageViewer;
+        # "image/gif" = imageViewer;
+        "image/gif" = videoPlayer;
+        "image/webp" = imageViewer;
+        "image/tiff" = imageViewer;
+        "image/x-tga" = imageViewer;
+        "image/vnd-ms.dds" = imageViewer;
+        "image/x-dds" = imageViewer;
+        "image/bmp" = imageViewer;
+        "image/vnd.microsoft.icon" = imageViewer;
+        "image/vnd.radiance" = imageViewer;
+        "image/x-exr" = imageViewer;
+        "image/x-portable-bitmap" = imageViewer;
+        "image/x-portable-graymap" = imageViewer;
+        "image/x-portable-pixmap" = imageViewer;
+        "image/x-portable-anymap" = imageViewer;
+        "image/x-qoi" = imageViewer;
+        "image/svg+xml" = imageViewer;
+        "image/svg+xml-compressed" = imageViewer;
+        "image/avif" = imageViewer;
+        "image/heic" = imageViewer;
+        "image/jxl" = imageViewer;
+      };
     };
   };
 }
