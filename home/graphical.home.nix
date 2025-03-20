@@ -56,6 +56,7 @@
     programs.zathura = {
       enable = true;
       options = {
+        recolor = true;
         synctex = true;
         synctex-editor-command = "texlab inverse-search -i %{input} -l %{line}";
       };
