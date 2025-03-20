@@ -51,6 +51,8 @@
         PictureInPicture.Enabled = false;
         Preferences = {
           "browser.contentblocking.category" = "strict";
+          "browser.ml.chat.enabled" = false;
+          "sidebar.verticalTabs" = true;
           "general.autoScroll" = true;
           "extensions.autoDisableScopes" = 0;
         };
@@ -58,7 +60,8 @@
       profiles = {
         default = {
           isDefault = true;
-          bookmarks = [
+          bookmarks.force = true;
+          bookmarks.settings = [
             {
               toolbar = true;
               bookmarks = [
@@ -158,14 +161,15 @@
             }
           ];
           search = {
-            default = "DuckDuckGo";
+            default = "ddg";
             force = true;
           };
           extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin linkding-extension tridactyl];
         };
         desy = {
           id = 1;
-          bookmarks = [
+          bookmarks.force = true;
+          bookmarks.settings = [
             {
               toolbar = true;
               bookmarks = [
@@ -206,7 +210,7 @@
           ];
           isDefault = false;
           search = {
-            default = "DuckDuckGo";
+            default = "ddg";
             force = true;
           };
           settings = {
