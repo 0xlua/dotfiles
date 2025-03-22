@@ -4,9 +4,7 @@
     {nixpkgs.overlays = [inputs.nur.overlays.default];}
   ];
   home-manager.users.lua = {pkgs, ...}: {
-    # TODO: use ${system}
     stylix.targets.firefox.profileNames = ["default" "desy"];
-    home.packages = [inputs.zen-browser.packages."x86_64-linux".default];
     xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
     programs.firefox = {
       enable = true;
