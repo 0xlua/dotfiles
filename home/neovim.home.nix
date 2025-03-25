@@ -88,9 +88,6 @@
         blink-cmp = {
           enable = true;
           settings = {
-            snippets = {
-              preset = "luasnip";
-            };
             completion = {
               documentation = {
                 auto_show = true;
@@ -100,6 +97,7 @@
             };
           };
         };
+        friendly-snippets.enable = true;
         bufferline = {
           enable = true;
           settings.options = {
@@ -131,10 +129,6 @@
         lint = {
           enable = true;
           lintersByFt.lua = ["selene"];
-        };
-        luasnip = {
-          enable = true;
-          fromVscode = [{}];
         };
         lsp = {
           enable = true;
