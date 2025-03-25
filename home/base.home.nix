@@ -144,6 +144,10 @@
       languages = {
         language = [
           {
+            name = "latex";
+            language-servers = ["texlab" "ltex-ls-plus"];
+          }
+          {
             name = "python";
             auto-format = true;
           }

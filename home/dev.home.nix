@@ -17,6 +17,7 @@
         taplo
         nil
         superhtml
+        ltex-ls-plus
 
         # Formatter
         typstyle
