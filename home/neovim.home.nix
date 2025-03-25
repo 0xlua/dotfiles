@@ -159,8 +159,6 @@
         };
         lualine = {
           enable = true;
-          settings.options.theme = "nordic";
-          # TODO: https://www.lazyvim.org/plugins/ui#lualinenvim
         };
         neogen = {
           enable = true;
