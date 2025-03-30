@@ -23,6 +23,7 @@
         newsflash
         signal-desktop
         buffer
+        yaak
 
         # Wayland stuff
         grim
