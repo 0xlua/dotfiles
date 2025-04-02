@@ -1,14 +1,20 @@
 {inputs, ...}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    {nixpkgs.overlays = [inputs.nur.overlays.default];}
   ];
   home-manager.users.lua = {pkgs, ...}: {
+    imports = [
+      inputs.arkenfox.hmModules.arkenfox
+    ];
     stylix.targets.firefox.profileNames = ["default" "desy"];
     xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
     programs.firefox = {
       enable = true;
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
+      arkenfox = {
+        enable = true;
+        version = "133.0";
+      };
       nativeMessagingHosts = [pkgs.tridactyl-native];
       policies = {
         Cookies.Behavior = "reject-foreign";
@@ -164,7 +170,15 @@
             default = "ddg";
             force = true;
           };
-          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin linkding-extension tridactyl];
+          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
+          arkenfox = {
+            enable = true;
+            "0000".enable = true;
+            "0100".enable = true;
+            "0200".enable = true;
+            "0300".enable = true;
+            # TODO: enable more sections, but read them beforehand
+          };
         };
         desy = {
           id = 1;
@@ -220,7 +234,7 @@
             "network.proxy.socks5_remote_dns" = true;
             "network.proxy.socks_version" = 5;
           };
-          extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [bitwarden ublock-origin multi-account-containers tridactyl];
+          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin multi-account-containers tridactyl];
           containersForce = true;
           containers = {
             admin = {

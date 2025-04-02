@@ -6,9 +6,10 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     hl.url = "github:pamburus/hl";
     stylix.url = "github:danth/stylix";
-    nur.url = "github:nix-community/NUR";
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     ironbar.url = "github:JakeStanger/ironbar";
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
     niri.url = "github:sodiboo/niri-flake";
