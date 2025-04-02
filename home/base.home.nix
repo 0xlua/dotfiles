@@ -281,6 +281,8 @@
       '';
       shellAliases = {
         ls = "eza -al --icons --git --group-directories-first";
+        nn = "$EDITOR ~/notes/QuickNote.md";
+        nw = "$EDITOR ~/notes/desy.md";
       };
     };
 
