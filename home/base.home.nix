@@ -152,6 +152,8 @@
           {
             name = "latex";
             language-servers = ["texlab" "ltex-ls-plus"];
+            auto-format = true;
+            formatter = {command = "tex-fmt";};
           }
           {
             name = "python";
