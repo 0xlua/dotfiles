@@ -16,7 +16,12 @@
     owner = config.users.users.lua.name;
     group = config.users.users.lua.group;
   };
-  home-manager.users.lua = {pkgs, ...}: {
+  home-manager.users.lua = {
+    pkgs,
+    lib,
+    ...
+  }: {
+    nixpkgs.overlays = lib.mkForce null;
     home = {
       username = "lua";
       homeDirectory = "/home/lua";
