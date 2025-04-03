@@ -171,6 +171,22 @@
             force = true;
           };
           extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
+          settings."uBlock0@raymondhill.net".settings = {
+            selectedFilterLists = [
+              "user-filters"
+              "ublock-filters"
+              "ublock-badware"
+              "ublock-privacy"
+              "ublock-quick-fixes"
+              "ublock-unbreak"
+              "easylist"
+              "easyprivacy"
+              "adguard-spyware-url"
+              "urlhaus-1"
+              "plowe-0"
+              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
+            ];
+          };
           arkenfox = {
             enable = true;
             "0000".enable = true;
