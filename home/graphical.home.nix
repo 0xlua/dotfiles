@@ -34,6 +34,7 @@
 
         # terminal
         viu
+        gurk-rs
       ];
     };
 
