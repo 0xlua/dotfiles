@@ -1,13 +1,22 @@
-{inputs, ...}: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
+  programs = {
+    nix-ld = {
+      enable = true;
+      libraries = with pkgs; [
+        wayland
+        libxkbcommon
+      ];
+    };
+  };
   home-manager.users.lua = {pkgs, ...}: {
     home = {
-      sessionVariables = {
-        LD_LIBRARY_PATH = "${pkgs.wayland}/lib:${pkgs.libxkbcommon}/lib";
-      };
-
       packages = with pkgs; [
         # Desktop
         anki-bin
