@@ -27,6 +27,9 @@
         # Linter
         selene
 
+        # project / package manager
+        uv
+
         # CLI Tools
         hurl
         xh
