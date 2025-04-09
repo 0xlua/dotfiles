@@ -37,7 +37,6 @@
         qsv
         sops
         tabiew
-        devenv
         rainfrog
         zola
       ];
