@@ -8,6 +8,7 @@
         # Languages
         tectonic
         typst
+        rustc
 
         # LSP
         biome
@@ -18,6 +19,7 @@
         nil
         superhtml
         ltex-ls-plus
+        rust-analyzer
 
         # Formatter
         typstyle
@@ -29,6 +31,7 @@
 
         # project / package manager
         uv
+        cargo
 
         # CLI Tools
         hurl
