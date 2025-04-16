@@ -170,7 +170,7 @@
             default = "ddg";
             force = true;
           };
-          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
+          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden consent-o-matic ublock-origin linkding-extension tridactyl];
           settings."uBlock0@raymondhill.net".settings = {
             selectedFilterLists = [
               "user-filters"
