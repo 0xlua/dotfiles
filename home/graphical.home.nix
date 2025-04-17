@@ -1,11 +1,17 @@
 {
   inputs,
   pkgs,
+  config,
   ...
 }: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
+  sops.secrets."spotify_client_id" = {
+    mode = "0440";
+    owner = config.users.users.lua.name;
+    group = config.users.users.lua.group;
+  };
   programs = {
     nix-ld = {
       enable = true;
@@ -25,8 +31,6 @@
         rnote
         rustdesk-flutter
         oculante
-        psst
-        spot
         pwvucontrol
         ventoy
         newsflash
@@ -63,6 +67,16 @@
     };
 
     programs.mpv.enable = true;
+
+    programs.spotify-player = {
+      enable = true;
+      settings = {
+        client_id_command = {
+          command = "cat";
+          args = [config.sops.secrets."spotify_client_id".path];
+        };
+      };
+    };
 
     programs.zathura = {
       enable = true;

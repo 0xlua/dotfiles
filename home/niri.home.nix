@@ -250,15 +250,6 @@
     ";
     };
 
-    programs.ncspot = {
-      enable = true;
-      settings = {
-        use_nerdfont = true;
-        volnorm = true;
-        notify = true;
-      };
-    };
-
     services.kanshi = {
       enable = true;
       systemdTarget = "graphical-session.target";
