@@ -34,7 +34,7 @@
         pwvucontrol
         ventoy
         newsflash
-        signal-desktop-source
+        signal-desktop
         buffer
         yaak
 
