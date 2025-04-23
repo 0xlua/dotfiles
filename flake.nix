@@ -9,8 +9,8 @@
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     hl.url = "github:pamburus/hl";
     stylix.url = "github:danth/stylix";
-    # TODO: https://gitlab.com/rycee/nur-expressions/-/issues/305
-    firefox-addons.url = "gitlab:rycee/nur-expressions/9f965a7bea82a14311991e99e013fdf615e25eac?dir=pkgs/firefox-addons";
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     ironbar.url = "github:JakeStanger/ironbar";
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
     niri.url = "github:sodiboo/niri-flake";
