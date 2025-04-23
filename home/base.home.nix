@@ -60,7 +60,6 @@
         numbat
         dysk
         dua
-        television
         sherlock
         managarr
         gitleaks
@@ -247,6 +246,8 @@
         };
       };
     };
+
+    programs.television.enable = true;
 
     programs.yazi = {
       enable = true;
