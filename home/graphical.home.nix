@@ -48,6 +48,7 @@
         # terminal
         viu
         gurk-rs
+        asak
       ];
     };
 
