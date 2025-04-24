@@ -8,8 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     hl.url = "github:pamburus/hl";
-    # TODO https://github.com/danth/stylix/issues/1161
-    stylix.url = "github:danth/stylix/8b0d9317edd57c5374adcf6957ae4775875c2a9d";
+    stylix.url = "github:danth/stylix";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     ironbar.url = "github:JakeStanger/ironbar";
