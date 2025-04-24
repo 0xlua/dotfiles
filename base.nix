@@ -58,8 +58,6 @@
 
   stylix = {
     enable = true;
-    # see https://github.com/danth/stylix/pull/717
-    image = lib.mkDefault ./wallpaper/caffeine.png;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
   };
 }
