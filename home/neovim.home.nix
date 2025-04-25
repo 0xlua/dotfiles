@@ -11,14 +11,18 @@
     imports = [
       inputs.nixvim.homeManagerModules.nixvim
     ];
+    stylix.targets.nixvim.enable = false;
 
     programs.neovide.enable = true;
     programs.neovide.settings = {};
 
     programs.nixvim = {
       enable = true;
-      # extraPlugins = [pkgs.vimPlugins.onenord-nvim];
-      extraPlugins = [pkgs.vimPlugins.nordic-nvim];
+      extraPlugins = [pkgs.vimPlugins.onenord-nvim pkgs.vimPlugins.nordic-nvim];
+      colorschemes.kanagawa = {
+        enable = true;
+        settings.background.dark = "dragon";
+      };
       colorscheme = "nordic";
       clipboard.register = "unnamedplus";
       clipboard.providers.wl-copy.enable = true;
@@ -33,6 +37,13 @@
         cursorline = true;
         laststatus = 3;
         guifont = "Hack Nerd Font:h14"; # font for neovide
+        scrolloff = 10;
+        list = true;
+        listchars = {
+          tab = "» ";
+          trail = "·";
+          nbsp = "␣";
+        };
 
         # search
         ignorecase = true;
@@ -47,7 +58,10 @@
         tabstop = 2;
 
         showtabline = 2;
+        smarttab = true;
+        autoindent = true;
         smartindent = true;
+        breakindent = true;
 
         # splits
         splitright = true;
@@ -79,6 +93,12 @@
           key = "<S-h>";
           action = "<cmd>bprevious<CR>";
           options.silent = true;
+        }
+        {
+          mode = "n";
+          key = "-";
+          action = "<cmd>Oil --float<CR>";
+          options.desc = "Open Oil File Manager";
         }
       ];
 
@@ -165,6 +185,9 @@
             "core.concealer".config.icon_preset = "varied";
             "core.dirman".config.workspaces.notes = "/home/lua/notes";
           };
+        };
+        oil = {
+          enable = true;
         };
         snacks = {
           enable = true;
