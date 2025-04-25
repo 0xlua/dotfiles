@@ -23,7 +23,7 @@
         enable = true;
         settings.background.dark = "dragon";
       };
-      colorscheme = "nordic";
+      colorscheme = "onenord";
       clipboard.register = "unnamedplus";
       clipboard.providers.wl-copy.enable = true;
       opts = {
@@ -133,6 +133,35 @@
             format_on_save = {
               timeout_ms = 500;
               lsp_fallback = true;
+            };
+          };
+        };
+        fzf-lua = {
+          enable = true;
+          keymaps = {
+            "<leader>f" = {
+              action = "files";
+              options.desc = "List files";
+            };
+            "<leader>b" = {
+              action = "buffers";
+              options.desc = "List buffers";
+            };
+            "<leader>/" = {
+              action = "live_grep";
+              options.desc = "Search Project";
+            };
+            "<leader>gf" = {
+              action = "git_files";
+              options.desc = "List Git Files";
+            };
+            "<leader>gs" = {
+              action = "git_status";
+              options.desc = "Show Git Status";
+            };
+            "<leader>fl" = {
+              action = "builtin";
+              options.desc = "List Fuzzy Finders";
             };
           };
         };
