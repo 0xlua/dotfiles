@@ -118,14 +118,6 @@
           };
         };
         friendly-snippets.enable = true;
-        bufferline = {
-          enable = true;
-          settings.options = {
-            close_command = "function(n) Snacks.bufdelete(n) end";
-            right_mouse_command = "function(n) Snacks.bufdelete(n) end";
-            diagnostics = "nvim_lsp";
-          };
-        };
         conform-nvim = {
           enable = true;
           settings = {
