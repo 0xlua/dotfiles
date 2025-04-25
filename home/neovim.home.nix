@@ -57,7 +57,6 @@
         softtabstop = 2;
         tabstop = 2;
 
-        showtabline = 2;
         smarttab = true;
         autoindent = true;
         smartindent = true;
@@ -188,6 +187,15 @@
           enable = true;
           settings = {
             highlight.enable = true;
+            incremental_selection = {
+              enable = true;
+              keymaps = {
+                init_selection = "<A-o>";
+                node_incremental = "<A-o>";
+                scope_incremental = false;
+                node_decremental = "<A-i>";
+              };
+            };
           };
         };
         ts-autotag.enable = true;
