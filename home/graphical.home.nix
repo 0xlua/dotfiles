@@ -98,7 +98,7 @@
 
     programs.zed-editor = {
       enable = true;
-      extensions = [ "nix" ];
+      extensions = ["nix"];
       userSettings = {
         auto_update = false;
         assistant.enabled = false;
@@ -106,6 +106,13 @@
           diagnostics = false;
           metrics = false;
         };
+        languages = {
+          Nix.formatter.external = {
+            command = "alejandra";
+            arguments = ["--quiet" "--"];
+          };
+        };
+        use_smartcase_search = true;
         vim_mode = true;
       };
     };
