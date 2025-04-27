@@ -98,11 +98,12 @@
 
     programs.zed-editor = {
       enable = true;
+      extensions = [ "nix" ];
       userSettings = {
-        features = {
-          copilot = false;
-        };
+        auto_update = false;
+        assistant.enabled = false;
         telemetry = {
+          diagnostics = false;
           metrics = false;
         };
         vim_mode = true;
