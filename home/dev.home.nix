@@ -22,6 +22,7 @@
         superhtml
         ltex-ls-plus
         rust-analyzer
+        postgres-lsp
 
         # Formatter
         typstyle
@@ -38,6 +39,7 @@
 
         # CLI Tools
         hurl
+        just
         xh
         grex
         gitu
