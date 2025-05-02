@@ -60,7 +60,6 @@
         numbat
         dysk
         dua
-        sherlock
         managarr
         gitleaks
         sshs
