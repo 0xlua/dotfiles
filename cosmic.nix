@@ -118,6 +118,15 @@
           ): Disable,
       }
     ";
+      "cosmic/com.system76.CosmicSettings.WindowRules/v1/tiling_exceptions_custom".text = "
+        [
+          (
+            appid: \"\",
+            title: \"Steam\",
+            enabled: false
+          )
+        ]
+      ";
       "cosmic/com.system76.CosmicTk/v1/interface_font".text = "
       (
           family: \"Inter\",
