@@ -64,6 +64,7 @@
         gitleaks
         sshs
         rustypaste-cli
+        uutils-coreutils-noprefix
       ];
 
       stateVersion = "24.05";

@@ -33,6 +33,8 @@
 
   users.mutableUsers = false;
 
+  security.sudo-rs.enable = true;
+
   sops = {
     defaultSopsFile = ./secrets.yaml;
     age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
