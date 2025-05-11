@@ -168,7 +168,21 @@
             auto-format = true;
             formatter = {command = "alejandra";};
           }
+          {
+            name = "json";
+            auto-format = true;
+            language-servers = [{name = "biome";}];
+          }
+          {
+            name = "javascript";
+            auto-format = true;
+            language-servers = [{name = "biome";}];
+          }
         ];
+        language-server.biome = {
+          command = "biome";
+          args = ["lsp-proxy"];
+        };
         language-server.texlab.config.texlab = {
           forwardSearch = {
             executable = "zathura";
