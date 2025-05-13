@@ -57,7 +57,6 @@
       packages = with pkgs; [
         ouch
         mdcat
-        numbat
         dysk
         dua
         managarr
@@ -223,6 +222,8 @@
       clean.extraArgs = "--keep-since 4d --keep 3";
       flake = "/home/lua/dotfiles";
     };
+
+    programs.numbat.enable = true;
 
     programs.rbw = {
       enable = true;
