@@ -32,7 +32,6 @@
         rustdesk-flutter
         oculante
         pwvucontrol
-        ventoy
         newsflash
         signal-desktop
         buffer
