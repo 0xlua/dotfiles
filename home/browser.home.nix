@@ -13,7 +13,7 @@
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
       arkenfox = {
         enable = true;
-        version = "master";
+        version = "135.0";
       };
       nativeMessagingHosts = [pkgs.tridactyl-native];
       policies = {
