@@ -53,37 +53,24 @@
           "Mod+Q".action = close-window;
 
           "Mod+H".action = focus-column-left;
-          "Mod+J".action = focus-window-down;
-          "Mod+K".action = focus-window-up;
+          "Mod+J".action = focus-window-or-workspace-down;
+          "Mod+K".action = focus-window-or-workspace-up;
           "Mod+L".action = focus-column-right;
 
-          "Mod+Ctrl+H".action = move-column-left;
-          "Mod+Ctrl+J".action = move-window-down;
-          "Mod+Ctrl+K".action = move-window-up;
-          "Mod+Ctrl+L".action = move-column-right;
+          "Mod+Shift+H".action = move-column-left;
+          "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
+          "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
+          "Mod+Shift+L".action = move-column-right;
 
-          "Mod+Home".action = focus-column-first;
-          "Mod+End".action = focus-column-last;
-          "Mod+Ctrl+Home".action = move-column-to-first;
-          "Mod+Ctrl+End".action = move-column-to-last;
-
-          "Mod+Shift+H".action = focus-monitor-left;
-          "Mod+Shift+J".action = focus-monitor-down;
-          "Mod+Shift+K".action = focus-monitor-up;
-          "Mod+Shift+L".action = focus-monitor-right;
+          "Mod+Ctrl+H".action = focus-monitor-left;
+          "Mod+Ctrl+J".action = focus-monitor-down;
+          "Mod+Ctrl+K".action = focus-monitor-up;
+          "Mod+Ctrl+L".action = focus-monitor-right;
 
           "Mod+Shift+Ctrl+H".action = move-window-to-monitor-left;
           "Mod+Shift+Ctrl+J".action = move-window-to-monitor-down;
           "Mod+Shift+Ctrl+K".action = move-window-to-monitor-up;
           "Mod+Shift+Ctrl+L".action = move-window-to-monitor-right;
-
-          "Mod+U".action = focus-workspace-down;
-          "Mod+I".action = focus-workspace-up;
-          "Mod+Ctrl+U".action = move-window-to-workspace-down;
-          "Mod+Ctrl+I".action = move-window-to-workspace-up;
-
-          "Mod+Shift+U".action = move-workspace-down;
-          "Mod+Shift+I".action = move-workspace-up;
 
           "Mod+1".action = focus-workspace 1;
           "Mod+2".action = focus-workspace 2;
@@ -99,9 +86,11 @@
           "Mod+Period".action = expel-window-from-column;
           "Mod+R".action = switch-preset-column-width;
           "Mod+Shift+R".action = reset-window-height;
-          "Mod+F".action = maximize-column;
-          "Mod+Shift+F".action = fullscreen-window;
+          "Mod+F".action = fullscreen-window;
+          "Mod+Shift+F".action = toggle-windowed-fullscreen;
           "Mod+C".action = center-column;
+          "Mod+T".action = switch-focus-between-floating-and-tiling;
+          "Mod+Shift+T".action = toggle-window-floating;
 
           "Mod+Minus".action = set-column-width "-10%";
           "Mod+Equal".action = set-column-width "+10%";
