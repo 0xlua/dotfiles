@@ -32,14 +32,10 @@
         rustdesk-flutter
         oculante
         pwvucontrol
-        newsflash
-        signal-desktop
         buffer
         yaak
 
         # Wayland stuff
-        grim
-        slurp
         wl-clipboard
         libnotify
         xwayland-satellite
