@@ -12,6 +12,12 @@
     group = config.users.users.lua.group;
   };
   home-manager.users.lua = {pkgs, ...}: {
+    accounts.calendar.accounts.lua.remote = {
+      type = "caldav";
+      url = "https://mail.lua.one/.well-known/caldav";
+      userName = "moin@lua.one";
+      passwordCommand = "cat ${config.sops.secrets."mailAppPw".path}";
+    };
     accounts.email.accounts.lua = {
       address = "moin@lua.one";
       userName = "moin@lua.one";
