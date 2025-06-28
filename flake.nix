@@ -8,6 +8,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     arkenfox.url = "github:dwarfmaster/arkenfox-nixos";
     hl.url = "github:pamburus/hl";
+    lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
+    lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
     firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
@@ -27,6 +29,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
+          inputs.lanzaboote.nixosModules.lanzaboote
           ./hardware/europa.nix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           ./hosts/europa.nix

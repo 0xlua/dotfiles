@@ -62,6 +62,7 @@
         managarr
         gitleaks
         sshs
+        sbctl
         rustypaste-cli
         uutils-coreutils-noprefix
       ];
