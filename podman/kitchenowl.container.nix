@@ -1,6 +1,10 @@
 {config, ...}: {
-  sops.secrets.kitchenowlJwt = {};
-  sops.secrets.kitchenowlOidcSecret = {};
+  sops.secrets.kitchenowlJwt = {
+    mode = "0440";
+  };
+  sops.secrets.kitchenowlOidcSecret = {
+    mode = "0440";
+  };
 
   virtualisation.oci-containers.containers.kitchenowl = {
     image = "docker.io/tombursch/kitchenowl:latest";
@@ -18,8 +22,8 @@
     };
     volumes = [
       "/home/lua/podman/kitchenowl:/data"
-      "${config.sops.secrets.kitchenowlJwt.path}:/run/secrets/jwt_secret_key"
-      "${config.sops.secrets.kitchenowlOidcSecret.path}:/run/secrets/oidc_client_secret"
+      "${config.sops.secrets.kitchenowlJwt.path}:/run/secrets/jwt_secret_key:ro,U"
+      "${config.sops.secrets.kitchenowlOidcSecret.path}:/run/secrets/oidc_client_secret:ro,U"
     ];
   };
 }
