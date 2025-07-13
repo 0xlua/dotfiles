@@ -25,7 +25,6 @@
     home = {
       packages = with pkgs; [
         # Desktop
-        anki-bin
         delfin
         scrcpy
         rnote
@@ -45,6 +44,10 @@
         gurk-rs
         asak
       ];
+    };
+
+    programs.anki = {
+      enable = true;
     };
 
     programs.freetube = {
