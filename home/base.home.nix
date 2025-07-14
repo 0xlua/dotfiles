@@ -178,10 +178,20 @@
             auto-format = true;
             language-servers = [{name = "biome";}];
           }
+          {
+            name = "beancount";
+            auto-format = true;
+            language-servers = [{name = "beancount-language-server";}];
+          }
         ];
         language-server.biome = {
           command = "biome";
           args = ["lsp-proxy"];
+        };
+        language-server.beancount-language-server = {
+          command = "beancount-language-server";
+          args = ["--stdio"];
+          config.journal_file = "/home/lua/notes/accounts.bean";
         };
         language-server.texlab.config.texlab = {
           forwardSearch = {

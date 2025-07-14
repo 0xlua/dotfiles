@@ -11,9 +11,11 @@
         rustc
         lld
         clang
+        beancount
 
         # LSP
         biome
+        beancount-language-server
         texlab
         tinymist
         markdown-oxide
@@ -50,6 +52,7 @@
         tabiew
         rainfrog
         zola
+        fava
       ];
     };
 
