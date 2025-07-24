@@ -99,7 +99,7 @@
       extensions = ["nix"];
       userSettings = {
         auto_update = false;
-        assistant.enabled = false;
+        disable_ai = true;
         telemetry = {
           diagnostics = false;
           metrics = false;
