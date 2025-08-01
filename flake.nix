@@ -18,7 +18,8 @@
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
-    cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    # cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    cosmic.url = "github:PhoenixPhantom/nixos-cosmic";
     nixpkgs.follows = "cosmic/nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
   };
