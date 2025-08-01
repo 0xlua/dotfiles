@@ -62,15 +62,16 @@
         name = "Vollkorn";
       };
       sansSerif = {
-        # package = pkgs.atkinson-hyperlegible;
-        # package = pkgs.atkinson-hyperlegible-next;
         package = pkgs.inter;
         name = "Inter";
+        # package = pkgs.atkinson-hyperlegible-next;
+        # name = "Atkinson Hyperlegible Next";
       };
       monospace = {
-        # package = pkgs.atkinson-hyperlegible-mono;
         package = pkgs.nerd-fonts.hack;
         name = "Hack Nerd Font";
+        # package = pkgs.nerd-fonts.atkynson-mono;
+        # name = "Atkinson Hyperlegible Nerd Font";
       };
       emoji = {
         package = pkgs.noto-fonts-emoji;
