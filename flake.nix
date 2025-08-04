@@ -2,7 +2,7 @@
   description = "NixOS System Configuration";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,9 +18,6 @@
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
-    # cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    cosmic.url = "github:PhoenixPhantom/nixos-cosmic";
-    nixpkgs.follows = "cosmic/nixpkgs";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 

@@ -4,14 +4,8 @@
   ...
 }: {
   imports = [
-    inputs.cosmic.nixosModules.default
     inputs.home-manager.nixosModules.home-manager
   ];
-
-  nix.settings = {
-    substituters = ["https://cosmic.cachix.org/"];
-    trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-  };
 
   home-manager.users.lua = {
     programs.obs-studio = {
@@ -150,6 +144,7 @@
   stylix.image = ./wallpaper/cloud_launch.png;
 
   services.desktopManager.cosmic.enable = true;
+  services.desktopManager.cosmic.xwayland.enable = true;
   services.displayManager.cosmic-greeter.enable = true;
 
   programs.dconf.enable = true;
