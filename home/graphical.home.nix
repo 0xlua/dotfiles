@@ -131,6 +131,11 @@
 
     services.wpaperd.enable = true;
 
+    xdg.terminal-exec = {
+      enable = true;
+      settings.default = ["alacritty.desktop"];
+    };
+
     xdg.mimeApps = {
       enable = true;
       defaultApplications = let
