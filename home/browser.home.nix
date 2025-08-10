@@ -4,17 +4,14 @@
   ];
   home-manager.users.lua = {pkgs, ...}: {
     imports = [
-      inputs.arkenfox.hmModules.arkenfox
+      # TODO: compare my policies with phoenix
+      # inputs.phoenix.nixosModules.default
     ];
     stylix.targets.firefox.profileNames = ["default" "desy"];
     xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
     programs.firefox = {
       enable = true;
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
-      arkenfox = {
-        enable = true;
-        version = "135.0";
-      };
       nativeMessagingHosts = [pkgs.tridactyl-native];
       policies = {
         Cookies.Behavior = "reject-foreign";
@@ -186,14 +183,6 @@
               "plowe-0"
               "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
             ];
-          };
-          arkenfox = {
-            enable = true;
-            "0000".enable = true;
-            "0100".enable = true;
-            "0200".enable = true;
-            "0300".enable = true;
-            # TODO: enable more sections, but read them beforehand
           };
         };
         desy = {
