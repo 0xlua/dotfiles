@@ -9,7 +9,7 @@
     ...
   }: {
     imports = [
-      inputs.nixvim.homeManagerModules.nixvim
+      inputs.nixvim.homeModules.nixvim
     ];
     stylix.targets.nixvim.enable = false;
 
