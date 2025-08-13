@@ -58,7 +58,6 @@
 
         # terminal
         viu
-        gurk-rs
         asak
       ];
     };
@@ -109,6 +108,10 @@
         window.dynamic_padding = true;
         terminal.shell.program = "fish";
       };
+    };
+
+    programs.gurk-rs = {
+      enable = true;
     };
 
     programs.zed-editor = {
