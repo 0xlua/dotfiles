@@ -25,6 +25,7 @@
         ltex-ls-plus
         rust-analyzer
         postgres-lsp
+        ty
 
         # Formatter
         typstyle
@@ -36,7 +37,6 @@
         selene
 
         # project / package manager
-        uv
         cargo
 
         # CLI Tools
@@ -90,6 +90,10 @@
     programs.ruff = {
       enable = true;
       settings = {};
+    };
+
+    programs.uv = {
+      enable = true;
     };
 
     programs.tex-fmt = {
