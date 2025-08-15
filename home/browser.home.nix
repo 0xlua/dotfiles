@@ -16,7 +16,7 @@
       policies = {
         Cookies.Behavior = "reject-foreign";
         DisableTelemetry = true;
-        DisablefirefoxStudies = true;
+        DisableFirefoxStudies = true;
         DisablePocket = true;
         EnableTrackingProtection = {
           Value = true;
@@ -63,111 +63,11 @@
       profiles = {
         default = {
           isDefault = true;
-          bookmarks.force = true;
-          bookmarks.settings = [
-            {
-              toolbar = true;
-              bookmarks = [
-                {
-                  url = "http://ganymede:3000/";
-                  name = "";
-                }
-                {
-                  url = "https://b.lua.one/bookmarks";
-                  name = "";
-                }
-                {
-                  url = "https://rss.lua.one/unread";
-                  name = "";
-                }
-                {
-                  url = "https://reddit.lua.one/";
-                  name = "";
-                }
-                {
-                  url = "https://letterboxd.com/";
-                  name = "";
-                }
-                {
-                  url = "https://account.proton.me/";
-                  name = "";
-                }
-                {
-                  url = "https://github.com/";
-                  name = "";
-                }
-                {
-                  url = "https://codeberg.org/";
-                  name = "";
-                }
-                {
-                  url = "https://web.whatsapp.com/";
-                  name = "";
-                }
-                {
-                  url = "https://www.hvv.de/";
-                  name = "";
-                }
-                {
-                  url = "https://www.openstreetmap.org/";
-                  name = "";
-                }
-                {
-                  url = "https://www.inwx.de/";
-                  name = "";
-                }
-                {
-                  url = "https://console.hetzner.cloud/";
-                  name = "";
-                }
-                {
-                  url = "https://www.mydealz.de/";
-                  name = "";
-                }
-                {
-                  url = "https://geizhals.de/";
-                  name = "";
-                }
-                {
-                  url = "http://store.steampowered.com/";
-                  name = "";
-                }
-                {
-                  url = "https://www.comdirect.de/";
-                  name = "";
-                }
-                {
-                  url = "https://savoy.premiumkino.de/";
-                  name = "";
-                }
-                {
-                  url = "https://www.kino-zeit.de/";
-                  name = "";
-                }
-                {
-                  url = "https://kachelmannwetter.com/de/wetter/2911298-hamburg";
-                  name = "";
-                }
-                {
-                  url = "https://lichess.org/";
-                  name = "";
-                }
-                {
-                  url = "https://grondilu.github.io/memchess/";
-                  name = "";
-                }
-                {
-                  url = "https://listudy.org/en";
-                  name = "";
-                }
-              ];
-            }
-          ];
           search = {
             default = "ddg";
             force = true;
           };
-          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden consent-o-matic ublock-origin linkding-extension tridactyl];
+          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
           settings."uBlock0@raymondhill.net".settings = {
             selectedFilterLists = [
               "user-filters"
