@@ -197,7 +197,6 @@
         lualine = {
           enable = true;
         };
-        markview.enable = true;
         neogen = {
           enable = true;
           snippetEngine = "luasnip";
