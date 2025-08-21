@@ -139,7 +139,7 @@
             "network.proxy.socks5_remote_dns" = true;
             "network.proxy.socks_version" = 5;
           };
-          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin multi-account-containers tridactyl];
+          extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin tridactyl];
           containersForce = true;
           containers = {
             admin = {
