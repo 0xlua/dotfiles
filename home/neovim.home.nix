@@ -197,10 +197,6 @@
         lualine = {
           enable = true;
         };
-        neogen = {
-          enable = true;
-          snippetEngine = "luasnip";
-        };
         neorg = {
           enable = true;
           settings.load = {
