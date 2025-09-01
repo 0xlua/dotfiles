@@ -247,10 +247,13 @@
 
     programs.ssh = {
       enable = true;
-      forwardAgent = true;
-      addKeysToAgent = "yes";
-      serverAliveInterval = 60;
+      enableDefaultConfig = false;
       matchBlocks = {
+        "*" = {
+          forwardAgent = true;
+          addKeysToAgent = "yes";
+          serverAliveInterval = 60;
+        };
         desy = {
           hostname = "bastion.desy.de";
           user = "jordanlu";
