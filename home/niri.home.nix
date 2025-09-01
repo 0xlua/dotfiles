@@ -108,7 +108,6 @@
         prefer-no-csd = true;
         spawn-at-startup = [
           {command = ["ironbar"];}
-          {command = ["xwayland-satellite"];}
         ];
         input = {
           keyboard.xkb = {
@@ -131,7 +130,6 @@
         layout = {
           default-column-width = {};
         };
-        environment.DISPLAY = ":0";
         window-rules = [
           {
             geometry-corner-radius = {
