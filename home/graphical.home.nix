@@ -112,6 +112,20 @@
 
     programs.gurk-rs = {
       enable = true;
+      settings = {
+        signal_db_path = "${config.users.users.lua.home}/.local/share/gurk/signal-db";
+        first_name_only = false;
+        show_receipts = true;
+        notifications = true;
+        bell = true;
+        colored_messages = false;
+        default_keybindings = true;
+        user.name = "Lukas";
+        sqlite = {
+          url = "sqlite://${config.users.users.lua.home}/.local/share/gurk/gurk.sqlite";
+          _preserve_unencryped = false;
+        };
+      };
     };
 
     programs.zed-editor = {
