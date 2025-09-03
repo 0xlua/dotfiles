@@ -48,7 +48,7 @@
         rustdesk-flutter
         oculante
         pwvucontrol
-        buffer
+        # buffer
         yaak
 
         # Wayland stuff
