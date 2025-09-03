@@ -154,10 +154,10 @@
       settings = {
         folders = {
           "default" = {
-            path = "/home/lua/Sync";
+            path = "${config.users.users.lua.home}/Sync";
           };
           "njho7-shvne" = {
-            path = "/home/lua/notes";
+            path = "${config.users.users.lua.home}/notes";
           };
         };
       };

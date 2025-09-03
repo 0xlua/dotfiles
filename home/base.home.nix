@@ -189,7 +189,7 @@
         language-server.beancount-language-server = {
           command = "beancount-language-server";
           args = ["--stdio"];
-          config.journal_file = "/home/lua/notes/accounts.bean";
+          config.journal_file = "${config.users.users.lua.home}/notes/accounts.bean";
         };
         language-server.texlab.config.texlab = {
           forwardSearch = {
@@ -229,7 +229,7 @@
       enable = true;
       clean.enable = true;
       clean.extraArgs = "--keep-since 4d --keep 3";
-      flake = "/home/lua/dotfiles";
+      flake = "${config.users.users.lua.home}/dotfiles";
     };
 
     programs.numbat.enable = true;

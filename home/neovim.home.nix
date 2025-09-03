@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  config,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -202,7 +206,7 @@
           settings.load = {
             "core.defaults".__empty = null;
             "core.concealer".config.icon_preset = "varied";
-            "core.dirman".config.workspaces.notes = "/home/lua/notes";
+            "core.dirman".config.workspaces.notes = "${config.users.users.lua.home}/notes";
           };
         };
         oil = {
