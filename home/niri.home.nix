@@ -106,9 +106,6 @@
         };
         hotkey-overlay.skip-at-startup = true;
         prefer-no-csd = true;
-        spawn-at-startup = [
-          {command = ["ironbar"];}
-        ];
         input = {
           keyboard.xkb = {
             layout = "us";
@@ -147,6 +144,7 @@
 
     programs.ironbar = {
       enable = true;
+      systemd = true;
       package = pkgs.ironbar;
       config = {
         position = "top";
@@ -158,8 +156,7 @@
         };
         start = [
           {
-            type = "label";
-            label = "Hallo";
+            type = "workspaces";
           }
         ];
         center = [
