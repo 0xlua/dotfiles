@@ -67,6 +67,7 @@
         uutils-coreutils-noprefix # coreutils
 
         # tools
+        jocalsend
         rustypaste-cli # pastebin
         ouch # archiving
         managarr # *arr

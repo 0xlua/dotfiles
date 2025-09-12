@@ -46,6 +46,12 @@
 
   security.rtkit.enable = true;
 
+  # Needed for localsend
+  networking.firewall = {
+    allowedTCPPorts = [53317];
+    allowedUDPPorts = [53317];
+  };
+
   services.pipewire = {
     enable = true;
     alsa.enable = true;
