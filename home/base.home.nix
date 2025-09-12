@@ -55,14 +55,21 @@
       };
 
       packages = with pkgs; [
-        ouch
-        mdcat
+        # terminal viewer
+        mdcat # md
+        doxx # docx
+        # hygg # pdf
+
+        # system
         dysk
-        dua
-        managarr
-        sbctl
-        rustypaste-cli
-        uutils-coreutils-noprefix
+        dua # disk usage
+        sbctl # secure boot
+        uutils-coreutils-noprefix # coreutils
+
+        # tools
+        rustypaste-cli # pastebin
+        ouch # archiving
+        managarr # *arr
       ];
 
       stateVersion = "24.05";
