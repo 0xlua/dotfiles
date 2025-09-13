@@ -145,7 +145,7 @@
     programs.ironbar = {
       enable = true;
       systemd = true;
-      package = pkgs.ironbar;
+      # package = pkgs.ironbar;
       config = {
         position = "top";
         layer = "overlay";
@@ -175,7 +175,7 @@
             max_volume = 100;
           }
           {
-            type = "upower";
+            type = "battery";
           }
           {
             type = "notifications";
@@ -201,7 +201,7 @@
       @define-color nord15 #b48ead;
 
       * {
-        font-family: 'Inter Display Medium';
+        font-family: 'Inter Display Medium', 'Hack Nerd Font';
         font-size: 18px;
         border: none;
         border-radius: 12px;
