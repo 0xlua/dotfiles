@@ -282,7 +282,17 @@
       };
     };
 
-    programs.television.enable = true;
+    programs.television = {
+      enable = true;
+      settings = {
+        use_nerd_font_icons = true;
+      };
+    };
+
+    programs.nix-search-tv = {
+      enable = true;
+      enableTelevisionIntegration = true;
+    };
 
     programs.yazi = {
       enable = true;
