@@ -12,6 +12,7 @@
         lld
         clang
         beancount
+        deno
 
         # LSP
         biome

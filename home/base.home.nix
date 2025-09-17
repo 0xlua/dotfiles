@@ -176,12 +176,17 @@
           {
             name = "json";
             auto-format = true;
-            language-servers = [{name = "biome";}];
+            language-servers = ["biome"];
           }
           {
             name = "javascript";
             auto-format = true;
-            language-servers = [{name = "biome";}];
+            language-servers = ["biome"];
+          }
+          {
+            name = "typescript";
+            auto-format = true;
+            language-servers = [{name = "deno-lsp";} "biome"];
           }
           {
             name = "beancount";
@@ -189,30 +194,47 @@
             language-servers = [{name = "beancount-language-server";}];
           }
         ];
-        language-server.biome = {
-          command = "biome";
-          args = ["lsp-proxy"];
-        };
-        language-server.beancount-language-server = {
-          command = "beancount-language-server";
-          args = ["--stdio"];
-          config.journal_file = "${config.users.users.lua.home}/notes/accounts.bean";
-        };
-        language-server.texlab.config.texlab = {
-          forwardSearch = {
-            executable = "zathura";
-            args = ["--synctex-forward" "%l:1:%f" "%p"];
+        language-server = {
+          biome = {
+            command = "biome";
+            args = ["lsp-proxy"];
           };
-          build = {
-            onSave = true;
-            forwardSearchAfter = true;
-            executable = "tectonic";
-            args = [
-              "-X"
-              "build"
-              "--keep-logs"
-              "--keep-intermediates"
-            ];
+          deno-lsp = {
+            command = "deno";
+            args = ["lsp"];
+            config.deno = {
+              enable = true;
+              unstable = true;
+              suggest.imports.hosts = {"https://deno.land" = true;};
+              inlayHints.parameterNames.enabled = "all";
+              inlayHints.parameterTypes.enabled = true;
+              inlayHints.variableTypes.enabled = true;
+              inlayHints.propertyDeclarationTypes.enabled = true;
+              inlayHints.functionLikeReturnTypes.enabled = true;
+              inlayHints.enumMemberValues.enabled = true;
+            };
+          };
+          beancount-language-server = {
+            command = "beancount-language-server";
+            args = ["--stdio"];
+            config.journal_file = "${config.users.users.lua.home}/notes/accounts.bean";
+          };
+          texlab.config.texlab = {
+            forwardSearch = {
+              executable = "zathura";
+              args = ["--synctex-forward" "%l:1:%f" "%p"];
+            };
+            build = {
+              onSave = true;
+              forwardSearchAfter = true;
+              executable = "tectonic";
+              args = [
+                "-X"
+                "build"
+                "--keep-logs"
+                "--keep-intermediates"
+              ];
+            };
           };
         };
       };
