@@ -20,7 +20,6 @@
       REDLIB_DEFAULT_SHOW_NSFW = "on";
       # Enable HLS video format by default
       REDLIB_DEFAULT_USE_HLS = "off";
-      REDLIB_DEFAULT_SUBSCRIPTIONS = "selfhosted";
     };
   };
 }

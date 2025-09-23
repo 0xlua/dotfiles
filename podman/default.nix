@@ -14,6 +14,7 @@
     ./rustypaste.container.nix
     ./stalwart.container.nix
     ./vaultwarden.container.nix
+    ./upvoterss.container.nix
   ];
   virtualisation = {
     containers.enable = true;
