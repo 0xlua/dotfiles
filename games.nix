@@ -15,7 +15,7 @@
       lact
       mumble
       teamspeak6-client
-      bottles # TODO: Bottles next
+      bottles
       # mangohud
     ];
   };

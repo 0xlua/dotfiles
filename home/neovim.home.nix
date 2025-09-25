@@ -106,7 +106,6 @@
         }
       ];
 
-      # TODO: DAP Debugger
       plugins = {
         web-devicons.enable = true;
         blink-cmp = {
@@ -245,8 +244,6 @@
           };
         };
       };
-
-      # neogit
     };
   };
 }
