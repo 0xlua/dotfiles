@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   security.pam.services.gtklock = {};
 
-  stylix.image = ./wallpaper/firewatch.png;
+  stylix.image = ./wallpaper/city.jpg;
 
   services.upower.enable = true;
 

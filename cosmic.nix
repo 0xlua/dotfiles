@@ -141,7 +141,7 @@
       "cosmic/com.system76.CosmicTk/v1/show_minimize".text = "false";
     };
   };
-  stylix.image = ./wallpaper/cloud_launch.png;
+  stylix.image = ./wallpaper/city.jpg;
 
   services.desktopManager.cosmic.enable = true;
   services.desktopManager.cosmic.xwayland.enable = true;
