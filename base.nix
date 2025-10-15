@@ -60,6 +60,8 @@
 
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/0x96f.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
+    # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
   };
 }
