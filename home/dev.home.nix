@@ -49,6 +49,7 @@
         jnv
         jaq
         qsv
+        xan
         sops
         tabiew
         rainfrog
