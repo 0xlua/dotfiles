@@ -34,9 +34,6 @@
         stylua
         rustfmt
 
-        # Linter
-        selene
-
         # project / package manager
         cargo
 

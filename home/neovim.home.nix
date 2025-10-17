@@ -1,8 +1,4 @@
-{
-  inputs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
   ];
@@ -106,8 +102,25 @@
         }
       ];
 
+      lsp = {
+        inlayHints.enable = true;
+        servers = {
+          biome.enable = true;
+          denols.enable = true;
+          markdown_oxide.enable = true;
+          nil_ls.enable = true;
+          ruff.enable = true;
+          rust_analyzer.enable = true;
+          stylua.enable = true;
+          superhtml.enable = true;
+          taplo.enable = true;
+          texlab.enable = true;
+          tinymist.enable = true;
+          ty.enable = true;
+        };
+      };
+
       plugins = {
-        web-devicons.enable = true;
         blink-cmp = {
           enable = true;
           settings = {
@@ -123,6 +136,7 @@
           };
         };
         friendly-snippets.enable = true;
+        lspconfig.enable = true;
         conform-nvim = {
           enable = true;
           settings = {
@@ -142,6 +156,7 @@
             };
           };
         };
+        web-devicons.enable = true; # needed for fzf-lua, trouble, lualine
         fzf-lua = {
           enable = true;
           keymaps = {
@@ -165,55 +180,14 @@
               action = "git_status";
               options.desc = "Show Git Status";
             };
-            "<leader>fl" = {
+            "<leader>l" = {
               action = "builtin";
               options.desc = "List Fuzzy Finders";
             };
           };
         };
         gitsigns.enable = true;
-        lint = {
-          enable = true;
-          lintersByFt.lua = ["selene"];
-        };
-        lsp = {
-          enable = true;
-          inlayHints = true;
-          servers = {
-            biome.enable = true;
-            denols.enable = true;
-            # intelephense.enable = true;
-            markdown_oxide.enable = true;
-            nil_ls.enable = true;
-            ruff.enable = true;
-            superhtml.enable = true;
-            taplo.enable = true;
-            texlab.enable = true;
-            tinymist.enable = true;
-            rust_analyzer = {
-              enable = true;
-              installCargo = false;
-              installRustc = false;
-            };
-          };
-        };
-        lualine = {
-          enable = true;
-        };
-        neorg = {
-          enable = true;
-          settings.load = {
-            "core.defaults".__empty = null;
-            "core.concealer".config.icon_preset = "varied";
-            "core.dirman".config.workspaces.notes = "${config.users.users.lua.home}/notes";
-          };
-        };
-        oil = {
-          enable = true;
-        };
-        snacks = {
-          enable = true;
-        };
+        lualine.enable = true;
         treesitter = {
           enable = true;
           settings = {
@@ -230,7 +204,6 @@
           };
         };
         ts-autotag.enable = true;
-        ts-comments.enable = true;
         todo-comments.enable = true;
         trouble = {
           enable = true;
