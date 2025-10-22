@@ -38,20 +38,21 @@
         cargo
 
         # CLI Tools
-        hurl
-        just
-        xh
-        grex
-        gitu
-        jnv
-        jaq
-        qsv
-        xan
-        sops
-        tabiew
-        rainfrog
-        zola
-        fava
+        hurl # HTTP Requests from files
+        just # command runner
+        grex # regex generator
+        gitu # magit-like git interface
+        # json
+        jnv # interactive jq filter
+        jaq # faster jq clone
+        # CSV (want to reduce to one)
+        qsv # manipulate csv
+        xan # process csv: view, plots, etc
+        tabiew # view csv
+        sops # nix secrets
+        rainfrog # database client
+        zola # static site renderer
+        fava # beancount web interface
       ];
     };
 
