@@ -132,9 +132,11 @@
 
     programs.git = {
       enable = true;
-      userName = "0xlua";
-      userEmail = "dev@lukasjordan.com";
-      extraConfig = {
+      settings = {
+        user = {
+          name = "0xlua";
+          email = "dev@lukasjordan.com";
+        };
         help.autocorrect = "prompt";
         column.ui = "auto";
         branch.sort = "-committerdate";
