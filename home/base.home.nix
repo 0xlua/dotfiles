@@ -124,11 +124,16 @@
 
     programs.mergiraf.enable = true;
 
+    programs.difftastic = {
+      enable = true;
+      git.enable = true;
+      git.diffToolMode = true;
+    };
+
     programs.git = {
       enable = true;
       userName = "0xlua";
       userEmail = "dev@lukasjordan.com";
-      difftastic.enable = true;
       extraConfig = {
         help.autocorrect = "prompt";
         column.ui = "auto";
