@@ -78,7 +78,7 @@
     allowedTCPPorts = [25 80 443 465 993 7835]; # smtp, http, https, smtps, imaps, bore
   };
 
-  services.fail2ban.enable = false;
+  services.sshguard.enable = true;
 
   system.stateVersion = "24.05"; # Don't change
 }
