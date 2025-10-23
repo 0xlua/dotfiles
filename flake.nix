@@ -6,7 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    phoenix.url = "git+https://gitlab.com/celenityy/Phoenix";
+    phoenix.url = "github:celenityy/Phoenix";
     phoenix.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote/v0.4.2";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
@@ -56,6 +56,7 @@
           ./home/graphical.home.nix
           ./home/mail.home.nix
           ./home/dev.home.nix
+          inputs.phoenix.nixosModules.default
           ./home/browser.home.nix
           ./home/neovim.home.nix
         ];

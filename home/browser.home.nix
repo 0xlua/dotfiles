@@ -3,9 +3,7 @@
     inputs.home-manager.nixosModules.home-manager
   ];
   home-manager.users.lua = {pkgs, ...}: {
-    imports = [
-      inputs.phoenix.nixosModules.default
-    ];
+    # imports = [];
     stylix.targets.firefox.profileNames = ["default" "desy"];
     xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
     programs.firefox = {
