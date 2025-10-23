@@ -16,6 +16,7 @@
         TranslateEnabled = false;
         PictureInPicture.Enabled = false;
         Preferences = {
+          "layout.css.prefers-color-scheme.content-override" = 0;
           "browser.ml.chat.page.footerBadge" = false;
           "browser.ml.chat.page.menuBadge " = false;
           "browser.ml.chat.shortcuts" = false;

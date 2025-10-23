@@ -706,15 +706,15 @@
       "locked": {
         "lastModified": 1760549742,
         "narHash": "sha256-xK9/E/QseE+NtMGr9Nam3HL/BR+LhvSRoUedKTpdJzw=",
-        "owner": "celenityy",
-        "repo": "Phoenix",
+        "ref": "refs/heads/pages",
         "rev": "fef92d55ee713f0707826282631aa83c69f2a98e",
-        "type": "github"
+        "revCount": 2203,
+        "type": "git",
+        "url": "https://codeberg.org/celenity/Phoenix"
       },
       "original": {
-        "owner": "celenityy",
-        "repo": "Phoenix",
-        "type": "github"
+        "type": "git",
+        "url": "https://codeberg.org/celenity/Phoenix"
       }
     },
     "pre-commit-hooks-nix": {
