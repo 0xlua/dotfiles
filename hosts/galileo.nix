@@ -57,35 +57,32 @@
   programs.rust-motd = {
     enable = true;
     settings = {
-      global.version = "1.0";
-      components = {
-        service_status = {
-          littlelink = "podman-littlelink";
-          rustypaste = "podman-rustypaste";
-          bore = "podman-bore";
-          caddy = "podman-caddy";
-          redlib = "podman-redlib";
-          linkding = "podman-linkding";
-          vaultwarden = "podman-vaultwarden";
-          rauthy = "podman-rauthy";
-          upvoterss = "podman-upvoterss";
-          kitchenowl = "podman-stalwart";
-          miniflux = "podman-miniflux";
-          atuin = "podman-atuin";
-        };
-        uptime.prefix = "Up";
-        load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
-        memory.swap_pos = "none";
-        fail_2_ban.jails = ["sshd"];
-        last_logins = {
-          lua = 3;
-          root = 1;
-        };
-        ssl_certificates.certs.stalwart = "${config.users.lua.home}/podman/stalwart/cert/mail.lua.one.pem";
-        filesystems = {
-          root = "/";
-          podman = "${config.users.lua.home}/podman";
-        };
+      service_status = {
+        littlelink = "podman-littlelink";
+        rustypaste = "podman-rustypaste";
+        bore = "podman-bore";
+        caddy = "podman-caddy";
+        redlib = "podman-redlib";
+        linkding = "podman-linkding";
+        vaultwarden = "podman-vaultwarden";
+        rauthy = "podman-rauthy";
+        upvoterss = "podman-upvoterss";
+        kitchenowl = "podman-stalwart";
+        miniflux = "podman-miniflux";
+        atuin = "podman-atuin";
+      };
+      uptime.prefix = "Up";
+      load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
+      memory.swap_pos = "none";
+      fail_2_ban.jails = ["sshd"];
+      last_login = {
+        lua = 3;
+        root = 1;
+      };
+      ssl_certificates.certs.stalwart = "${config.users.users.lua.home}/podman/stalwart/cert/mail.lua.one.pem";
+      filesystems = {
+        root = "/";
+        podman = "${config.users.users.lua.home}/podman";
       };
     };
   };
