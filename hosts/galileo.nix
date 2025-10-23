@@ -62,6 +62,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
+    openFirewall = true;
     settings = {
       PasswordAuthentication = false;
       AllowUsers = ["lua"];
@@ -70,8 +71,12 @@
     };
   };
 
-  # Rely on Cloud Firewall
-  networking.firewall.enable = false;
+  networking.nftables.enable = true;
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [25 80 443 465 993 7835]; # smtp, http, https, smtps, imaps, bore
+  };
 
   services.fail2ban.enable = false;
 
