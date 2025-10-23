@@ -42,6 +42,12 @@
           Snippets = false;
           Locked = false;
         };
+        GenerativeAI = {
+          Chatbot = false;
+          LinkPreviews = false;
+          TabGroups = false;
+          Locked = true;
+        };
         Homepage = {
           URL = "https://start.duckduckgo.com";
           Locked = true;
@@ -53,8 +59,15 @@
         TranslateEnabled = false;
         PictureInPicture.Enabled = false;
         Preferences = {
+          "browser.ml.chat.page.footerBadge" = false;
+          "browser.ml.chat.page.menuBadge " = false;
+          "browser.ml.chat.shortcuts" = false;
+          "browser.ml.chat.shortcuts.custom" = false;
+          "browser.ml.chat.sidebar" = false;
+          "browser.ml.checkForMemory " = false;
+          "browser.ml.enable" = false;
+          "browser.ml.linkPreview.shift " = false;
           "browser.contentblocking.category" = "strict";
-          "browser.ml.chat.enabled" = false;
           "sidebar.verticalTabs" = true;
           "general.autoScroll" = true;
           "extensions.autoDisableScopes" = 0;
