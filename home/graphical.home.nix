@@ -47,8 +47,6 @@
         rnote
         rustdesk-flutter
         oculante
-        pwvucontrol
-        # buffer
         yaak
 
         # Wayland stuff
@@ -58,7 +56,6 @@
 
         # terminal
         viu
-        asak
       ];
     };
 
