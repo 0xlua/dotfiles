@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
@@ -50,6 +54,42 @@
 
   users.users.root.hashedPassword = "*";
 
+  programs.rust-motd = {
+    enable = true;
+    settings = {
+      global.version = "1.0";
+      components = {
+        service_status = {
+          littlelink = "podman-littlelink";
+          rustypaste = "podman-rustypaste";
+          bore = "podman-bore";
+          caddy = "podman-caddy";
+          redlib = "podman-redlib";
+          linkding = "podman-linkding";
+          vaultwarden = "podman-vaultwarden";
+          rauthy = "podman-rauthy";
+          upvoterss = "podman-upvoterss";
+          kitchenowl = "podman-stalwart";
+          miniflux = "podman-miniflux";
+          atuin = "podman-atuin";
+        };
+        uptime.prefix = "Up";
+        load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
+        memory.swap_pos = "none";
+        fail_2_ban.jails = ["sshd"];
+        last_logins = {
+          lua = 3;
+          root = 1;
+        };
+        ssl_certificates.certs.stalwart = "${config.users.lua.home}/podman/stalwart/cert/mail.lua.one.pem";
+        filesystems = {
+          root = "/";
+          podman = "${config.users.lua.home}/podman";
+        };
+      };
+    };
+  };
+
   programs.fish.enable = true;
   users.users.lua = {
     shell = pkgs.fish;
@@ -78,7 +118,7 @@
     allowedTCPPorts = [25 80 443 465 993 7835]; # smtp, http, https, smtps, imaps, bore
   };
 
-  services.sshguard.enable = true;
+  services.fail2ban.enable = true;
 
   system.stateVersion = "24.05"; # Don't change
 }
