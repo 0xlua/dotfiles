@@ -4,8 +4,7 @@
   ];
   home-manager.users.lua = {pkgs, ...}: {
     imports = [
-      # TODO: compare my policies with phoenix
-      # inputs.phoenix.nixosModules.default
+      inputs.phoenix.nixosModules.default
     ];
     stylix.targets.firefox.profileNames = ["default" "desy"];
     xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
@@ -14,48 +13,8 @@
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
       nativeMessagingHosts = [pkgs.tridactyl-native];
       policies = {
-        Cookies.Behavior = "reject-foreign";
-        DisableTelemetry = true;
-        DisableFirefoxStudies = true;
-        DisablePocket = true;
-        EnableTrackingProtection = {
-          Value = true;
-          Locked = true;
-          Cryptomining = true;
-          Fingerprinting = true;
-        };
-        DisableFirefoxAccounts = true;
-        DisableAccounts = true;
-        DisplayBookmarksToolbar = "always";
         DisplayMenuBar = "never";
-        DisableFormHistory = true;
         SearchBar = "unified";
-        AutofillAddressEnabled = false;
-        AutofillCreditCardEnabled = false;
-        FirefoxHome = {
-          Search = true;
-          TopSites = false;
-          SponsoredTopSites = false;
-          Highlights = false;
-          Pocket = false;
-          SponsoredPocket = false;
-          Snippets = false;
-          Locked = false;
-        };
-        GenerativeAI = {
-          Chatbot = false;
-          LinkPreviews = false;
-          TabGroups = false;
-          Locked = true;
-        };
-        Homepage = {
-          URL = "https://start.duckduckgo.com";
-          Locked = true;
-          StartPage = "homepage-locked";
-        };
-        HttpsOnlyMode = "enabled";
-        OfferToSaveLogins = false;
-        ShowHomeButton = true;
         TranslateEnabled = false;
         PictureInPicture.Enabled = false;
         Preferences = {
@@ -66,11 +25,7 @@
           "browser.ml.chat.sidebar" = false;
           "browser.ml.checkForMemory " = false;
           "browser.ml.enable" = false;
-          "browser.ml.linkPreview.shift " = false;
-          "browser.contentblocking.category" = "strict";
           "sidebar.verticalTabs" = true;
-          "general.autoScroll" = true;
-          "extensions.autoDisableScopes" = 0;
         };
       };
       profiles = {
@@ -81,22 +36,6 @@
             force = true;
           };
           extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
-          settings."uBlock0@raymondhill.net".settings = {
-            selectedFilterLists = [
-              "user-filters"
-              "ublock-filters"
-              "ublock-badware"
-              "ublock-privacy"
-              "ublock-quick-fixes"
-              "ublock-unbreak"
-              "easylist"
-              "easyprivacy"
-              "adguard-spyware-url"
-              "urlhaus-1"
-              "plowe-0"
-              "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
-            ];
-          };
         };
         desy = {
           id = 1;
