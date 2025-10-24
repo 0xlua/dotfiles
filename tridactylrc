@@ -20,10 +20,10 @@ bind K tabprev
 guiset_quiet hoverlink right
 
 " Hint toggle hint mode for HN, Lobste.rs
-bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"]
+bind ;c hint -Jc [class*="expand"],[class*="togg"],[class="comment_folder"],[class="comment_data"]
 
-" Nord colorscheme
-colourscheme --url https://raw.githubusercontent.com/bezmi/base16-tridactyl/master/base16-nord.css nord
+" OneDark colorscheme
+colourscheme --url https://raw.githubusercontent.com/tridactyl/base16-tridactyl/refs/heads/master/base16-onedark.css onedark
 
 " disable for some sites
 autocmd DocStart rss.lua.one mode ignore
