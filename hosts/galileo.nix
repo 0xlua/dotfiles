@@ -60,6 +60,7 @@
       service_status = {
         littlelink = "podman-littlelink";
         rustypaste = "podman-rustypaste";
+        stalwart = "poddman-stalwart";
         bore = "podman-bore";
         caddy = "podman-caddy";
         redlib = "podman-redlib";
@@ -79,10 +80,8 @@
         lua = 3;
         root = 1;
       };
-      ssl_certificates.certs.stalwart = "${config.users.users.lua.home}/podman/stalwart/cert/mail.lua.one.pem";
       filesystems = {
         root = "/";
-        podman = "${config.users.users.lua.home}/podman";
       };
     };
   };
