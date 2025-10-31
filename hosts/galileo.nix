@@ -60,7 +60,7 @@
       service_status = {
         littlelink = "podman-littlelink";
         rustypaste = "podman-rustypaste";
-        stalwart = "poddman-stalwart";
+        stalwart = "podman-stalwart";
         bore = "podman-bore";
         caddy = "podman-caddy";
         redlib = "podman-redlib";
