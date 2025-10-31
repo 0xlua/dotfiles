@@ -7,7 +7,7 @@
       "io.containers.autoupdate" = "registry";
     };
     volumes = [
-      "/home/lua/podman/Caddyfile:/etc/caddy/Caddyfile"
+      "/home/lua/podman/caddy_etc:/etc/caddy"
       "/home/lua/podman/static:/srv"
       "/home/lua/podman/caddy:/data"
     ];
