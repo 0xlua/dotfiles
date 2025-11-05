@@ -25,7 +25,7 @@
         superhtml
         ltex-ls-plus
         rust-analyzer
-        postgres-lsp
+        postgres-language-server
         ty
 
         # Formatter
