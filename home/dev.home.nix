@@ -5,11 +5,14 @@
   home-manager.users.lua = {pkgs, ...}: {
     home = {
       packages = with pkgs; [
+        # linkers
+        lld
+        wild
+
         # Languages
         tectonic
         typst
         rustc
-        lld
         clang
         beancount
         deno
