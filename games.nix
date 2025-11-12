@@ -11,13 +11,16 @@
 
   home-manager.users.lua = {pkgs, ...}: {
     home.packages = with pkgs; [
-      discord-ptb
       lact
       mumble
       teamspeak6-client
       # bottles
       # mangohud
     ];
+    programs.discord = {
+      enable = true;
+      package = pkgs.discord-ptb;
+    };
   };
 
   programs.corectrl = {
