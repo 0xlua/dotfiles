@@ -15,7 +15,12 @@
     programs.thunderbird = {
       enable = true;
       package = pkgs.thunderbird-latest;
-      profiles.lua.isDefault = true;
+      profiles.lua = {
+        isDefault = true;
+        settings = {
+          "calendar.week.start" = 1;
+        };
+      };
     };
 
     xdg.configFile = {
