@@ -7,7 +7,7 @@
       packages = with pkgs; [
         # linkers
         lld
-        wild
+        # wild
 
         # Languages
         tectonic
@@ -37,21 +37,22 @@
         stylua
         rustfmt
 
-        # project / package manager
-        cargo
-
         # CLI Tools
         hurl # HTTP Requests from files
         just # command runner
         grex # regex generator
         gitu # magit-like git interface
+
         # json
         jnv # interactive jq filter
         jaq # faster jq clone
+
         # CSV (want to reduce to one)
         qsv # manipulate csv
         xan # process csv: view, plots, etc
         tabiew # view csv
+
+        # Misc
         sops # nix secrets
         rainfrog # database client
         zola # static site renderer
@@ -93,6 +94,10 @@
     programs.ruff = {
       enable = true;
       settings = {};
+    };
+
+    programs.cargo = {
+      enable = true;
     };
 
     programs.uv = {

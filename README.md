@@ -29,7 +29,3 @@ This is my VPS hosted by Hetzner. It runs services I want to access no matter wh
 ## About
 
 I like the Nord color scheme and use it basically everywhere. My preferred shell is fish together with the starship prompt. On desktops I use alacritty as the terminal emulator. Helix is my main text editor.
-
-## Acknowledgements
-
-This repo is inspired by sodiboo.
