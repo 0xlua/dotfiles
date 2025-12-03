@@ -26,6 +26,9 @@
           "browser.ml.checkForMemory " = false;
           "browser.ml.enable" = false;
           "sidebar.verticalTabs" = true;
+          # re-enable native messaging (https://codeberg.org/celenity/Phoenix/commit/bb82bd987d8a5347d1d7213ffb8820298d51a52f)
+          "webextensions.native-messaging.max-input-message-bytes" = 1048576;
+          "webextensions.native-messaging.max-output-message-bytes" = 999999999;
         };
       };
       profiles = {
