@@ -30,6 +30,7 @@
         rust-analyzer
         postgres-language-server
         ty
+        mago
 
         # Formatter
         typstyle
