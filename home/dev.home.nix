@@ -29,7 +29,6 @@
         ltex-ls-plus
         rust-analyzer
         postgres-language-server
-        ty
         mago
 
         # Formatter
@@ -108,6 +107,10 @@
     };
 
     programs.uv = {
+      enable = true;
+    };
+
+    programs.ty = {
       enable = true;
     };
 
