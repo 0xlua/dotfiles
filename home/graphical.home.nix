@@ -162,6 +162,13 @@
 
     services.wpaperd.enable = true;
 
+    dconf.settings = {
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = ["qemu:///system"];
+        uris = ["qemu:///system"];
+      };
+    };
+
     xdg.terminal-exec = {
       enable = true;
       settings.default = ["alacritty.desktop"];

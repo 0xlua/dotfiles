@@ -28,6 +28,15 @@
 
   environment.systemPackages = [pkgs.cifs-utils];
 
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
+
+  programs.virt-manager.enable = true;
+  virtualisation.libvirtd.enable = true;
+  users.groups.libvirtd.members = ["lua"];
+
   fileSystems."/home/lua/nas" = {
     device = "//io.internal/lua";
     fsType = "cifs";

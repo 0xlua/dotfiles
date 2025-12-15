@@ -14,6 +14,7 @@
       lact
       mumble
       teamspeak6-client
+      chess-tui
       # bottles
       # mangohud
     ];

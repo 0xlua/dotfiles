@@ -48,7 +48,7 @@
     isNormalUser = true;
     description = "Lua";
     hashedPasswordFile = config.sops.secrets.hashedPassword.path;
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "libvird"];
   };
 
   home-manager = {
