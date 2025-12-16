@@ -12,6 +12,11 @@
     owner = config.users.users.lua.name;
     group = config.users.users.lua.group;
   };
+  sops.secrets."liberaSasl" = {
+    mode = "0440";
+    owner = config.users.users.lua.name;
+    group = config.users.users.lua.group;
+  };
   programs = {
     nix-ld = {
       enable = true;
@@ -121,6 +126,24 @@
         sqlite = {
           url = "sqlite://${config.users.users.lua.home}/.local/share/gurk/gurk.sqlite";
           _preserve_unencryped = false;
+        };
+      };
+    };
+
+    programs.halloy = {
+      enable = true;
+      settings = {
+        buffer.channel.topic = {
+          enabled = true;
+        };
+        servers.liberachat = {
+          channels = ["#voidlinux"];
+          nickname = "lua";
+          server = "irc.libera.chat";
+          sasl.plain = {
+            username = "lua";
+            password_file = config.sops.secrets."liberaSasl".path;
+          };
         };
       };
     };
