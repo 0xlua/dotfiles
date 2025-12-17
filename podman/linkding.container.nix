@@ -1,7 +1,9 @@
 {config, ...}: {
-  sops.secrets.linkdingOidcSecret = {};
+  sops.secrets."linkding/oidc_client_id" = {};
+  sops.secrets."linkding/oidc_client_secret" = {};
   sops.templates."linkding-env".content = ''
-    OIDC_RP_CLIENT_SECRET=${config.sops.placeholder.linkdingOidcSecret}
+    OIDC_RP_CLIENT_ID=${config.sops.placeholder."linkding/oidc_client_id"}
+    OIDC_RP_CLIENT_SECRET=${config.sops.placeholder."linkding/oidc_client_secret"}
   '';
   virtualisation.oci-containers.containers.linkding = {
     image = "docker.io/sissbruecker/linkding:latest";
@@ -16,11 +18,11 @@
     environment = {
       LD_SUPERUSER_NAME = "lua";
       LD_ENABLE_OIDC = "True";
-      OIDC_OP_AUTHORIZATION_ENDPOINT = "https://auth.lua.one/auth/v1/oidc/authorize";
-      OIDC_OP_TOKEN_ENDPOINT = "https://auth.lua.one/auth/v1/oidc/token";
-      OIDC_OP_USER_ENDPOINT = "https://auth.lua.one/auth/v1/oidc/userinfo";
-      OIDC_OP_JWKS_ENDPOINT = "https://auth.lua.one/auth/v1/oidc/certs";
-      OIDC_RP_CLIENT_ID = "linkding";
+      OIDC_USERNAME_CLAIM = "preferred_username";
+      OIDC_OP_AUTHORIZATION_ENDPOINT = "https://id.lua.one/authorize";
+      OIDC_OP_TOKEN_ENDPOINT = "https://id.lua.one/api/oidc/token";
+      OIDC_OP_USER_ENDPOINT = "https://id.lua.one/api/oidc/userinfo";
+      OIDC_OP_JWKS_ENDPOINT = "https://id.lua.one/.well-known/jwks.json";
     };
     volumes = [
       "/home/lua/podman/linkding:/etc/linkding/data"
