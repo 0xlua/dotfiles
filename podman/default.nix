@@ -14,6 +14,7 @@
     ./stalwart.container.nix
     ./vaultwarden.container.nix
     ./upvoterss.container.nix
+    ./pocketid.container.nix
   ];
   virtualisation = {
     containers.enable = true;
