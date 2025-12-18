@@ -112,6 +112,13 @@
       };
     };
 
+    programs.ghostty = {
+      enable = true;
+      settings = {
+        command = "fish";
+      };
+    };
+
     programs.gurk-rs = {
       enable = true;
       settings = {
