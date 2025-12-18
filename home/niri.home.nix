@@ -97,9 +97,9 @@
           "Mod+Shift+Minus".action = set-window-height "-10%";
           "Mod+Shift+Equal".action = set-window-height "+10%";
 
-          "Print".action = screenshot;
+          "Print".action.screenshot = [];
           "Ctrl+Print".action.screenshot-screen = [];
-          "Alt+Print".action = screenshot-window;
+          "Alt+Print".action.screenshot-window = [];
 
           "Mod+Shift+E".action = quit;
           "Mod+Shift+P".action = power-off-monitors;
@@ -145,7 +145,7 @@
     programs.ironbar = {
       enable = true;
       systemd = true;
-      # package = pkgs.ironbar;
+      package = pkgs.ironbar;
       config = {
         position = "top";
         layer = "overlay";
@@ -201,7 +201,7 @@
       @define-color nord15 #b48ead;
 
       * {
-        font-family: 'Inter Display Medium', 'Hack Nerd Font';
+        font-family: 'Inter Display Medium';
         font-size: 18px;
         border: none;
         border-radius: 12px;
@@ -221,6 +221,12 @@
 
       .widget {
         margin: 4px;
+      }
+
+      .workspaces .item.focused {
+        color: @nord1;
+        background-color: @nord6;
+        border-radius: 32px;
       }
     ";
     };
