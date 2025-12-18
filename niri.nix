@@ -3,6 +3,8 @@
 
   stylix.image = ./wallpaper/city.jpg;
 
+  environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
+
   services.upower.enable = true;
 
   services.hardware.bolt.enable = true;
