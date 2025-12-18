@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
@@ -66,7 +62,7 @@
         redlib = "podman-redlib";
         linkding = "podman-linkding";
         vaultwarden = "podman-vaultwarden";
-        rauthy = "podman-rauthy";
+        pocket-id = "podman-pocket-id";
         upvoterss = "podman-upvoterss";
         kitchenowl = "podman-stalwart";
         miniflux = "podman-miniflux";
