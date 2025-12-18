@@ -51,6 +51,7 @@
           };
 
           "Mod+Q".action = close-window;
+          "Mod+O".action = toggle-overview;
 
           "Mod+H".action = focus-column-left;
           "Mod+J".action = focus-window-or-workspace-down;
