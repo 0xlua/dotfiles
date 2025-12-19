@@ -10,7 +10,7 @@
     ./desktop
     ./programs
     ./editors
-    ./dev.home.nix
+    ./development
   ];
   sops = {
     defaultSopsFile = ../secrets.yaml;
