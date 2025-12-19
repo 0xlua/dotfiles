@@ -78,6 +78,11 @@
     # Let home Manager install and manage itself.
     programs.home-manager.enable = true;
 
+    programs.aerc = {
+      enable = true;
+      extraConfig.general.unsafe-accounts-conf = true;
+    };
+
     programs.atuin = {
       enable = true;
       enableFishIntegration = true;
