@@ -36,14 +36,9 @@
         modules = [
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+          inputs.phoenix.nixosModules.default
           ./modules
           ./hosts/europa
-          ./home/base.home.nix
-          ./home/graphical.home.nix
-          ./home/niri.home.nix
-          ./home/dev.home.nix
-          ./home/browser.home.nix
-          ./home/neovim.home.nix
         ];
       };
       callisto = inputs.nixpkgs.lib.nixosSystem {
@@ -52,26 +47,15 @@
         modules = [
           ./modules
           ./hosts/callisto
-          ./home/base.home.nix
-          ./home/graphical.home.nix
-          ./home/mail.home.nix
-          ./home/dev.home.nix
           inputs.phoenix.nixosModules.default
-          ./home/browser.home.nix
-          ./home/neovim.home.nix
         ];
       };
       galileo = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./hardware/galileo.nix
-          ./hosts/galileo.nix
-          ./base.nix
-          ./home/base.home.nix
-          ./home/server.home.nix
-          ./home/dev.home.nix
-          ./podman
+          ./modules
+          ./hosts/galileo
         ];
       };
       ganymede = inputs.nixpkgs.lib.nixosSystem {
