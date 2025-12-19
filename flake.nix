@@ -23,6 +23,13 @@
 
   outputs = inputs: {
     nixosConfigurations = {
+      homeConfigurations."lua" = inputs.home-manager.lib.homeManagerConfiguration {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./home
+        ];
+      };
       europa = inputs.nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
@@ -65,6 +72,14 @@
           ./home/server.home.nix
           ./home/dev.home.nix
           ./podman
+        ];
+      };
+      ganymede = inputs.nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {inherit inputs;};
+        modules = [
+          ./modules
+          ./hosts/ganymede
         ];
       };
     };
