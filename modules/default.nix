@@ -9,9 +9,16 @@
     inputs.stylix.nixosModules.stylix
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
+    ./games.nix
+    ./desktop.nix
   ];
 
-  nix.settings.experimental-features = "nix-command flakes";
+  nix = {
+    settings.experimental-features = "nix-command flakes";
+    extraOptions = ''
+      trusted-users = root lua
+    '';
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -27,16 +34,12 @@
   # Configure console keymap
   console.keyMap = lib.mkDefault "us";
 
-  nix.extraOptions = ''
-    trusted-users = root lua
-  '';
-
   users.mutableUsers = false;
 
   security.sudo-rs.enable = true;
 
   sops = {
-    defaultSopsFile = ./secrets.yaml;
+    defaultSopsFile = ../secrets.yaml;
     age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
     age.keyFile = "/home/lua/.config/sops/age/keys.txt";
     secrets = {
@@ -60,8 +63,6 @@
 
   stylix = {
     enable = true;
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/0x96f.yaml";
     base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
-    # base16Scheme = "${pkgs.base16-schemes}/share/themes/onedark.yaml";
   };
 }

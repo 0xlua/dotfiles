@@ -28,12 +28,9 @@
         specialArgs = {inherit inputs;};
         modules = [
           inputs.lanzaboote.nixosModules.lanzaboote
-          ./hardware/europa.nix
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-          ./hosts/europa.nix
-          ./base.nix
-          ./graphical.nix
-          ./niri.nix
+          ./modules
+          ./hosts/europa
           ./home/base.home.nix
           ./home/graphical.home.nix
           ./home/niri.home.nix
@@ -46,12 +43,8 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./hardware/callisto.nix
-          ./hosts/callisto.nix
-          ./base.nix
-          ./graphical.nix
-          ./cosmic.nix
-          ./games.nix
+          ./modules
+          ./hosts/callisto
           ./home/base.home.nix
           ./home/graphical.home.nix
           ./home/mail.home.nix

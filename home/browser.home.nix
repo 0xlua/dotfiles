@@ -5,7 +5,7 @@
   home-manager.users.lua = {pkgs, ...}: {
     # imports = [];
     stylix.targets.firefox.profileNames = ["default" "desy"];
-    xdg.configFile."tridactyl/tridactylrc".source = ../tridactylrc;
+    xdg.configFile."tridactyl/tridactylrc".source = ../files/tridactylrc;
     programs.firefox = {
       enable = true;
       package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
