@@ -1,19 +1,30 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    # LSP
-    taplo # toml
-    postgres-language-server
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.home-modules.development.languages.data;
+in {
+  options.home-modules.development.languages.data.enable = lib.mkEnableOption "tools for data manipulation";
 
-    # json
-    jnv # interactive jq filter
-    jaq # faster jq clone
+  config = lib.mkIf cfg.enable {
+    home.packages = with pkgs; [
+      # LSP
+      taplo # toml
+      postgres-language-server
 
-    # CSV (choose one)
-    qsv # manipulate csv
-    xan # process csv: view, plots, etc
-    tabiew # view csv
+      # json
+      jnv # interactive jq filter
+      jaq # faster jq clone
 
-    # Misc
-    rainfrog # database client
-  ];
+      # CSV (choose one)
+      qsv # manipulate csv
+      xan # process csv: view, plots, etc
+      tabiew # view csv
+
+      # Misc
+      rainfrog # database client
+    ];
+  };
 }

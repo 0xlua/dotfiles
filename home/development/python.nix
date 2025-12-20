@@ -1,14 +1,24 @@
 {
-  programs.ruff = {
-    enable = true;
-    settings = {};
-  };
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.home-modules.development.languages.python;
+in {
+  options.home-modules.development.languages.python.enable = lib.mkEnableOption "python tooling";
 
-  programs.uv = {
-    enable = true;
-  };
+  config = lib.mkIf cfg.enable {
+    programs.ruff = {
+      enable = true;
+      settings = {};
+    };
 
-  programs.ty = {
-    enable = true;
+    programs.uv = {
+      enable = true;
+    };
+
+    programs.ty = {
+      enable = true;
+    };
   };
 }
