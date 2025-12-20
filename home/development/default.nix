@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  import = [
+  imports = [
     ./javascript.nix
     ./python.nix
     ./rust.nix

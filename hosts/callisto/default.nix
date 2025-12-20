@@ -1,5 +1,6 @@
-{...}: {
+{inputs, ...}: {
   imports = [
+    inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
   ];
 
@@ -13,6 +14,8 @@
 
   modules.desktop = "cosmic";
   modules.gaming.enable = true;
+
+  home-manager.users.lua = ./home.nix;
 
   system.stateVersion = "24.11"; # NixOS release for default stateful settings
 }
