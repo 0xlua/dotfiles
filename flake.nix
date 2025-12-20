@@ -27,7 +27,7 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          ./home
+          ./hosts/lua
         ];
       };
       europa = inputs.nixpkgs.lib.nixosSystem {
@@ -45,9 +45,9 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
+          inputs.phoenix.nixosModules.default
           ./modules
           ./hosts/callisto
-          inputs.phoenix.nixosModules.default
         ];
       };
       galileo = inputs.nixpkgs.lib.nixosSystem {
