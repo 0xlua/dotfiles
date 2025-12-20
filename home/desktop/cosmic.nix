@@ -1,5 +1,4 @@
 {
-  pkgs,
   config,
   lib,
   ...
@@ -7,21 +6,6 @@
   cfg = config.home-modules;
 in {
   config = lib.mkIf (cfg.desktop == "cosmic") {
-    programs.obs-studio = {
-      enable = true;
-    };
-
-    programs.thunderbird = {
-      enable = true;
-      package = pkgs.thunderbird-latest;
-      profiles.lua = {
-        isDefault = true;
-        settings = {
-          "calendar.week.start" = 1;
-        };
-      };
-    };
-
     xdg.configFile = {
       "cosmic/com.system76.CosmicAppletTime/v1/first_day_of_week".text = "0";
       "cosmic/com.system76.CosmicAppletTime/v1/military_time".text = "true";

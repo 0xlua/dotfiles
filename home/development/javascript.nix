@@ -1,9 +1,8 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    deno
-
-    # LSP
-    biome
-    superhtml
+    deno #js runtime
+    zola # static site renderer
+    biome # js lsp
+    superhtml # html lsp
   ];
 }

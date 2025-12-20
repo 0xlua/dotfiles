@@ -9,8 +9,6 @@ in {
   config = lib.mkIf (cfg.desktop == "niri") {
     security.pam.services.gtklock = {};
 
-    stylix.image = ../files/wallpaper/city.jpg;
-
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
 
     services.upower.enable = true;

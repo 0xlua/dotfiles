@@ -41,6 +41,8 @@ in {
 
     environment.systemPackages = [pkgs.cifs-utils];
 
+    stylix.image = ../../files/wallpaper/city.jpg;
+
     programs.nix-ld = {
       enable = true;
       libraries = with pkgs; [

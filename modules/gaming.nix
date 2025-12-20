@@ -16,21 +16,6 @@ in {
   config = lib.mkIf cfg.gaming.enable {
     nixpkgs.config.allowUnfree = true;
 
-    home-manager.users.lua = {pkgs, ...}: {
-      home.packages = with pkgs; [
-        lact
-        mumble
-        teamspeak6-client
-        chess-tui
-        # bottles
-        # mangohud
-      ];
-      programs.discord = {
-        enable = true;
-        package = pkgs.discord-ptb;
-      };
-    };
-
     programs.corectrl = {
       enable = true;
     };

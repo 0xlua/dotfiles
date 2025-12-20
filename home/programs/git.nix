@@ -1,4 +1,7 @@
-{
+{pkgs, ...}: {
+  home.packages = with pkgs; [
+    gitu # magit-like git interface
+  ];
   programs.mergiraf.enable = true;
 
   programs.difftastic = {
@@ -35,5 +38,18 @@
       };
       pull.rebase = true;
     };
+  };
+
+  programs.git-cliff.enable = true;
+
+  programs.gh = {
+    enable = true;
+    settings.git_protocol = "ssh";
+  };
+
+  programs.gh-dash.enable = true;
+
+  programs.jujutsu = {
+    enable = true;
   };
 }
