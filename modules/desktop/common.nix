@@ -25,6 +25,7 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
+    nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
     sops = {
       secrets = {
         "nas/username" = {};

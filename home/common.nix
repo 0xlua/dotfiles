@@ -1,5 +1,4 @@
 {
-  lib,
   inputs,
   config,
   pkgs,
@@ -13,7 +12,6 @@
     # age.sshKeyPaths = ["${config.home.homeDirectory}/.ssh/id_ed25519"];
     age.keyFile = "${config.home.homeDirectory}/.config/sops/age/keys.txt";
   };
-  nixpkgs.overlays = lib.mkForce null;
   home = {
     username = "lua";
     homeDirectory = "/home/lua";

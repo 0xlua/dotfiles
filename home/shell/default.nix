@@ -9,8 +9,6 @@
     inputs.eilmeldung.homeManager.default
   ];
 
-  nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
-
   programs.eilmeldung.enable = true;
 
   sops.secrets."atuin/key".mode = "0440";
