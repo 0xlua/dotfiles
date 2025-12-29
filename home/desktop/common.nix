@@ -12,7 +12,7 @@ in {
   ];
 
   options.home-modules.desktop = lib.mkOption {
-    type = with lib.types; nullOr (enum ["cosmic" "niri"]);
+    type = with lib.types; nullOr (enum ["cosmic" "niri" "wayland"]);
     default = null;
     example = "cosmic";
     description = "What desktop envrionment to use";
