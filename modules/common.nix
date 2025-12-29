@@ -52,7 +52,6 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = {inherit inputs;};
-    users.lua = ../home;
   };
 
   stylix = {

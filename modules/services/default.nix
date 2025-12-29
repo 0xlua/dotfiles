@@ -1,26 +1,19 @@
 {...}: {
   imports = [
-    ./atuin.container.nix
-    ./backup.container.nix
-    ./bore.container.nix
-    ./caddy.container.nix
-    ./kitchenowl.container.nix
-    ./linkding.container.nix
-    ./littlelink.container.nix
-    ./miniflux.container.nix
-    ./redlib.container.nix
-    ./rustypaste.container.nix
-    ./stalwart.container.nix
-    ./vaultwarden.container.nix
-    ./upvoterss.container.nix
-    ./pocketid.container.nix
+    ./common.nix
+    ./atuin.nix
+    ./backup.nix
+    ./bore-server.nix
+    ./caddy.nix
+    ./kitchenowl.nix
+    ./linkding.nix
+    ./littlelink.nix
+    ./miniflux.nix
+    ./redlib.nix
+    ./rustypaste.nix
+    ./stalwart.nix
+    ./vaultwarden.nix
+    ./upvoterss.nix
+    ./pocketid.nix
   ];
-  virtualisation = {
-    containers.enable = true;
-    podman.enable = true;
-    podman.defaultNetwork.settings.dns_enabled = true;
-    podman.autoPrune.enable = true;
-    podman.autoPrune.flags = ["--all"];
-    oci-containers.backend = "podman";
-  };
 }
