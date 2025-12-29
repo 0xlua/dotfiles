@@ -1,8 +1,18 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  inputs,
+  ...
+}: {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    ./hardware-configuration.nix
+  ];
   # Use the GRUB 2 boot loader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
   boot.loader.grub.configurationLimit = 10;
+
+  home-manager.users.lua = ./home.nix;
 
   nix.settings.auto-optimise-store = true;
 
