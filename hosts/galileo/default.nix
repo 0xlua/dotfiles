@@ -14,6 +14,23 @@
 
   home-manager.users.lua = ./home.nix;
 
+  server = {
+    atuin.enable = true;
+    # podman-backup.enable = true;
+    bore-server.enable = true;
+    caddy.enable = true; # TODO: make Caddyfile config option
+    kitchenowl.enable = true;
+    linkding.enable = true;
+    littlelink.enable = true;
+    miniflux.enable = true;
+    pocketid.enable = true;
+    redlib.enable = true;
+    rustypaste.enable = true;
+    stalwart.enable = true;
+    upvoterss.enable = true;
+    vaultwarden.enable = true;
+  };
+
   nix.settings.auto-optimise-store = true;
 
   nix.gc = {
