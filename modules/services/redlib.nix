@@ -5,7 +5,7 @@
 }: let
   cfg = config.server.redlib;
 in {
-  options.server.redlib.enable = lib.mkEnabeOption "redlib";
+  options.server.redlib.enable = lib.mkEnableOption "redlib";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.redlib = {

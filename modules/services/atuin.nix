@@ -7,7 +7,7 @@
 in {
   options.server.atuin.enable = lib.mkEnableOption "atuin";
 
-  config = lib.mkif cfg.enable {
+  config = lib.mkIf cfg.enable {
     sops.secrets."atuin/db" = {};
     sops.secrets."atuin/password" = {};
     sops.secrets."atuin/user" = {};
