@@ -15,6 +15,7 @@
   home-manager.users.lua = ./home.nix;
 
   server = {
+    enable = true;
     atuin.enable = true;
     # podman-backup.enable = true;
     bore-server.enable = true;
