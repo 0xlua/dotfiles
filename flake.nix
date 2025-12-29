@@ -18,6 +18,7 @@
     niri.url = "github:sodiboo/niri-flake";
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
+    eilmeldung.url = "github:christo-auer/eilmeldung";
     sops-nix.url = "github:Mic92/sops-nix";
   };
 
