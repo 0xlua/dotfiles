@@ -1,4 +1,5 @@
 {
   imports = [../../home];
-  home-modules.desktop = "niri";
+  home-modules.desktop.enable = true;
+  home-modules.desktop.compositor = "niri";
 }

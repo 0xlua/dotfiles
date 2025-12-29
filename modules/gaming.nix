@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   config,
   lib,
@@ -7,10 +6,6 @@
 }: let
   cfg = config.modules;
 in {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-  ];
-
   options.modules.gaming.enable = lib.mkEnableOption "gaming";
 
   config = lib.mkIf cfg.gaming.enable {

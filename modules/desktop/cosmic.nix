@@ -6,7 +6,7 @@
 }: let
   cfg = config.modules;
 in {
-  config = lib.mkIf (cfg.desktop == "cosmic") {
+  config = lib.mkIf (cfg.desktop.compositor == "cosmic") {
     nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
     services.desktopManager.cosmic.enable = true;
     services.gnome.gnome-keyring.enable = false;

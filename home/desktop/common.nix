@@ -5,20 +5,23 @@
   lib,
   ...
 }: let
-  cfg = config.home-modules;
+  cfg = config.home-modules.desktop;
 in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
 
-  options.home-modules.desktop = lib.mkOption {
-    type = with lib.types; nullOr (enum ["cosmic" "niri" "wayland"]);
-    default = null;
-    example = "cosmic";
-    description = "What desktop envrionment to use";
+  options.home-modules.desktop = {
+    enable = lib.mkEnableOption "a graphic desktop envrionment";
+    compositor = lib.mkOption {
+      type = with lib.types; nullOr (enum ["cosmic" "niri"]);
+      default = null;
+      example = "cosmic";
+      description = "What desktop envrionment to use";
+    };
   };
 
-  config = lib.mkIf (cfg.desktop != null) {
+  config = lib.mkIf cfg.enable {
     sops.secrets."spotify_client_id".mode = "0440";
     home.packages = with pkgs; [
       # file viewer

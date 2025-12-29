@@ -5,7 +5,7 @@
   lib,
   ...
 }: let
-  cfg = config.modules;
+  cfg = config.modules.desktop;
 in {
   imports = [
     inputs.sops-nix.nixosModules.sops
@@ -13,14 +13,18 @@ in {
     ./cosmic.nix
   ];
 
-  options.modules.desktop = lib.mkOption {
-    type = with lib.types; nullOr (enum ["cosmic" "niri"]);
-    default = null;
-    example = "cosmic";
-    description = "What desktop envrionment to use";
+  options.modules.desktop = {
+    enable = lib.mkEnableOption "a graphic desktop";
+    compositor = lib.mkOption {
+      type = with lib.types; nullOr (enum ["cosmic" "niri"]);
+      # default = inputs.home-manager.nixosModules.home-manager.users.lua.config.home-modules.desktop.compositor;
+      default = null;
+      example = "cosmic";
+      description = "What desktop envrionment to use";
+    };
   };
 
-  config = lib.mkIf (cfg.desktop != null) {
+  config = lib.mkIf cfg.enable {
     sops = {
       secrets = {
         "nas/username" = {};

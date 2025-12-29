@@ -22,9 +22,10 @@
 
   console.keyMap = "uk"; # Configure console keymap
 
-  modules.desktop = "niri";
-
   home-manager.users.lua = ./home.nix;
+
+  modules.desktop.enable = true;
+  modules.desktop.compositor = "niri";
 
   system.stateVersion = "24.05"; # NixOS release for default stateful settings
 }

@@ -6,7 +6,7 @@
 }: let
   cfg = config.modules;
 in {
-  config = lib.mkIf (cfg.desktop == "niri") {
+  config = lib.mkIf (cfg.desktop.compositor == "niri") {
     security.pam.services.gtklock = {};
 
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];

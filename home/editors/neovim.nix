@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -8,8 +9,10 @@
   ];
   stylix.targets.nixvim.enable = false;
 
-  programs.neovide.enable = true;
-  programs.neovide.settings = {};
+  programs.neovide = {
+    enable = config.home-modules.desktop.enable;
+    settings = {};
+  };
 
   programs.nixvim = {
     enable = true;

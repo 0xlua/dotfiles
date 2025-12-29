@@ -1,6 +1,7 @@
 {
   imports = [../../home];
-  home-modules.desktop = "cosmic";
+  home-modules.desktop.enable = true;
+  home-modules.desktop.compositor = "cosmic";
   home-modules.mail.enable = true;
   home-modules.gaming.enable = true;
   home-modules.development = {

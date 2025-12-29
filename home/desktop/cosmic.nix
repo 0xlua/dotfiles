@@ -5,7 +5,7 @@
 }: let
   cfg = config.home-modules;
 in {
-  config = lib.mkIf (cfg.desktop == "cosmic") {
+  config = lib.mkIf (cfg.desktop.compositor == "cosmic") {
     xdg.configFile = {
       "cosmic/com.system76.CosmicAppletTime/v1/first_day_of_week".text = "0";
       "cosmic/com.system76.CosmicAppletTime/v1/military_time".text = "true";

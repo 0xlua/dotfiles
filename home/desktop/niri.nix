@@ -11,7 +11,7 @@ in {
     inputs.ironbar.homeManagerModules.default
     inputs.niri.homeModules.niri
   ];
-  config = lib.mkIf (cfg.desktop == "niri") {
+  config = lib.mkIf (cfg.desktop.compositor == "niri") {
     home = {
       packages = with pkgs; [
         # Desktop
