@@ -1,14 +1,18 @@
 {
   config,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   sops.secrets."liberaSasl".mode = "0440";
+  home.packages = with pkgs; [
+    rustdesk-flutter # remote desktop
+  ];
   programs.gurk-rs = {
-    enable = true;
+    enable = config.home-modules.desktop.enable;
     settings = {
       signal_db_path = "${config.home.homeDirectory}/.local/share/gurk/signal-db";
       first_name_only = false;
@@ -26,7 +30,7 @@
   };
 
   programs.halloy = {
-    enable = true;
+    enable = config.home-modules.desktop.enable;
     settings = {
       buffer.channel.topic = {
         enabled = true;

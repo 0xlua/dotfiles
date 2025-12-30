@@ -1,6 +1,6 @@
-{
+{config, ...}: {
   programs.zed-editor = {
-    enable = true;
+    enable = config.home-modules.desktop.enable;
     extensions = ["nix"];
     userSettings = {
       auto_update = false;

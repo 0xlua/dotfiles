@@ -5,20 +5,20 @@
   pkgs,
   ...
 }: let
-  cfg = config.home-modules;
+  cfg = config.home-modules.mail;
 in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   options.home-modules.mail.enable = lib.mkEnableOption "mail";
 
-  config = lib.mkIf cfg.mail.enable {
+  config = lib.mkIf cfg.enable {
     programs.aerc = {
       enable = true;
       extraConfig.general.unsafe-accounts-conf = true;
     };
     programs.thunderbird = {
-      enable = cfg.desktop.enable;
+      enable = config.home-modules.desktop.enable;
       package = pkgs.thunderbird-latest;
       profiles.lua = {
         isDefault = true;
@@ -50,7 +50,7 @@ in {
         tls.enable = true;
       };
       passwordCommand = "cat ${config.sops.secrets."mailAppPw".path}";
-      thunderbird.enable = cfg.desktop.enable;
+      thunderbird.enable = config.home-modules.desktop.enable;
       aerc = {
         enable = true;
         imapAuth = "oauthbearer";

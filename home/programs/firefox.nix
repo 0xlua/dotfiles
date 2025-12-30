@@ -1,13 +1,15 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
-  # imports = [];
   stylix.targets.firefox.profileNames = ["default" "desy"];
   xdg.configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
+  xdg.mimeApps.associations.added = {"application/pdf" = ["firefox.desktop"];};
+  xdg.mimeApps.defaultApplications."application/json" = ["firefox.desktop"];
   programs.firefox = {
-    enable = true;
+    enable = config.home-modules.desktop.enable;
     package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
     nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {

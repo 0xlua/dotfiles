@@ -4,10 +4,17 @@
   config,
   ...
 }: let
-  cfg = config.home-modules;
+  cfg = config.home-modules.gaming;
 in {
   options.home-modules.gaming.enable = lib.mkEnableOption "gaming";
-  config = lib.mkIf cfg.gaming.enable {
+  config = lib.mkIf cfg.enable {
+    assertions = [
+      {
+        assertion = config.home-modules.desktop.enable;
+        message = "Set home-modules.desktop.enable = true, if you want to enable gaming";
+      }
+    ];
+
     home.packages = with pkgs; [
       lact
       mumble
