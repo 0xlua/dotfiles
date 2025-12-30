@@ -17,7 +17,6 @@ in {
     enable = lib.mkEnableOption "a graphic desktop";
     compositor = lib.mkOption {
       type = with lib.types; nullOr (enum ["cosmic" "niri"]);
-      # default = inputs.home-manager.nixosModules.home-manager.users.lua.config.home-modules.desktop.compositor;
       default = null;
       example = "cosmic";
       description = "What desktop envrionment to use";
