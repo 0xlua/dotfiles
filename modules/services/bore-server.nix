@@ -13,7 +13,7 @@ in {
       BORE_SECRET=${config.sops.placeholder.boreSecret}
     '';
 
-    virtualisation.oci-containers.containers.bore = {
+    virtualisation.oci-containers.containers.bore-server = {
       image = "docker.io/ekzhang/bore:latest";
       cmd = ["server"];
       autoStart = true;
