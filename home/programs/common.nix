@@ -31,7 +31,7 @@
     hl-log-viewer
   ];
 
-  programs.eilmeldung.enable = true;
+  programs.eilmeldung.enable = config.home-modules.desktop.enable;
 
   sops.secrets."atuin/key".mode = "0440";
 
