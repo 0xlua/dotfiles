@@ -28,6 +28,7 @@ in {
         OIDC_CLIENT_ID = "9372f514-08ff-4e4e-ad52-ccded189e940";
         JWT_SECRET_KEY_FILE = "/run/secrets/jwt_secret_key";
         OIDC_CLIENT_SECRET_FILE = "/run/secrets/oidc_client_secret";
+        OIDC_RFC_COMPLIANT_REDIRECT = "False";
       };
       volumes = [
         "/home/lua/podman/kitchenowl:/data"
