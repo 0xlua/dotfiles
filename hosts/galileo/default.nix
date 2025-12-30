@@ -24,7 +24,7 @@
     linkding.enable = true;
     littlelink.enable = true;
     miniflux.enable = true;
-    pocketid.enable = true;
+    pocket-id.enable = true;
     redlib.enable = true;
     rustypaste.enable = true;
     stalwart.enable = true;
