@@ -8,6 +8,7 @@
   home-modules.development = {
     enable = true;
     languages = {
+      android.enable = true;
       rust.enable = true;
       python.enable = true;
       javascript.enable = true;
