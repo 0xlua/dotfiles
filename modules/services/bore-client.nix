@@ -3,11 +3,11 @@
   lib,
   ...
 }: let
-  cfg = config.server.bore-client;
+  cfg = config.server.jellyfin;
 in {
-  options.server.bore-client.enable = lib.mkEnableOption "bore client";
+  options.server.jellyfin.publiclyAccessible = lib.mkEnableOption "a public tunnel for jellyfin";
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf cfg.publiclyAccessible {
     sops.secrets.boreSecret = {};
     sops.templates."bore-env".content = ''
       BORE_SECRET=${config.sops.placeholder.boreSecret}
@@ -20,7 +20,7 @@ in {
       cmd = ["local" "--port" "8096" "--to" "lua.one" "8096"];
       autoStart = true;
       dependsOn = ["jellyfin"];
-      networks = ["container:podman-jellyfin"];
+      networks = ["container:jellyfin"];
       labels = {"io.containers.autoupdate" = "registry";};
       environmentFiles = [config.sops.templates."bore-env".path];
     };

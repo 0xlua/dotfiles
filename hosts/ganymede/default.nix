@@ -23,6 +23,7 @@
   server = {
     enable = true;
     jellyfin.enable = true;
+    jellyfin.publiclyAccessible = true;
   };
 
   programs.fish.enable = true;

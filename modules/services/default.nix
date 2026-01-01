@@ -4,6 +4,7 @@
     ./atuin.nix
     ./backup.nix
     ./bore-server.nix
+    ./bore-client.nix
     ./caddy.nix
     ./jellyfin.nix
     ./kitchenowl.nix
