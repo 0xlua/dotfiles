@@ -20,6 +20,11 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
+  server = {
+    enable = true;
+    jellyfin.enable = true;
+  };
+
   programs.fish.enable = true;
   users.users.lua = {
     shell = pkgs.fish;

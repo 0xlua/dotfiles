@@ -5,6 +5,7 @@
     ./backup.nix
     ./bore-server.nix
     ./caddy.nix
+    ./jellyfin.nix
     ./kitchenowl.nix
     ./linkding.nix
     ./littlelink.nix
