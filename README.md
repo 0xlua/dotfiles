@@ -1,6 +1,6 @@
 # <p align="center"> 🌌 Dotfiles </p>
 
-My Nix config. Currently this includes three systems: `callisto`, `europa` and `galileo`. I plan to also include `ganymede` in the future.
+My Nix config. Currently this includes three systems: `callisto`, `europa`, `galileo` and `ganymede`.
 
 ## Systems
 
@@ -16,11 +16,7 @@ This is my laptop; a T480s I bought used. I use it mainly for work. It runs the 
 
 ### ganymede
 
-This is my server at home and the only system that does not run NixOS (apart from Router/NAS/...). Instead I chose OpenSUSE MicroOS, for two reasons: Before NixOS I ran Tumbleweed, so MicroOS was a natural choice. Also MicroOS is really easy to manage and very close to a zero-conf Server OS for me.
-
-It runs services I only need at home.
-
-For the sake of consistency, I might switch `ganymede` to NixOS, if I get around to it.
+This is my server at home. It runs services I only need at home.
 
 ### galileo
 
