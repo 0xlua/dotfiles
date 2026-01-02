@@ -28,6 +28,7 @@
     arr.enable = true;
     arr.deluge.enable = true;
     arr.flaresolverr.enable = true;
+    arr.prowlarr.enable = true;
   };
 
   programs.fish.enable = true;

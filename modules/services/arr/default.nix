@@ -4,5 +4,6 @@
     ./gluetun.nix
     ./deluge.nix
     ./flaresolverr.nix
+    ./prowlarr.nix
   ];
 }
