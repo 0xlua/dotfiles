@@ -30,6 +30,7 @@
     arr.flaresolverr.enable = true;
     arr.prowlarr.enable = true;
     arr.radarr.enable = true;
+    arr.sonarr.enable = true;
   };
 
   programs.fish.enable = true;

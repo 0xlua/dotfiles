@@ -6,5 +6,6 @@
     ./flaresolverr.nix
     ./prowlarr.nix
     ./radarr.nix
+    ./sonarr.nix
   ];
 }
