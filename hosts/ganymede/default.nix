@@ -25,6 +25,7 @@
     jellyfin.enable = true;
     jellyfin.publiclyAccessible = true;
     mafl.enable = true;
+    paperless.enable = true;
     arr.enable = true;
     arr.deluge.enable = true;
     arr.flaresolverr.enable = true;

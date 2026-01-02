@@ -19,5 +19,6 @@
     ./vaultwarden.nix
     ./upvoterss.nix
     ./pocketid.nix
+    ./paperless.nix
   ];
 }
