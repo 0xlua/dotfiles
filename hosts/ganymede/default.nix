@@ -26,6 +26,7 @@
     jellyfin.publiclyAccessible = true;
     arr.enable = true;
     arr.deluge.enable = true;
+    arr.flaresolverr.enable = true;
   };
 
   programs.fish.enable = true;

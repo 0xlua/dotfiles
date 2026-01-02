@@ -5,7 +5,7 @@
 }: let
   cfg = config.server.arr.deluge;
 in {
-  options.server.arr.deluge.enable = lib.mkEnableOption "bazarr";
+  options.server.arr.deluge.enable = lib.mkEnableOption "deluge";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.deluge = {
