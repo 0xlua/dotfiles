@@ -23,5 +23,6 @@
     ./paperless.nix
     ./homeassistant.nix
     ./musicassistant.nix
+    ./speedtest.nix
   ];
 }

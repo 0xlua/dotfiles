@@ -29,6 +29,7 @@
     paperless.enable = true;
     homeassistant.enable = true;
     musicassistant.enable = true;
+    speedtest.enable = true;
     arr.enable = true;
     arr.deluge.enable = true;
     arr.flaresolverr.enable = true;
