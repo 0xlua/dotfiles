@@ -20,5 +20,6 @@
     ./upvoterss.nix
     ./pocketid.nix
     ./paperless.nix
+    ./homeassistant.nix
   ];
 }
