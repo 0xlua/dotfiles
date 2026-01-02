@@ -10,10 +10,6 @@ in {
   config = lib.mkIf cfg.enable {
     sops.secrets."openvpn/user" = {};
     sops.secrets."openvpn/password" = {};
-    sops.templates."openvpn-env".content = ''
-      OPENVPN_USER=${config.sops.placeholder."openvpn/user"}
-      OPENVPN_PASSWORD=${config.sops.placeholder."openvpn/password"}
-    '';
 
     virtualisation.oci-containers.containers.gluetun = {
       image = "ghcr.io/qdm12/gluetun:latest";
@@ -29,7 +25,10 @@ in {
         VPN_PORT_FORWARDING = "on";
         PORT_FORWARD_ONLY = "on";
       };
-      environmentFiles = [config.sops.templates."openvpn-env".path];
+      volumes = [
+        "${config.sops.secrets."openvpn/user".path}:/run/secrets/openvpn_user"
+        "${config.sops.secrets."openvpn/password".path}:/run/secrets/openvpn_password"
+      ];
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
         "8000:8000" # gluetun
