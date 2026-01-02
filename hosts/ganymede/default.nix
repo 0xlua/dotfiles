@@ -31,6 +31,7 @@
     arr.prowlarr.enable = true;
     arr.radarr.enable = true;
     arr.sonarr.enable = true;
+    arr.bazarr.enable = true;
   };
 
   programs.fish.enable = true;
