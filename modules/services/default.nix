@@ -21,5 +21,6 @@
     ./pocketid.nix
     ./paperless.nix
     ./homeassistant.nix
+    ./musicassistant.nix
   ];
 }
