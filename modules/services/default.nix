@@ -1,6 +1,7 @@
 {...}: {
   imports = [
     ./common.nix
+    ./arr
     ./atuin.nix
     ./backup.nix
     ./bore-server.nix

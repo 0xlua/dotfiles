@@ -24,6 +24,7 @@
     enable = true;
     jellyfin.enable = true;
     jellyfin.publiclyAccessible = true;
+    arr.enable = true;
   };
 
   programs.fish.enable = true;
