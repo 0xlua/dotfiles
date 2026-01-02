@@ -10,6 +10,7 @@
     ./jellyfin.nix
     ./kitchenowl.nix
     ./linkding.nix
+    ./mafl.nix
     ./littlelink.nix
     ./miniflux.nix
     ./redlib.nix
