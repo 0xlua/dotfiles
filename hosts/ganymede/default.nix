@@ -24,6 +24,7 @@
     enable = true;
     jellyfin.enable = true;
     jellyfin.publiclyAccessible = true;
+    calibre.enable = true;
     mafl.enable = true;
     paperless.enable = true;
     homeassistant.enable = true;

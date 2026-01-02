@@ -7,6 +7,7 @@
     ./bore-server.nix
     ./bore-client.nix
     ./caddy.nix
+    ./calibre.nix
     ./jellyfin.nix
     ./kitchenowl.nix
     ./linkding.nix
