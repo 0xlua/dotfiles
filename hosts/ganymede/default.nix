@@ -29,6 +29,7 @@
     arr.deluge.enable = true;
     arr.flaresolverr.enable = true;
     arr.prowlarr.enable = true;
+    arr.radarr.enable = true;
   };
 
   programs.fish.enable = true;

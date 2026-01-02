@@ -5,5 +5,6 @@
     ./deluge.nix
     ./flaresolverr.nix
     ./prowlarr.nix
+    ./radarr.nix
   ];
 }
