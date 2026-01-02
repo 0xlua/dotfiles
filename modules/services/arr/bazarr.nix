@@ -21,7 +21,7 @@ in {
           "/home/lua/podman/bazarr:/config"
         ];
         networks = ["container:gluetun"];
-        dependsOn = ["gluetun" "flaresolverr"]; # TODO: also smb mount @ /home/lua/media
+        dependsOn = ["gluetun" "flaresolverr"];
         extraOptions = ["--security-opt label=disable"];
       };
     };

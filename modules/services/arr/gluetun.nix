@@ -32,7 +32,7 @@ in {
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
         "8000:8000" # gluetun
-        "8112:8112"
+        "8112:8112" # deluge
         "6767:6767"
         "7878:7878"
         "8989:8989"
