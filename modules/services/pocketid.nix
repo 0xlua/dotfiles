@@ -14,7 +14,7 @@ in {
       group = config.users.users.lua.group;
     };
     virtualisation.oci-containers.containers.pocket-id = {
-      image = "ghcr.io/pocket-id/pocket-id:v1";
+      image = "ghcr.io/pocket-id/pocket-id:v2";
       labels = {
         "io.containers.autoupdate" = "registry";
       };
