@@ -85,7 +85,7 @@
         littlelink = "podman-littlelink";
         rustypaste = "podman-rustypaste";
         stalwart = "podman-stalwart";
-        bore = "podman-bore";
+        bore = "podman-bore-server";
         caddy = "podman-caddy";
         redlib = "podman-redlib";
         linkding = "podman-linkding";
