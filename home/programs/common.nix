@@ -25,6 +25,7 @@
     ouch # archiving
     managarr # *arr
     podman-tui
+    magic-wormhole-rs
 
     # logs
     tailspin
