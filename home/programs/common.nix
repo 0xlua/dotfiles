@@ -64,10 +64,7 @@
     };
   };
 
-  programs.broot = {
-    enable = true;
-    enableFishIntegration = true;
-  };
+  programs.broot.enable = false;
 
   programs.fzf.enable = true;
 
@@ -83,16 +80,11 @@
   };
 
   programs.television = {
-    enable = true;
-    settings = {
-      use_nerd_font_icons = true;
-    };
+    enable = false;
+    settings.use_nerd_font_icons = true;
   };
 
-  programs.nix-search-tv = {
-    enable = true;
-    enableTelevisionIntegration = true;
-  };
+  programs.nix-search-tv.enable = false;
 
   programs.yazi = {
     enable = true;
