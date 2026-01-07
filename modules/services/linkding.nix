@@ -27,6 +27,7 @@ in {
       environment = {
         LD_SUPERUSER_NAME = "lua";
         LD_ENABLE_OIDC = "True";
+        LD_DISABLE_LOGIN_FORM = "True";
         OIDC_USERNAME_CLAIM = "preferred_username";
         OIDC_OP_AUTHORIZATION_ENDPOINT = "https://id.lua.one/authorize";
         OIDC_OP_TOKEN_ENDPOINT = "https://id.lua.one/api/oidc/token";
