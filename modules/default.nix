@@ -4,5 +4,6 @@
     ./gaming.nix
     ./desktop
     ./services
+    ./yubikey.nix
   ];
 }
