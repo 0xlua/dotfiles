@@ -6,6 +6,7 @@
     ./backup.nix
     ./bore-server.nix
     ./bore-client.nix
+    ./bookstack.nix
     ./caddy.nix
     ./calibre.nix
     ./jellyfin.nix
