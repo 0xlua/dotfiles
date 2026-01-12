@@ -21,6 +21,8 @@
       enable = true;
       settings = {
         command = "fish";
+        mouse-hide-while-typing = true;
+        window-decoration = "none";
       };
     };
   };
