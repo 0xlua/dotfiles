@@ -53,7 +53,7 @@ in {
 
           # OIDC Settings
           AUTH_METHOD = "oidc";
-          AUTH_AUTO_INITIATE = "false";
+          AUTH_AUTO_INITIATE = "true";
           OIDC_ISSUER = "https://id.lua.one";
           OIDC_END_SESSION_ENDPOINT = "true";
           OIDC_ISSUER_DISCOVER = "true";
