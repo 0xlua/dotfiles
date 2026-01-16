@@ -17,16 +17,10 @@
       SearchBar = "unified";
       TranslateEnabled = false;
       PictureInPicture.Enabled = false;
+      GenerativeAI.Enabled = false;
       Preferences = {
-        "widget.gtk.libadwaita-colors.enabled" = false;
-        "layout.css.prefers-color-scheme.content-override" = 0;
-        "browser.ml.chat.page.footerBadge" = false;
-        "browser.ml.chat.page.menuBadge " = false;
-        "browser.ml.chat.shortcuts" = false;
-        "browser.ml.chat.shortcuts.custom" = false;
-        "browser.ml.chat.sidebar" = false;
-        "browser.ml.checkForMemory " = false;
-        "browser.ml.enable" = false;
+        "widget.gtk.libadwaita-colors.enabled" = false; # allow native styling
+        "layout.css.prefers-color-scheme.content-override" = 0; # dark mode
         "sidebar.verticalTabs" = true;
         "sidebar.visibility" = "hide-sidebar";
         # re-enable native messaging (https://codeberg.org/celenity/Phoenix/commit/bb82bd987d8a5347d1d7213ffb8820298d51a52f)
