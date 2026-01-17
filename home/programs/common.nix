@@ -32,7 +32,20 @@
     hl-log-viewer
   ];
 
-  programs.eilmeldung.enable = config.home-modules.desktop.enable;
+  programs.eilmeldung = {
+    enable = config.home-modules.desktop.enable;
+    settings = {
+      feed_list_scope = "unread";
+      share_targets = [
+        "clipboard"
+        "mpv mpv {url}"
+      ];
+      input_config.mappings = {
+        "S y" = ["share clipboard"];
+        "S m" = ["share mpv"];
+      };
+    };
+  };
 
   sops.secrets."atuin/key".mode = "0440";
 
