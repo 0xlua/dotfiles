@@ -35,6 +35,7 @@
   programs.eilmeldung = {
     enable = config.home-modules.desktop.enable;
     settings = {
+      startup_commands = ["sync"];
       feed_list_scope = "unread";
       share_targets = [
         "clipboard"
