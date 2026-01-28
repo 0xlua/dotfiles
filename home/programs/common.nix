@@ -41,10 +41,6 @@
         "clipboard"
         "mpv mpv {url}"
       ];
-      input_config.mappings = {
-        "S y" = ["share clipboard"];
-        "S m" = ["share mpv"];
-      };
     };
   };
 
