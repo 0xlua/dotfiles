@@ -636,15 +636,16 @@
         ]
       },
       "locked": {
-        "lastModified": 1769488400,
-        "narHash": "sha256-DcvM/o2fafpjf4HyHv2MvkuhHGVlLCrAbBCBHM7Cgu8=",
+        "lastModified": 1769230473,
+        "narHash": "sha256-SSL5IWd4ML3RxkSxGgSdDDz8r3nV995KZI+SoQejnNc=",
         "ref": "refs/heads/dev",
-        "rev": "b51418846a93bd335d84724c3d9f6e0905b6b4ee",
-        "revCount": 2652,
+        "rev": "6ec3afbd6cc80bfbfaf7bb9e389940953c8f99d5",
+        "revCount": 2629,
         "type": "git",
         "url": "https://codeberg.org/celenity/Phoenix"
       },
       "original": {
+        "rev": "6ec3afbd6cc80bfbfaf7bb9e389940953c8f99d5",
         "type": "git",
         "url": "https://codeberg.org/celenity/Phoenix"
       }

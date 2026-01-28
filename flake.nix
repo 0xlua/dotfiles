@@ -6,7 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    phoenix.url = "git+https://codeberg.org/celenity/Phoenix";
+    phoenix.url = "git+https://codeberg.org/celenity/Phoenix?rev=6ec3afbd6cc80bfbfaf7bb9e389940953c8f99d5";
     phoenix.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
