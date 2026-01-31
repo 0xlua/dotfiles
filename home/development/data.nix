@@ -25,6 +25,7 @@ in {
 
       # Misc
       rainfrog # database client
+      stu # s3 client
     ];
   };
 }
