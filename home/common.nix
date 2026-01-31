@@ -16,6 +16,8 @@
     username = "lua";
     homeDirectory = "/home/lua";
 
+    preferXdgDirectories = true;
+
     packages = with pkgs; [
       nil # nix lsp
       alejandra # nix formatter
