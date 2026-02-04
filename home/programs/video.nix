@@ -5,7 +5,7 @@
   ...
 }: {
   config = lib.mkIf config.home-modules.desktop.enable {
-    home.packages = with pkgs; [delfin];
+    home.packages = with pkgs; [delfin youtube-tui];
 
     programs.yt-dlp.enable = true;
 
