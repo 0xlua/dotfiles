@@ -10,6 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
     sops.secrets."openvpn/user" = {};
     sops.secrets."openvpn/password" = {};
+    sops.secrets."wireguard/private_key" = {};
 
     virtualisation.oci-containers.containers.gluetun = {
       image = "ghcr.io/qdm12/gluetun:latest";
@@ -21,6 +22,7 @@ in {
       };
       environment = {
         VPN_SERVICE_PROVIDER = "protonvpn";
+        VPN_TYPE = "wireguard";
         SERVER_COUNTRIES = "Germany";
         VPN_PORT_FORWARDING = "on";
         PORT_FORWARD_ONLY = "on";
@@ -28,6 +30,7 @@ in {
       volumes = [
         "${config.sops.secrets."openvpn/user".path}:/run/secrets/openvpn_user"
         "${config.sops.secrets."openvpn/password".path}:/run/secrets/openvpn_password"
+        "${config.sops.secrets."wireguard/private_key".path}:/run/secrets/wireguard_private_key"
       ];
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
