@@ -21,7 +21,7 @@ in {
       networks = ["host"];
       extraOptions = ["--security-opt=apparmor=unconfined"];
       volumes = [
-        "/home/lua/podman/musicassistant:/config:Z"
+        "/home/lua/podman/musicassistant:/data:Z"
       ];
     };
   };
