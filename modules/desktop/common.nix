@@ -106,6 +106,8 @@ in {
       pulse.enable = true;
     };
 
+    services.fwupd.enable = true;
+
     stylix = {
       polarity = "dark";
       fonts = {
