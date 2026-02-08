@@ -123,8 +123,10 @@ in {
           # name = "Atkinson Hyperlegible Next";
         };
         monospace = {
-          package = pkgs.nerd-fonts.hack;
-          name = "Hack Nerd Font";
+          package = pkgs.maple-mono.NF-unhinted;
+          name = "Maple Mono NF";
+          # package = pkgs.nerd-fonts.hack;
+          # name = "Hack Nerd Font";
           # package = pkgs.nerd-fonts.atkynson-mono;
           # name = "Atkinson Hyperlegible Nerd Font";
         };
