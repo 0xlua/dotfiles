@@ -107,6 +107,8 @@ in {
         };
         hotkey-overlay.skip-at-startup = true;
         prefer-no-csd = true;
+        gestures.hot-corners.enable = false;
+        switch-events.lid-close.action.spawn = "gtklock";
         input = {
           keyboard.xkb = {
             layout = "us";
@@ -118,6 +120,7 @@ in {
             natural-scroll = true;
           };
           mouse.accel-profile = "flat";
+          trackpoint.accel-profile = "flat";
           warp-mouse-to-focus.enable = true;
           focus-follows-mouse = {
             enable = true;
@@ -127,6 +130,7 @@ in {
         cursor.hide-when-typing = true;
         layout = {
           default-column-width = {};
+          focus-ring.width = 3;
         };
         window-rules = [
           {
