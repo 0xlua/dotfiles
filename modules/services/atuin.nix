@@ -17,10 +17,10 @@ in {
 
     virtualisation.oci-containers.containers = {
       atuin = {
-        image = "ghcr.io/atuinsh/atuin:v18.4.0";
+        image = "ghcr.io/atuinsh/atuin:v18.12.0";
         autoStart = true;
         dependsOn = ["atuin-db"];
-        cmd = ["server" "start"];
+        cmd = ["start"];
         labels = {
           "io.containers.autoupdate" = "registry";
         };
