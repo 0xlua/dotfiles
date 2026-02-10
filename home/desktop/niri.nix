@@ -30,7 +30,7 @@ in {
       settings = {
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
-          "Mod+Return".action = spawn "GTK_IM_MODULE=simple ghostty";
+          "Mod+Return".action = spawn-sh "GTK_IM_MODULE=simple ghostty";
           "Mod+D".action = spawn "centerpiece";
           "Mod+Escape".action = spawn "gtklock";
           XF86AudioRaiseVolume = {
