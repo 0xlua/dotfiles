@@ -6,6 +6,7 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    # TODO: changes to the build script broke the phoenix flake
     phoenix.url = "git+https://codeberg.org/celenity/Phoenix?rev=6ec3afbd6cc80bfbfaf7bb9e389940953c8f99d5";
     phoenix.inputs.nixpkgs.follows = "nixpkgs";
     lanzaboote.url = "github:nix-community/lanzaboote";
@@ -19,7 +20,8 @@
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     eilmeldung.url = "github:christo-auer/eilmeldung";
-    sops-nix.url = "github:Mic92/sops-nix";
+    # TODO: newer sops-nix uses IPv6, possibly because of go 1.25
+    sops-nix.url = "github:Mic92/sops-nix?rev=17eea6f3816ba6568b8c81db8a4e6ca438b30b7c";
   };
 
   outputs = inputs: {
