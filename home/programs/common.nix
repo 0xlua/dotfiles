@@ -37,6 +37,7 @@
     settings = {
       startup_commands = ["sync"];
       feed_list_scope = "unread";
+      zen_mode_show_header = true;
       share_targets = [
         "clipboard"
         "mpv mpv {url}"
