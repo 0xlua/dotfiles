@@ -23,6 +23,7 @@
         command = "fish";
         mouse-hide-while-typing = true;
         window-decoration = "none";
+        shell-integration-features = "cursor, ssh-env";
       };
     };
   };
