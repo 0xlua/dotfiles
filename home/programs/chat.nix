@@ -38,7 +38,19 @@
           enabled = true;
         };
         servers.liberachat = {
-          channels = ["#voidlinux"];
+          channels = [
+            "#selfhosted"
+            "#gamingonlinux"
+            "#lobsters"
+            "#nixos"
+            "#homeassistant"
+            "#jellyfin"
+            "#firefox"
+            "#neovim"
+            "##cycling"
+            "#halloy"
+            "#voidlinux"
+          ];
           nickname = "lua";
           server = "irc.libera.chat";
           sasl.plain = {
