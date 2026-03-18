@@ -35,7 +35,7 @@
       termguicolors = true;
       cursorline = true;
       laststatus = 3;
-      guifont = "Hack Nerd Font:h14"; # font for neovide
+      # guifont = "Hack Nerd Font:h14"; # font for neovide
       scrolloff = 10;
       showtabline = 0;
       list = true;
