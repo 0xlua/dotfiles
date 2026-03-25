@@ -19,8 +19,7 @@
     niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     eilmeldung.url = "github:christo-auer/eilmeldung";
-    # TODO: newer sops-nix uses IPv6, possibly because of go 1.25
-    sops-nix.url = "github:Mic92/sops-nix?rev=17eea6f3816ba6568b8c81db8a4e6ca438b30b7c";
+    sops-nix.url = "github:Mic92/sops-nix";
   };
 
   outputs = inputs: {
