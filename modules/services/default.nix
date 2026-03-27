@@ -25,5 +25,6 @@
     ./homeassistant.nix
     ./musicassistant.nix
     ./speedtest.nix
+    ./zigbee.nix
   ];
 }
