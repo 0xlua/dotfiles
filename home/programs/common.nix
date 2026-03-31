@@ -32,16 +32,28 @@
     hl-log-viewer
   ];
 
+  sops.secrets."miniflux/token/eilmeldung".mode = "0440";
+
   programs.eilmeldung = {
     enable = config.home-modules.desktop.enable;
     settings = {
+      login_setup = {
+        login_type = "direct_token";
+        provider = "miniflux";
+        url = "https://rss.lua.one";
+        token = "cmd:cat ${config.sops.secrets."miniflux/token/eilmeldung".path}";
+      };
       startup_commands = ["sync"];
       feed_list_scope = "unread";
       zen_mode_show_header = true;
       share_targets = [
         "clipboard"
         "mpv mpv {url}"
+        "oculante oculante {url}"
       ];
+      input_config.mappings = {
+        "; i" = ["cmd hintshare oculante"];
+      };
     };
   };
 
