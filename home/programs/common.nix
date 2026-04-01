@@ -32,7 +32,7 @@
     hl-log-viewer
   ];
 
-  sops.secrets."miniflux/token/eilmeldung".mode = "0440";
+  sops.secrets."miniflux/token_eilmeldung".mode = "0440";
 
   programs.eilmeldung = {
     enable = config.home-modules.desktop.enable;
@@ -41,7 +41,7 @@
         login_type = "direct_token";
         provider = "miniflux";
         url = "https://rss.lua.one";
-        token = "cmd:cat ${config.sops.secrets."miniflux/token/eilmeldung".path}";
+        token = "cmd:cat ${config.sops.secrets."miniflux/token_eilmeldung".path}";
       };
       startup_commands = ["sync"];
       feed_list_scope = "unread";
