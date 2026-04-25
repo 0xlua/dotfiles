@@ -11,13 +11,13 @@
   programs.firefox = {
     enable = config.home-modules.desktop.enable;
     package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {
       DisplayMenuBar = "never";
       SearchBar = "unified";
       TranslateEnabled = false;
       PictureInPicture.Enabled = false;
-      GenerativeAI.Enabled = false;
       Preferences = {
         "widget.gtk.libadwaita-colors.enabled" = false; # allow native styling
         "layout.css.prefers-color-scheme.content-override" = 0; # dark mode
