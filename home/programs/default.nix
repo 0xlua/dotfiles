@@ -7,6 +7,7 @@
     ./gaming.nix
     ./git.nix
     ./images.nix
+    ./llm.nix
     ./mail.nix
     ./music.nix
     ./rustypaste.nix

@@ -5,6 +5,7 @@
   home-modules.desktop.compositor = "cosmic";
   home-modules.mail.enable = true;
   home-modules.gaming.enable = true;
+  home-modules.llm.enable = true;
   home-modules.development = {
     enable = true;
     languages = {
