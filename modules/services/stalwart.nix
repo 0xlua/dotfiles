@@ -9,7 +9,7 @@ in {
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.stalwart = {
-      image = "docker.io/stalwartlabs/stalwart:latest";
+      image = "docker.io/stalwartlabs/stalwart:v0.15";
       labels = {
         "io.containers.autoupdate" = "registry";
       };
