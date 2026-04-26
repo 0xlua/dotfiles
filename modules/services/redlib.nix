@@ -9,7 +9,8 @@ in {
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.redlib = {
-      image = "quay.io/redlib/redlib:latest";
+      # image = "quay.io/redlib/redlib:latest";
+      image = "ghcr.io/silvenga/redlib:latest";
       autoStart = true;
       user = "nobody:nogroup";
       capabilities = {ALL = false;};
