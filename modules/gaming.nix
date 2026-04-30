@@ -10,6 +10,8 @@ in {
 
   config = lib.mkIf cfg.gaming.enable {
     nixpkgs.config.allowUnfree = true;
+    # discord needs insecure OpenSSL 1.1, see https://github.com/NixOS/nixpkgs/issues/513122
+    nixpkgs.config.permittedInsecurePackages = ["openssl-1.1.1w"];
 
     programs.corectrl = {
       enable = true;
