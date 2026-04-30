@@ -16,7 +16,6 @@ in {
     ];
 
     home.packages = with pkgs; [
-      lact
       mumble
       teamspeak6-client
       chess-tui

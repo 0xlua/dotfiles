@@ -17,6 +17,10 @@ in {
       enable = true;
     };
 
+    services.lact = {
+      enable = true;
+    };
+
     hardware.amdgpu.overdrive.enable = true;
 
     programs.gamemode = {
