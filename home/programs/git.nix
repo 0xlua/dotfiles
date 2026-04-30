@@ -48,7 +48,10 @@
 
   programs.gh = {
     enable = true;
-    settings.git_protocol = "ssh";
+    settings = {
+      git_protocol = "ssh";
+      telemetry = "disabled";
+    };
   };
 
   programs.gh-dash.enable = true;
