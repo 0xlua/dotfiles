@@ -4,7 +4,7 @@
   ...
 }: {
   programs.yubikey-manager = {
-    enable = config.modules.desktop.enable;
+    inherit (config.modules.desktop) enable;
     package = pkgs.yubioath-flutter;
   };
 }

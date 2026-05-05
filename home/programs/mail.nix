@@ -18,7 +18,7 @@ in {
       extraConfig.general.unsafe-accounts-conf = true;
     };
     programs.thunderbird = {
-      enable = config.home-modules.desktop.enable;
+      inherit (config.home-modules.desktop) enable;
       package = pkgs.thunderbird-latest;
       profiles.lua = {
         isDefault = true;
@@ -50,7 +50,7 @@ in {
         tls.enable = true;
       };
       passwordCommand = "cat ${config.sops.secrets."mailAppPw".path}";
-      thunderbird.enable = config.home-modules.desktop.enable;
+      thunderbird = {inherit (config.home-modules.desktop) enable;};
       aerc = {
         enable = true;
         imapAuth = "oauthbearer";

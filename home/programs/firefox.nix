@@ -9,7 +9,7 @@
   xdg.mimeApps.associations.added = {"application/pdf" = ["firefox.desktop"];};
   xdg.mimeApps.defaultApplications."application/json" = ["firefox.desktop"];
   programs.firefox = {
-    enable = config.home-modules.desktop.enable;
+    inherit (config.home-modules.desktop) enable;
     package = pkgs.wrapFirefox (pkgs.firefox-unwrapped.override {pipewireSupport = true;}) {};
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [pkgs.tridactyl-native];

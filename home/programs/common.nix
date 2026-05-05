@@ -35,7 +35,7 @@
   sops.secrets."miniflux/token_eilmeldung".mode = "0440";
 
   programs.eilmeldung = {
-    enable = config.home-modules.desktop.enable;
+    inherit (config.home-modules.desktop) enable;
     settings = {
       login_setup = {
         login_type = "direct_token";

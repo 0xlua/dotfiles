@@ -10,7 +10,7 @@
   stylix.targets.nixvim.enable = false;
 
   programs.neovide = {
-    enable = config.home-modules.desktop.enable;
+    inherit (config.home-modules.desktop) enable;
     settings = {};
   };
 
