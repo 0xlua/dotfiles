@@ -1,6 +1,6 @@
 {config, ...}: {
   programs.zed-editor = {
-    inherit (config.home-moudles.desktop) enable;
+    inherit (config.home-modules.desktop) enable;
     extensions = ["deno" "biome" "nix" "sql" "typst" "html" "markdown-oxide" "latex"];
     userSettings = {
       auto_update = false;
