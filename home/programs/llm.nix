@@ -13,8 +13,5 @@ in {
       enable = true;
       acceleration = "rocm";
     };
-    programs.opencode = {
-      enable = true;
-    };
   };
 }
