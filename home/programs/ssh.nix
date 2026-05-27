@@ -3,28 +3,28 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
-        forwardAgent = true;
-        addKeysToAgent = "yes";
-        serverAliveInterval = 60;
+        ForwardAgent = true;
+        AddKeysToAgent = "yes";
+        ServerAliveInterval = 60;
       };
       desy = {
-        hostname = "bastion.desy.de";
-        user = "jordanlu";
-        dynamicForwards = [{port = 2280;}];
+        HostName = "bastion.desy.de";
+        User = "jordanlu";
+        DynamicForward = 2280;
       };
       galileo = {
-        hostname = "lua.one";
+        HostName = "lua.one";
       };
       backup = {
-        hostname = "u413359.your-storagebox.de";
-        user = "u413359";
-        port = 23;
+        HostName = "u413359.your-storagebox.de";
+        User = "u413359";
+        Port = 23;
       };
       baucons = {
-        hostname = "49.12.185.229";
-        user = "root";
+        HostName = "49.12.185.229";
+        User = "root";
       };
     };
   };
