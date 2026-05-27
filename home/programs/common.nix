@@ -26,6 +26,7 @@
     managarr # *arr
     podman-tui
     magic-wormhole-rs
+    dig # dns lookup
 
     # logs
     tailspin
