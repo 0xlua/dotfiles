@@ -4,7 +4,7 @@
   config,
   ...
 }: {
-  stylix.targets.firefox.profileNames = ["default" "desy"];
+  stylix.targets.firefox.profileNames = ["default"];
   xdg.configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
   xdg.mimeApps.associations.added = {"application/pdf" = ["firefox.desktop"];};
   xdg.mimeApps.defaultApplications."application/json" = ["firefox.desktop"];
