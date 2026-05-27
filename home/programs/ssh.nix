@@ -9,11 +9,6 @@
         AddKeysToAgent = "yes";
         ServerAliveInterval = 60;
       };
-      desy = {
-        HostName = "bastion.desy.de";
-        User = "jordanlu";
-        DynamicForward = 2280;
-      };
       galileo = {
         HostName = "lua.one";
       };

@@ -39,53 +39,6 @@
         };
         extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
       };
-      desy = {
-        id = 1;
-        bookmarks.force = true;
-        bookmarks.settings = [
-          {
-            toolbar = true;
-            bookmarks = [
-              {
-                url = "https://mail.desy.de/";
-                name = "Mail";
-              }
-              {
-                url = "https://syncandshare.desy.de/";
-                name = "Sync & Share";
-              }
-              {
-                url = "https://rt-system.desy.de/";
-                name = "RT";
-              }
-            ];
-          }
-        ];
-        isDefault = false;
-        search = {
-          default = "ddg";
-          force = true;
-        };
-        settings = {
-          "network.proxy.socks" = "localhost";
-          "network.proxy.socks_port" = 2280;
-          "network.proxy.type" = 1;
-          "network.proxy.socks5_remote_dns" = true;
-          "network.proxy.socks_version" = 5;
-        };
-        extensions.packages = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin tridactyl];
-        containersForce = true;
-        containers = {
-          admin = {
-            id = 1;
-            color = "red";
-          };
-          default = {
-            id = 2;
-            color = "green";
-          };
-        };
-      };
     };
   };
 }
