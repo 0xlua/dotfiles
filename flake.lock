@@ -669,6 +669,7 @@
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "phoenix": "phoenix",
+        "rustypaste-ui": "rustypaste-ui",
         "sops-nix": "sops-nix",
         "stylix": "stylix"
       }
@@ -692,6 +693,18 @@
         "owner": "oxalica",
         "repo": "rust-overlay",
         "type": "github"
+      }
+    },
+    "rustypaste-ui": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-IAtMD0OFLfOcmBIin+pvm9hvck7nLKZuH0ZrGzwrSdw=",
+        "type": "file",
+        "url": "https://github.com/Silvenga/rustypaste-ui/releases/latest/download/index.html"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://github.com/Silvenga/rustypaste-ui/releases/latest/download/index.html"
       }
     },
     "sops-nix": {
