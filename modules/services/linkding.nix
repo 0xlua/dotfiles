@@ -14,6 +14,7 @@ in {
       OIDC_RP_CLIENT_ID=${config.sops.placeholder."linkding/oidc_client_id"}
       OIDC_RP_CLIENT_SECRET=${config.sops.placeholder."linkding/oidc_client_secret"}
     '';
+    programs.rust-motd.settings.service_status.linkding = config.virtualisation.oci-containers.containers.linkding.serviceName;
     virtualisation.oci-containers.containers.linkding = {
       image = "docker.io/sissbruecker/linkding:latest";
       autoStart = true;

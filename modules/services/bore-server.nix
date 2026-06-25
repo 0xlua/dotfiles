@@ -13,6 +13,7 @@ in {
       BORE_SECRET=${config.sops.placeholder.boreSecret}
     '';
 
+    programs.rust-motd.settings.service_status.bore-server = config.virtualisation.oci-containers.containers.bore-server.serviceName;
     virtualisation.oci-containers.containers.bore-server = {
       image = "docker.io/ekzhang/bore:latest";
       cmd = ["server"];

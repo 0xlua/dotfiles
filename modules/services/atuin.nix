@@ -15,6 +15,7 @@ in {
       ATUIN_DB_URI=postgres://${config.sops.placeholder."atuin/user"}:${config.sops.placeholder."atuin/password"}@atuin-db/${config.sops.placeholder."atuin/db"}?sslmode=disable
     '';
 
+    programs.rust-motd.settings.service_status.atuin = config.virtualisation.oci-containers.containers.atuin.serviceName;
     virtualisation.oci-containers.containers = {
       atuin = {
         image = "ghcr.io/atuinsh/atuin:v18.12.0";

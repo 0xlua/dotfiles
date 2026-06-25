@@ -8,6 +8,7 @@ in {
   options.server.caddy.enable = lib.mkEnableOption "caddy";
 
   config = lib.mkIf cfg.enable {
+    programs.rust-motd.settings.service_status.caddy = config.virtualisation.oci-containers.containers.caddy.serviceName;
     virtualisation.oci-containers.containers.caddy = {
       image = "docker.io/caddy:latest";
       user = "1000:100";

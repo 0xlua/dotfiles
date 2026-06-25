@@ -8,6 +8,7 @@ in {
   options.server.stalwart.enable = lib.mkEnableOption "stalwart";
 
   config = lib.mkIf cfg.enable {
+    programs.rust-motd.settings.service_status.stalwart = config.virtualisation.oci-containers.containers.stalwart.serviceName;
     virtualisation.oci-containers.containers.stalwart = {
       image = "docker.io/stalwartlabs/stalwart:v0.15";
       labels = {

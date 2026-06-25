@@ -16,6 +16,7 @@ in {
       group = config.users.users.lua.group;
     };
 
+    programs.rust-motd.settings.service_status.rustypaste = config.virtualisation.oci-containers.containers.rustypaste.serviceName;
     virtualisation.oci-containers.containers.rustypaste = let
       settingsFormat = pkgs.formats.toml {};
       settingsFile = settingsFormat.generate "rustypaste" {

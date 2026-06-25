@@ -8,27 +8,26 @@ in {
   options.server.miniflux.enable = lib.mkEnableOption "miniflux";
 
   config = lib.mkIf cfg.enable {
-    sops.secrets."miniflux/oidc_client_secret" = {
-      mode = "0444";
+    sops = {
+      secrets = {
+        "miniflux/oidc_client_secret".mode = "0444";
+        "miniflux/oidc_client_id".mode = "0444";
+        "miniflux/db" = {};
+        "miniflux/password" = {};
+        "miniflux/user" = {};
+      };
+      templates."miniflux-env".content = ''
+        DATABASE_URL=postgres://${config.sops.placeholder."miniflux/user"}:${config.sops.placeholder."miniflux/password"}@miniflux-db/${config.sops.placeholder."miniflux/db"}?sslmode=disable
+      '';
     };
-    sops.secrets."miniflux/oidc_client_id" = {
-      mode = "0444";
-    };
-    sops.secrets."miniflux/db" = {};
-    sops.secrets."miniflux/password" = {};
-    sops.secrets."miniflux/user" = {};
-    sops.templates."miniflux-env".content = ''
-      DATABASE_URL=postgres://${config.sops.placeholder."miniflux/user"}:${config.sops.placeholder."miniflux/password"}@miniflux-db/${config.sops.placeholder."miniflux/db"}?sslmode=disable
-    '';
 
+    programs.rust-motd.settings.service_status.miniflux = config.virtualisation.oci-containers.containers.miniflux.serviceName;
     virtualisation.oci-containers.containers = {
       miniflux = {
         image = "ghcr.io/miniflux/miniflux:latest";
         autoStart = true;
         dependsOn = ["miniflux-db"];
-        labels = {
-          "io.containers.autoupdate" = "registry";
-        };
+        labels."io.containers.autoupdate" = "registry";
         environmentFiles = [
           config.sops.templates."miniflux-env".path
         ];

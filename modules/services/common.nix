@@ -65,20 +65,7 @@ in {
     programs.rust-motd = {
       enable = true;
       settings = {
-        service_status = {
-          rustypaste = "podman-rustypaste";
-          stalwart = "podman-stalwart";
-          bore = "podman-bore-server";
-          caddy = "podman-caddy";
-          redlib = "podman-redlib";
-          linkding = "podman-linkding";
-          vaultwarden = "podman-vaultwarden";
-          pocket-id = "podman-pocket-id";
-          upvoterss = "podman-upvoterss";
-          kitchenowl = "podman-stalwart";
-          miniflux = "podman-miniflux";
-          atuin = "podman-atuin";
-        };
+        service_status = {}; # filled by the services themselves
         uptime.prefix = "Up";
         load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
         memory.swap_pos = "none";

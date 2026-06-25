@@ -13,6 +13,7 @@ in {
       owner = config.users.users.lua.name;
       group = config.users.users.lua.group;
     };
+    programs.rust-motd.settings.service_status.pocket-id = config.virtualisation.oci-containers.containers.pocket-id.serviceName;
     virtualisation.oci-containers.containers.pocket-id = {
       image = "ghcr.io/pocket-id/pocket-id:v2";
       labels = {

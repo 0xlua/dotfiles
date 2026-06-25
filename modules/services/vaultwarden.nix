@@ -20,6 +20,7 @@ in {
         SSO_CLIENT_SECRET=${config.sops.placeholder."vaultwarden/oidc_client_secret"}
       '';
     };
+    programs.rust-motd.settings.service_status.vaultwarden = config.virtualisation.oci-containers.containers.vaultwarden.serviceName;
     virtualisation.oci-containers.containers.vaultwarden = {
       image = "docker.io/vaultwarden/server:latest";
       autoStart = true;

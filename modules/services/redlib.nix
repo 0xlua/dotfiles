@@ -8,6 +8,7 @@ in {
   options.server.redlib.enable = lib.mkEnableOption "redlib";
 
   config = lib.mkIf cfg.enable {
+    programs.rust-motd.settings.service_status.redlib = config.virtualisation.oci-containers.containers.redlib.serviceName;
     virtualisation.oci-containers.containers.redlib = {
       # image = "quay.io/redlib/redlib:latest";
       image = "ghcr.io/silvenga/redlib:latest";
