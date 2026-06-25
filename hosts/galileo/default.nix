@@ -58,6 +58,7 @@
   };
 
   services.fail2ban.enable = true;
+  programs.rust-motd.settings.fail_2_ban.jails = ["sshd"];
 
   system.stateVersion = "24.05"; # Don't change
 }

@@ -82,7 +82,6 @@ in {
         uptime.prefix = "Up";
         load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
         memory.swap_pos = "none";
-        fail_2_ban.jails = ["sshd"];
         last_login = {
           lua = 3;
           root = 1;
