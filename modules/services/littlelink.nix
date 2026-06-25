@@ -8,6 +8,8 @@ in {
   options.server.littlelink.enable = lib.mkEnableOption "littlelink";
 
   config = lib.mkIf cfg.enable {
+    # programs.rust-motd.settings.service_status.littlelink = "podman-littlelink";
+    programs.rust-motd.settings.service_status.littlelink = config.virtualisation.oci-containers.containers.littlelink.serviceName;
     virtualisation.oci-containers.containers.littlelink = {
       image = "ghcr.io/techno-tim/littlelink-server:latest";
       autoStart = true;
