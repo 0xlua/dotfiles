@@ -9,7 +9,7 @@
     inputs.sops-nix.homeManagerModules.sops
   ];
   config = lib.mkIf config.home-modules.desktop.enable {
-    sops.secrets."liberaSasl".mode = "0440";
+    sops.secrets."irc/libera".mode = "0440";
     home.packages = with pkgs; [
       rustdesk-flutter # remote desktop
     ];
@@ -44,7 +44,7 @@
           server = "irc.libera.chat";
           sasl.plain = {
             username = "lua";
-            password_file = config.sops.secrets."liberaSasl".path;
+            password_file = config.sops.secrets."irc/libera".path;
           };
         };
       };

@@ -8,7 +8,7 @@ in {
   options.server.pocket-id.enable = lib.mkEnableOption "pocket-id";
 
   config = lib.mkIf cfg.enable {
-    sops.secrets."pocketIdKey" = {
+    sops.secrets."pocket_id/key" = {
       mode = "0440";
       owner = config.users.users.lua.name;
       group = config.users.users.lua.group;
@@ -29,7 +29,7 @@ in {
       };
       volumes = [
         "/home/lua/podman/pocket-id:/app/data"
-        "${config.sops.secrets."pocketIdKey".path}:/run/secrets/encryption_key"
+        "${config.sops.secrets."pocket_id/key".path}:/run/secrets/encryption_key"
       ];
     };
   };
