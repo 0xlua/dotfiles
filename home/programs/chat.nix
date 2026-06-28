@@ -26,25 +26,38 @@
         buffer.channel.topic = {
           enabled = true;
         };
-        servers.liberachat = {
-          channels = [
-            "#selfhosted"
-            "#gamingonlinux"
-            "#lobsters"
-            "#nixos"
-            "#homeassistant"
-            "#jellyfin"
-            "#firefox"
-            "#neovim"
-            "##cycling"
-            "#halloy"
-            "#voidlinux"
-          ];
-          nickname = "lua";
-          server = "irc.libera.chat";
-          sasl.plain = {
-            username = "lua";
-            password_file = config.sops.secrets."irc/libera".path;
+        servers = {
+          # https://hackint.org/
+          hackint = {
+            channels = [
+              "#nixos"
+              "#ccchh"
+              # "ffhh"
+            ];
+            nickname = "lua";
+            server = "irc.hackint.org";
+            # sasl.plain = {};
+          };
+          liberachat = {
+            channels = [
+              "#selfhosted"
+              "#gamingonlinux"
+              "#lobsters"
+              "#nixos"
+              "#homeassistant"
+              "#jellyfin"
+              "#firefox"
+              "#neovim"
+              "##cycling"
+              "#halloy"
+              "#voidlinux"
+            ];
+            nickname = "lua";
+            server = "irc.libera.chat";
+            sasl.plain = {
+              username = "lua";
+              password_file = config.sops.secrets."irc/libera".path;
+            };
           };
         };
       };
