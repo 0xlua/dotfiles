@@ -21,6 +21,11 @@ in {
       ltex-ls-plus # grammar lsp
     ];
 
+    xdg.configFile."moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
+      include_md_extension_md_link = true;
+      include_md_extension_wikilink = true;
+    };
+
     programs.papis = {
       enable = true;
       libraries = {
