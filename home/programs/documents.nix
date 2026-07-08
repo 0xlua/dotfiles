@@ -12,6 +12,7 @@
       options = {
         recolor = true;
         synctex = true;
+        selection-clipboard = "clipboard";
         synctex-editor-command = "texlab inverse-search -i %{input} -l %{line}";
       };
     };
