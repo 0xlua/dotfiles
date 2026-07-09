@@ -22,6 +22,7 @@
     sops-nix.url = "github:Mic92/sops-nix";
     rustypaste-ui.url = "https://github.com/Silvenga/rustypaste-ui/releases/latest/download/index.html";
     rustypaste-ui.flake = false;
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
   };
 
   outputs = inputs: {
