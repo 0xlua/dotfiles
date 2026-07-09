@@ -1,6 +1,7 @@
 {
   config,
   lib,
+  pkgs,
   ...
 }: let
   cfg = config.server.arr;
@@ -12,7 +13,17 @@ in {
     sops.secrets."openvpn/password" = {};
     sops.secrets."wireguard/private_key" = {};
 
-    virtualisation.oci-containers.containers.gluetun = {
+    virtualisation.oci-containers.containers.gluetun = let
+      authConfig = (pkgs.formats.toml {}).generate "gluetun_auth" {
+        roles = [
+          {
+            name = "check_status";
+            routes = ["GET /v1/publicip/ip" "GET /v1/vpn/status"];
+            auth = "none";
+          }
+        ];
+      };
+    in {
       image = "ghcr.io/qdm12/gluetun:latest";
       autoStart = true;
       labels = {"io.containers.autoupdate" = "registry";};
@@ -31,6 +42,7 @@ in {
         "${config.sops.secrets."openvpn/user".path}:/run/secrets/openvpn_user"
         "${config.sops.secrets."openvpn/password".path}:/run/secrets/openvpn_password"
         "${config.sops.secrets."wireguard/private_key".path}:/run/secrets/wireguard_private_key"
+        "${authConfig}:/gluetun/auth/config.toml"
       ];
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
