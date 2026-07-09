@@ -90,7 +90,10 @@
 
   programs.broot.enable = false;
 
-  programs.fzf.enable = true;
+  programs.fzf = {
+    enable = true;
+    historyWidget.command = "";
+  };
 
   programs.numbat.enable = true;
 
