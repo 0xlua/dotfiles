@@ -107,6 +107,7 @@ in {
     };
 
     services.fwupd.enable = true;
+    services.udisks2.enable = true;
 
     stylix = {
       polarity = "dark";
