@@ -1,5 +1,22 @@
 {
   "nodes": {
+    "autoconfig": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1771930362,
+        "narHash": "sha256-phTO75u5rqMvFrrNjBecfvPpLyojJvkCDWHkNFU5jK8=",
+        "owner": "thunderbird",
+        "repo": "autoconfig",
+        "rev": "ddd01002de8a037df2bed395059799bb185f5052",
+        "type": "github"
+      },
+      "original": {
+        "owner": "thunderbird",
+        "ref": "prod",
+        "repo": "autoconfig",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -128,6 +145,31 @@
         "owner": "ipetkov",
         "repo": "crane",
         "type": "github"
+      }
+    },
+    "dove": {
+      "inputs": {
+        "autoconfig": "autoconfig",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "phoenix": [
+          "phoenix"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783562752,
+        "narHash": "sha256-IgDhJVJo/B0jyGc4kvQtJGyAlf15M7/D5+KIOWj5VDg=",
+        "ref": "pages",
+        "rev": "1bfc844d9d1ec778074bd56f8aea9b7ab6561792",
+        "revCount": 876,
+        "type": "git",
+        "url": "https://codeberg.org/celenity/Dove"
+      },
+      "original": {
+        "ref": "pages",
+        "type": "git",
+        "url": "https://codeberg.org/celenity/Dove"
       }
     },
     "eilmeldung": {
@@ -779,6 +821,7 @@
     },
     "root": {
       "inputs": {
+        "dove": "dove",
         "eilmeldung": "eilmeldung",
         "firefox-addons": "firefox-addons",
         "home-manager": "home-manager",

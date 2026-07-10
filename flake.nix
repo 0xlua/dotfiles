@@ -8,6 +8,9 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     phoenix.url = "git+https://codeberg.org/celenity/Phoenix?ref=pages";
     phoenix.inputs.nixpkgs.follows = "nixpkgs";
+    dove.url = "git+https://codeberg.org/celenity/Dove?ref=pages";
+    dove.inputs.nixpkgs.follows = "nixpkgs";
+    dove.inputs.phoenix.follows = "phoenix";
     lanzaboote.url = "github:nix-community/lanzaboote";
     lanzaboote.inputs.nixpkgs.follows = "nixpkgs";
     stylix.url = "github:danth/stylix";
@@ -41,6 +44,7 @@
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.phoenix.nixosModules.default
+          # inputs.dove.nixosModules.default
           ./modules
           ./hosts/europa
         ];
@@ -50,6 +54,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           inputs.phoenix.nixosModules.default
+          # inputs.dove.nixosModules.default
           ./modules
           ./hosts/callisto
         ];

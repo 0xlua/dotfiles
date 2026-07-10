@@ -13,7 +13,7 @@ in {
   options.home-modules.mail.enable = lib.mkEnableOption "mail";
 
   config = let
-    email = "moin@lua.one";
+    userName = "moin@lua.one";
     host = "mail.lua.one";
     passwordCommand = "cat ${config.sops.secrets."stalwart_app_token".path}";
   in
@@ -22,9 +22,7 @@ in {
 
       programs.gpg = {
         enable = true;
-        settings = {
-          encrypt-to = email;
-        };
+        settings.encrypt-to = userName;
       };
 
       services.gpg-agent = {
@@ -35,9 +33,7 @@ in {
       programs.aerc = {
         enable = true;
         extraConfig = {
-          hooks = {
-            mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
-          };
+          hooks.mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
           filters = {
             "text/plain" = "colorize";
             "text/html" = "html | colorize";
@@ -55,28 +51,61 @@ in {
         package = pkgs.thunderbird-latest;
         profiles.lua = {
           isDefault = true;
+          withExternalGnupg = true;
+          search = {
+            default = "ddg";
+            force = true;
+          };
           settings = {
-            "calendar.week.start" = 1;
+            "calendar.week.start" = 1; # Start Week on Monday
+            "mail.openpgp.fetch_pubkeys_from_gnupg" = true; # Import public keys from host gpg
+            "general.autoScroll" = true; # Enable Auto-Scroll
+            "mail.threadpane.listview" = 1; # Show Messages in list view
+            "mail.default_send_format" = 1; # compose messages in plain text
+            "network.cookie.cookieBehavior" = 2; # don't accept any cookies
+            "privacy.donottrackheader.enabled" = true; # send DNT Header
+            "datareporting.healthreport.uploadEnabled" = false; # Don't send telemetry to mozilla
+            "mail.e2ee.auto_enable" = true; # auto-encrypt mails
+            "mail.identity.default.compose_html" = false;
           };
         };
       };
 
       accounts = {
-        calendar.accounts.lua.remote = {
-          type = "caldav";
-          url = "https://${host}/.well-known/caldav";
-          userName = email;
-          inherit passwordCommand;
+        calendar.accounts.lua = {
+          primary = true;
+          remote = {
+            type = "caldav";
+            url = "https://${host}/.well-known/caldav";
+            inherit userName passwordCommand;
+          };
+          thunderbird = {
+            inherit (config.home-modules.desktop) enable;
+          };
+        };
+        contact.accounts.lua = {
+          remote = {
+            type = "carddav";
+            url = "https://${host}/.well-known/carddav";
+            inherit userName passwordCommand;
+          };
         };
         email.accounts.lua = {
-          address = email;
-          userName = email;
-          inherit passwordCommand;
+          address = userName;
+          inherit userName passwordCommand;
           primary = true;
           realName = "Lukas Jordan";
           jmap.host = "${host}/.well-known/jmap";
+          imap = {
+            inherit host;
+            port = 993;
+          };
+          smtp = {
+            inherit host;
+            port = 465;
+          };
           gpg = {
-            key = "";
+            key = "0A8B4FCA78F832FA";
             signByDefault = true;
             encryptByDefault = true;
           };
@@ -86,23 +115,22 @@ in {
             drafts = "Drafts";
             trash = "Deleted Items";
           };
-          # imap = {
-          #   host = "mail.lua.one";
-          #   port = 993;
-          #   tls.enable = true;
-          # };
-          # smtp = {
-          #   host = "mail.lua.one";
-          #   port = 465;
-          #   tls.enable = true;
-          # };
-          # thunderbird = {inherit (config.home-modules.desktop) enable;};
+          thunderbird = {
+            inherit (config.home-modules.desktop) enable;
+            settings = id: {
+              "mail.identity.id_${id}.attachPgpKey" = true;
+              "mail.identity.id_${id}.protectSubject" = false;
+              "mail.identity.id_${id}.compose_html" = false;
+              "mail.identity.id_${id}.reply_on_top" = true;
+            };
+            profiles = ["lua"];
+          };
           aerc = {
             enable = true;
             extraAccounts = {
-              source = "jmap://${lib.strings.escapeURL email}@${host}";
+              source = lib.mkForce "jmap://${lib.strings.escapeURL userName}@${host}";
               source-cred-cmd = passwordCommand;
-              outgoing = "jmap://";
+              outgoing = lib.mkForce "jmap://";
               use-labels = true;
               cache-state = true;
               cache-blobs = false;
