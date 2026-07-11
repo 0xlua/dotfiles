@@ -41,6 +41,7 @@ in {
         enable = true;
         extraConfig = {
           hooks.mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
+          compose.address-book-cmd = "khard email --parsable --remove-first-line %s";
           filters = {
             "text/plain" = "colorize";
             "text/html" = "html | colorize";
@@ -82,6 +83,8 @@ in {
         enable = true;
         settings.default.highlight_event_days = true;
       };
+
+      programs.khard.enable = true;
 
       accounts = {
         calendar = {
@@ -145,6 +148,10 @@ in {
                   params = ["all"];
                 }
               ];
+            };
+            khard = {
+              inherit (config.programs.khard) enable;
+              type = "discover";
             };
             khal = {
               # inherit (config.programs.khal) enable;
