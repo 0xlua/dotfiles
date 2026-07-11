@@ -33,6 +33,10 @@ in {
         };
       };
 
+      services.pimsync.enable = true;
+
+      programs.pimsync.enable = true;
+
       programs.aerc = {
         enable = true;
         extraConfig = {
@@ -75,26 +79,64 @@ in {
       };
 
       accounts = {
-        calendar.accounts.lua = {
-          primary = true;
-          remote = {
-            type = "caldav";
-            url = "https://${host}/dav/cal/${lib.strings.escapeURL userName}/default";
-            inherit userName passwordCommand;
-          };
-          thunderbird = {
-            inherit (config.programs.thunderbird) enable;
+        calendar = {
+          basePath = ".calendars";
+          accounts.lua = {
+            remote = {
+              type = "caldav";
+              url = "https://${host}/.well-known/caldav";
+              inherit userName;
+              passwordCommand = lib.strings.splitString " " passwordCommand;
+            };
+            pimsync = {
+              inherit (config.programs.pimsync) enable;
+              extraRemoteStorageDirectives = [
+                {
+                  name = "collection_id_segment";
+                  params = ["second-last"];
+                }
+              ];
+              extraPairDirectives = [
+                {
+                  name = "collections";
+                  params = ["all"];
+                }
+              ];
+            };
+            thunderbird = {
+              # inherit (config.programs.thunderbird) enable;
+              settings = id: {
+                "calendar.registry.${id}.uri" = lib.mkForce "https://${host}/dav/cal/${lib.strings.escapeURL userName}/default";
+              };
+            };
           };
         };
-        contact.accounts.lua = {
-          remote = {
-            type = "carddav";
-            url = "https://${host}/dav/card/${lib.strings.escapeURL userName}/default";
-            inherit userName passwordCommand;
+        contact = {
+          basePath = ".contacts";
+          accounts.lua = {
+            remote = {
+              type = "carddav";
+              url = "https://${host}/.well-known/carddav";
+              inherit userName;
+              passwordCommand = lib.strings.splitString " " passwordCommand;
+            };
+            pimsync = {
+              inherit (config.programs.pimsync) enable;
+              extraRemoteStorageDirectives = [
+                {
+                  name = "collection_id_segment";
+                  params = ["second-last"];
+                }
+              ];
+              extraPairDirectives = [
+                {
+                  name = "collections";
+                  params = ["all"];
+                }
+              ];
+            };
           };
-          thunderbird = {
-            inherit (config.programs.thunderbird) enable;
-          };
+          # thunderbird = {inherit (config.programs.thunderbird) enable;};
         };
         email.accounts.lua = {
           address = userName;
