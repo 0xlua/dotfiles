@@ -27,7 +27,10 @@ in {
 
       services.gpg-agent = {
         enable = true;
-        pinentry.package = pkgs.pinentry-tty;
+        pinentry = {
+          package = pkgs.wayprompt;
+          program = "pinentry-wayprompt";
+        };
       };
 
       programs.aerc = {
@@ -76,18 +79,21 @@ in {
           primary = true;
           remote = {
             type = "caldav";
-            url = "https://${host}/.well-known/caldav";
+            url = "https://${host}/dav/cal/${lib.strings.escapeURL userName}/default";
             inherit userName passwordCommand;
           };
           thunderbird = {
-            inherit (config.home-modules.desktop) enable;
+            inherit (config.programs.thunderbird) enable;
           };
         };
         contact.accounts.lua = {
           remote = {
             type = "carddav";
-            url = "https://${host}/.well-known/carddav";
+            url = "https://${host}/dav/card/${lib.strings.escapeURL userName}/default";
             inherit userName passwordCommand;
+          };
+          thunderbird = {
+            inherit (config.programs.thunderbird) enable;
           };
         };
         email.accounts.lua = {
@@ -105,6 +111,7 @@ in {
             port = 465;
           };
           gpg = {
+            # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
             key = "0A8B4FCA78F832FA";
             signByDefault = true;
             encryptByDefault = true;
@@ -116,7 +123,7 @@ in {
             trash = "Deleted Items";
           };
           thunderbird = {
-            inherit (config.home-modules.desktop) enable;
+            inherit (config.programs.thunderbird) enable;
             settings = id: {
               "mail.identity.id_${id}.attachPgpKey" = true;
               "mail.identity.id_${id}.protectSubject" = false;
@@ -128,7 +135,7 @@ in {
           aerc = {
             enable = true;
             extraAccounts = {
-              source = lib.mkForce "jmap://${lib.strings.escapeURL userName}@${host}";
+              source = lib.mkForce "jmap://${lib.strings.escapeURL userName}@${host}/.well-known/jmap";
               source-cred-cmd = passwordCommand;
               outgoing = lib.mkForce "jmap://";
               use-labels = true;
