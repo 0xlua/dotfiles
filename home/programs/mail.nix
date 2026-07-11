@@ -78,6 +78,11 @@ in {
         };
       };
 
+      programs.khal = {
+        enable = true;
+        settings.default.highlight_event_days = true;
+      };
+
       accounts = {
         calendar = {
           basePath = ".calendars";
@@ -102,6 +107,12 @@ in {
                   params = ["all"];
                 }
               ];
+            };
+            khal = {
+              inherit (config.programs.khal) enable;
+              addresses = [userName];
+              type = "discover";
+              color = "dark green";
             };
             thunderbird = {
               # inherit (config.programs.thunderbird) enable;
@@ -135,8 +146,14 @@ in {
                 }
               ];
             };
+            khal = {
+              # inherit (config.programs.khal) enable;
+              addresses = [userName];
+              readOnly = true;
+              color = "dark magenta";
+            };
+            # thunderbird = {inherit (config.programs.thunderbird) enable;};
           };
-          # thunderbird = {inherit (config.programs.thunderbird) enable;};
         };
         email.accounts.lua = {
           address = userName;
