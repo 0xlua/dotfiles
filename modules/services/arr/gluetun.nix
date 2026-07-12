@@ -12,8 +12,13 @@ in {
     sops.secrets."openvpn/user" = {};
     sops.secrets."openvpn/password" = {};
     sops.secrets."wireguard/private_key" = {};
+    sops.secrets."deluge_password" = {};
 
     virtualisation.oci-containers.containers.gluetun = let
+      portForwardScript = lib.fileset.toSource {
+        root = ../../../files;
+        fileset = ../../../files/deluge_set_incoming_port.sh;
+      };
       authConfig = (pkgs.formats.toml {}).generate "gluetun_auth" {
         roles = [
           {
@@ -37,12 +42,15 @@ in {
         SERVER_COUNTRIES = "Germany";
         VPN_PORT_FORWARDING = "on";
         PORT_FORWARD_ONLY = "on";
+        VPN_PORT_FORWARDING_UP_COMMAND = "/bin/sh -c '/gluetun/script/deluge_set_incoming_port.sh {{PORT}}'";
       };
       volumes = [
         "${config.sops.secrets."openvpn/user".path}:/run/secrets/openvpn_user"
         "${config.sops.secrets."openvpn/password".path}:/run/secrets/openvpn_password"
         "${config.sops.secrets."wireguard/private_key".path}:/run/secrets/wireguard_private_key"
+        "${config.sops.secrets."deluge_password".path}:/run/secrets/deluge_password"
         "${authConfig}:/gluetun/auth/config.toml"
+        "${portForwardScript}:/gluetun/script"
       ];
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
