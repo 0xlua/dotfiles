@@ -75,6 +75,7 @@ in {
             "datareporting.healthreport.uploadEnabled" = false; # Don't send telemetry to mozilla
             "mail.e2ee.auto_enable" = true; # auto-encrypt mails
             "mail.identity.default.compose_html" = false;
+            "mailnews.display.prefer_plaintext" = true; # view message body as plain text
           };
         };
       };
