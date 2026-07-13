@@ -57,7 +57,7 @@
         };
       };
     };
-    globalExtensions = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl];
+    globalExtensions = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl libredirect];
     profiles.default = {
       isDefault = true;
       settings = {
