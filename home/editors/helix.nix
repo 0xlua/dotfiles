@@ -34,11 +34,6 @@
           auto-format = true;
           language-servers = [{name = "deno-lsp";} "biome"];
         }
-        {
-          name = "beancount";
-          auto-format = true;
-          language-servers = [{name = "beancount-language-server";}];
-        }
       ];
       language-server = {
         biome = {
@@ -59,11 +54,6 @@
             inlayHints.functionLikeReturnTypes.enabled = true;
             inlayHints.enumMemberValues.enabled = true;
           };
-        };
-        beancount-language-server = {
-          command = "beancount-language-server";
-          args = ["--stdio"];
-          config.journal_file = "${config.home.homeDirectory}/notes/accounts.bean";
         };
         texlab.config.texlab = {
           forwardSearch = {
