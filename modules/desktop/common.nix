@@ -81,20 +81,27 @@ in {
     virtualisation.libvirtd.enable = true;
     users.groups.libvirtd.members = ["lua"];
 
-    fileSystems."/home/lua/nas" = {
-      device = "//io.internal/lua";
+    fileSystems = let
+      options = [
+        "x-systemd.automount"
+        "noauto"
+        "x-systemd.idle-timeout=60"
+        "x-systemd.device-timeout=5s"
+        "x-systemd.mount-timeout=5s"
+        "credentials=${config.sops.templates."smb-secrets".path}"
+        "uid=1000"
+        "gid=100"
+      ];
       fsType = "cifs";
-      options = let
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=${config.sops.templates."smb-secrets".path},uid=1000,gid=100"];
-    };
-
-    fileSystems."/home/lua/paperless_inbox" = {
-      device = "//io.internal/scanner";
-      fsType = "cifs";
-      options = let
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=${config.sops.templates."smb-secrets".path},uid=1000,gid=100"];
+    in {
+      "/home/lua/nas" = {
+        device = "//io.internal/lua";
+        inherit options fsType;
+      };
+      "/home/lua/paperless_inbox" = {
+        device = "//io.internal/scanner";
+        inherit options fsType;
+      };
     };
 
     security.rtkit.enable = true;
