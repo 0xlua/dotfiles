@@ -15,6 +15,12 @@
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/var/lib/sbctl";
+    autoGenerateKeys.enable = true;
+    autoEnrollKeys = {
+      enable = true;
+      includeFirmwareBuiltinKeys = true;
+      autoReboot = true;
+    };
   };
 
   networking.hostName = "europa"; # Define your hostname.
