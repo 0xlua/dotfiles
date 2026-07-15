@@ -16,6 +16,7 @@ in {
       volumes = [
         "/home/lua/podman/stalwart-etc:/etc/stalwart:Z"
         "/home/lua/podman/stalwart-data:/var/lib/stalwart:Z"
+        "/home/lua/podman/caddy/caddy/certificates/acme-v02.api.letsencrypt.org-directory/mail.lua.one:/opt/certificates:ro,idmap=uids=1000-2000-1;gids=100-2000-1"
       ];
     };
   };
