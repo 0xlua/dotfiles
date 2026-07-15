@@ -29,6 +29,7 @@ in {
         # see https://github.com/nix-community/home-manager/issues/632
         program_options = {
           file_manager = "${pkgs.yazi}/bin/yazi";
+          terminal = "${pkgs.ghostty}/bin/ghostty";
         };
       };
     };
