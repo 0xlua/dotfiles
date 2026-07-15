@@ -18,7 +18,6 @@
     autoGenerateKeys.enable = true;
     autoEnrollKeys = {
       enable = true;
-      includeFirmwareBuiltinKeys = true;
       autoReboot = true;
     };
   };
@@ -49,5 +48,5 @@
   modules.desktop.enable = true;
   modules.desktop.compositor = "niri";
 
-  system.stateVersion = "24.05"; # NixOS release for default stateful settings
+  system.stateVersion = "26.05"; # NixOS release for default stateful settings
 }
