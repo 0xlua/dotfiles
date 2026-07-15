@@ -44,7 +44,7 @@
           inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.phoenix.nixosModules.default
-          # inputs.dove.nixosModules.default
+          inputs.dove.nixosModules.default
           ./modules
           ./hosts/europa
         ];
@@ -54,7 +54,7 @@
         specialArgs = {inherit inputs;};
         modules = [
           inputs.phoenix.nixosModules.default
-          # inputs.dove.nixosModules.default
+          inputs.dove.nixosModules.default
           ./modules
           ./hosts/callisto
         ];
