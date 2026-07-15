@@ -3,6 +3,8 @@
   nixpkgs.overlays = lib.mkForce null;
   home-modules.desktop.enable = true;
   home-modules.desktop.compositor = "niri";
+  home-modules.mail.enable = true;
+  programs.thunderbird.enable = lib.mkForce false;
   home-modules.development = {
     enable = true;
     languages = {
