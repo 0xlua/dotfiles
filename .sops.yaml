@@ -7,3 +7,8 @@ creation_rules:
     - age:
       - *callisto
       - *galileo
+  - path_regex: secrets/.*$
+    key_groups:
+    - age:
+      - *callisto
+      - *galileo

@@ -6,6 +6,7 @@
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
+    ./eduroam.nix
   ];
   # Lanzaboote currently replaces the systemd-boot module.
   boot.loader.systemd-boot.enable = lib.mkForce false;
@@ -24,6 +25,11 @@
 
   networking.hostName = "europa"; # Define your hostname.
   networking.networkmanager.enable = true; # Enable networking
+  networking.networkmanager.wifi = {
+    scanRandMacAddress = true;
+    # backend = "iwd";
+    # macAdress = "random";
+  };
 
   hardware.bluetooth = {
     enable = true;
