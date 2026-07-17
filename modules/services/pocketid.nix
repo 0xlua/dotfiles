@@ -23,10 +23,9 @@ in {
       email = "id@lua.one";
     in {
       image = "ghcr.io/pocket-id/pocket-id:v2-distroless";
-      labels = {
-        "io.containers.autoupdate" = "registry";
-      };
-      user = "1000:1000";
+      labels."io.containers.autoupdate" = "registry";
+      user = "1000:100";
+      capabilities.ALL = false;
       environment = {
         UI_CONFIG_DISABLED = "true";
         APP_URL = "https://id.lua.one";
@@ -45,12 +44,13 @@ in {
         EMAIL_ONE_TIME_ACCESS_AS_ADMIN_ENABLED = "true";
       };
       extraOptions = [
-        "--health-cmd='[/app/pocket-id, healthcheck]'"
+        "--health-cmd=[\"/app/pocket-id\", \"healthcheck\"]"
         "--health-interval=1m30s"
         "--health-timeout=5s"
         "--health-retries=2"
         "--health-start-period=10s"
         "--read-only"
+        "--security-opt=no-new-privileges"
       ];
       volumes = [
         "/home/lua/podman/pocket-id:/app/data"
