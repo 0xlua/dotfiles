@@ -97,6 +97,11 @@ in {
         "io.containers.autoupdate" = "registry";
       };
       user = "1000:100";
+      capabilities.ALL = false;
+      extraOptions = [
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
       environment = {
         AUTH_TOKENS_FILE = "/run/secrets/tokens";
         DELETE_TOKENS_FILE = "/run/secrets/tokens";
