@@ -1,0 +1,122 @@
+(common) {
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+		X-Content-Type-Options "nosniff"
+		X-Frame-Options "SAMEORIGIN"
+		Referrer-Policy "strict-origin-when-cross-origin"
+		-Server
+	}
+	request_body {
+		max_size 512MB
+	}
+	encode
+}
+
+lua.one {
+	handle_path /.well-known/openpgpkey/* {
+		import common
+		root * /srv/wkd/lua.one
+		file_server
+		header Access-Control-Allow-Origin *
+		header Content-Type application/octet-stream
+	}
+	handle {
+		import common
+		reverse_proxy * littlelink:3000
+	}
+}
+auth.lua.one {
+	import common
+	reverse_proxy * rauthy:8080
+}
+id.lua.one {
+	import common
+	reverse_proxy * pocket-id:1411
+}
+atuin.lua.one {
+	import common
+	reverse_proxy * atuin:8888
+}
+kitchen.lua.one {
+	import common
+	reverse_proxy * kitchenowl:8080
+}
+s.lua.one share.lua.one {
+	import common
+	reverse_proxy * rustypaste:8000
+}
+b.lua.one bookmarks.lua.one {
+	import common
+	reverse_proxy * linkding:9090
+}
+mail.lua.one {
+	import common
+	reverse_proxy * stalwart:8080
+}
+vault.lua.one {
+	import common
+	reverse_proxy * vaultwarden:80 {
+		header_up X-Real-IP {remote_host}
+	}
+}
+wiki.lua.one {
+	import common
+	reverse_proxy * bookstack:80
+}
+rss.lua.one {
+	import common
+	reverse_proxy * miniflux:8080
+}
+feeds.lua.one {
+	import common
+	basic_auth {
+		moin@lua.one $2a$14$cnWmzAw/wIAarhVvQvxxZ.11Ycm//LZdbp3v/.qR8AXV7/iuZwCNC
+	}
+	reverse_proxy * upvoterss:80
+}
+reddit.lua.one {
+	import common
+	reverse_proxy * redlib:8080
+}
+jellyfin.lua.one {
+	import common
+	reverse_proxy * bore-server:8096
+}
+lukasjordan.com {
+	handle_path /.well-known/openpgpkey/* {
+		import common
+		root * /srv/wkd/lukasjordan.com
+		file_server
+		header Access-Control-Allow-Origin *
+		header Content-Type application/octet-stream
+	}
+	handle {
+		import common
+		# root * /srv/website
+		# file_server
+		redir https://codeberg.org/0xlua
+	}
+}
+ftp.lukasjordan.com {
+	import common
+	root * /srv/ftp
+	file_server browse
+}
+openpgpkey.lua.one {
+	handle_path /.well-known/openpgpkey/lua.one/* {
+		import common
+		root * /srv/wkd/lua.one
+		file_server
+		header Access-Control-Allow-Origin *
+		header Content-Type application/octet-stream
+	}
+}
+openpgpkey.lukasjordan.com {
+	handle_path /.well-known/openpgpkey/lukasjordan.com/* {
+		import common
+		root * /srv/wkd/lukasjordan.com
+		file_server
+		header Access-Control-Allow-Origin *
+		header Content-Type application/octet-stream
+	}
+}
