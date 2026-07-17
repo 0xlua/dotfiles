@@ -22,9 +22,20 @@ in {
     };
     programs.rust-motd.settings.service_status.vaultwarden = config.virtualisation.oci-containers.containers.vaultwarden.serviceName;
     virtualisation.oci-containers.containers.vaultwarden = {
-      image = "docker.io/vaultwarden/server:latest";
+      image = "docker.io/vaultwarden/server:latest-alpine";
       autoStart = true;
-      # user = "1000:100"
+      user = "1000:100";
+      capabilities = {
+        ALL = false;
+        NET_BIND_SERVICE = true;
+      };
+      extraOptions = [
+        "--health-cmd=[\"/healthcheck.sh\"]"
+        "--health-interval=60s"
+        "--health-timeout=10s"
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
       labels = {
         "io.containers.autoupdate" = "registry";
       };
@@ -34,6 +45,8 @@ in {
       environment = {
         DOMAIN = "https://vault.lua.one";
         SIGNUPS_ALLOWED = "false";
+        INVITATIONS_ALLOWED = "false";
+        SHOW_PASSWORD_HINT = "false";
 
         # SMTP Settings
         SMTP_HOST = "mail.lua.one";
