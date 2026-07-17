@@ -16,6 +16,11 @@
 
   programs.git = {
     enable = true;
+    signing = {
+      format = "openpgp";
+      key = "51BCC5BB";
+      signByDefault = true;
+    };
     settings = {
       user = {
         name = "0xlua";
