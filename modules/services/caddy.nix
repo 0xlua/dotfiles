@@ -33,11 +33,10 @@ in {
         fromImage = caddyImage;
         fromImageName = "caddy";
         fromImageTag = "${tag}-alpine";
-        copyToRoot = "${caddy}/bin/caddy";
-        runAsRoot = ''
-          mv /caddy /usr/bin/caddy
-          setcap cap_net_bind_service=+ep /usr/bin/caddy
-          chmod +x /usr/bin/caddy
+        copyToRoot = "${caddy}/bin";
+        extraCommands = ''
+          mkdir -p ./usr/bin
+          mv ./caddy ./usr/bin/
         '';
         config = {
           Workdir = "/srv";
