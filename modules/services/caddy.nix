@@ -1,5 +1,6 @@
 {
   config,
+  pkgs,
   lib,
   ...
 }: let
@@ -9,8 +10,44 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.caddy = config.virtualisation.oci-containers.containers.caddy.serviceName;
-    virtualisation.oci-containers.containers.caddy = {
-      image = "docker.io/caddy:2-alpine";
+    virtualisation.oci-containers.containers.caddy = let
+      # TODO: flake input?
+      tag = "2";
+      caddyImage = pkgs.dockerTools.pullImage {
+        imageName = "caddy";
+        imageDigest = "sha256:5f5c8640aae01df9654968d946d8f1a56c497f1dd5c5cda4cf95ab7c14d58648"; #caddy:2-alpine
+        finalImageTag = "${tag}-alpine";
+        hash = "sha256-6mnjC1vUPJMs/qjwsY4bMQBIUopUvigsZPQUd0GllvM=";
+      };
+      caddy = pkgs.caddy.withPlugins {
+        plugins = [
+          "github.com/caddy-dns/inwx@v0.4.1"
+          # "github.com/mholt/caddy-ratelimit"
+          "pkg.jsn.cam/caddy-defender@v0.10.1"
+        ];
+        hash = "sha256-pvj3aLQrKWLQnqCK+sd7EHOM3NMW5oxFMuBBWzuYd6I=";
+      };
+      imageFile = pkgs.dockerTools.buildImage {
+        name = "caddy";
+        tag = "${tag}-alpine";
+        fromImage = caddyImage;
+        fromImageName = "caddy";
+        fromImageTag = "${tag}-alpine";
+        copyToRoot = "${caddy}/bin/caddy";
+        runAsRoot = ''
+          mv /caddy /usr/bin/caddy
+          setcap cap_net_bind_service=+ep /usr/bin/caddy
+          chmod +x /usr/bin/caddy
+        '';
+        config = {
+          Workdir = "/srv";
+          Cmd = ["caddy" "run" "--config" "/etc/caddy/Caddyfile" "--adapter" "caddyfile"];
+        };
+      };
+    in {
+      # image = "docker.io/caddy:2-alpine";
+      image = "caddy:2-alpine";
+      inherit imageFile;
       user = "1000:100";
       capabilities = {
         ALL = false;
@@ -22,7 +59,6 @@ in {
         "--security-opt=no-new-privileges"
       ];
       autoStart = true;
-      labels."io.containers.autoupdate" = "registry";
       volumes = [
         "${../../files/caddy}:/etc/caddy:ro"
         "/home/lua/podman/static:/srv"
