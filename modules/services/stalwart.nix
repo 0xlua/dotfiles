@@ -26,6 +26,12 @@ in {
       extraOptions = [
         "--read-only"
         "--security-opt=no-new-privileges"
+        "--health-startup-cmd=[\"/bin/curl\", \"-sf\", \"https://mail.lua.one/healthz/ready\"]"
+        "--health-startup-interval=2s"
+        "--health-cmd=[\"/bin/curl\", \"-sf\", \"https://mail.lua.one/healthz/live\"]"
+        "--health-interval=1m"
+        "--health-timeout=5s"
+        "--health-retries=2"
       ];
       ports = ["25:25" "465:465" "993:993"];
       volumes = [
