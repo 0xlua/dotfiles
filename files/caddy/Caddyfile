@@ -70,7 +70,7 @@ rss.lua.one {
 feeds.lua.one {
 	import common
 	basic_auth {
-		moin@lua.one $2a$14$cnWmzAw/wIAarhVvQvxxZ.11Ycm//LZdbp3v/.qR8AXV7/iuZwCNC
+		moin@lua.one {$UPVOTERSS_PASSWORD}
 	}
 	reverse_proxy * upvoterss:80
 }

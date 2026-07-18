@@ -9,6 +9,23 @@ in {
   options.server.caddy.enable = lib.mkEnableOption "caddy";
 
   config = lib.mkIf cfg.enable {
+    sops = {
+      secrets = {
+        "caddy/inwx_username" = {};
+        "caddy/inwx_password" = {};
+        "caddy/inwx_mfattoken" = {};
+        "caddy/upvoterss_password" = {};
+      };
+      templates."caddy_env" = {
+        owner = "lua";
+        content = ''
+          INWX_USERNAME=${config.sops.placeholder."caddy/inwx_username"}
+          INWX_PASSWORD=${config.sops.placeholder."caddy/inwx_password"}
+          INWX_MFATOKEN=${config.sops.placeholder."caddy/inwx_mfatoken"}
+          UPVOTERSS_PASSWORD=${config.sops.placeholder."caddy/upvoterss_password"}
+        '';
+      };
+    };
     programs.rust-motd.settings.service_status.caddy = config.virtualisation.oci-containers.containers.caddy.serviceName;
     virtualisation.oci-containers.containers.caddy = let
       # TODO: flake input?
@@ -58,6 +75,7 @@ in {
         "--security-opt=no-new-privileges"
       ];
       autoStart = true;
+      environmentFils = [config.sops.templates."caddy_env".path];
       volumes = [
         "${../../files/caddy}:/etc/caddy:ro"
         "/home/lua/podman/static:/srv"
