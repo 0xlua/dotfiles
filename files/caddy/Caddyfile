@@ -13,6 +13,15 @@
 }
 
 (common) {
+	@spam path *env* *.git* *wp-admin* *phpmyadmin*
+	handle @spam {
+		abort
+	}
+
+	defender drop {
+		ranges aliyun aws deepseek githubcopilot gcloud oci azurepubliccloud openai mistral vultr digitalocean linode
+	}
+
 	header {
 		Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
 		X-Content-Type-Options "nosniff"
@@ -20,9 +29,11 @@
 		Referrer-Policy "strict-origin-when-cross-origin"
 		-Server
 	}
+
 	request_body {
 		max_size 512MB
 	}
+
 	encode
 }
 
