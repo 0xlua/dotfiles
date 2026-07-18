@@ -2,12 +2,10 @@
 	acme_dns inwx {
 		username {$INWX_USERNAME}
 		password {$INWX_PASSWORD}
-		shared_secret {$INWX_MFATOKEN}
 	}
 	dns inwx {
 		username {$INWX_USERNAME}
 		password {$INWX_PASSWORD}
-		shared_secret {$INWX_MFATOKEN}
 	}
 	ech lukasjordan.com
 }

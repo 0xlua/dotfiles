@@ -13,7 +13,6 @@ in {
       secrets = {
         "caddy/inwx_username" = {};
         "caddy/inwx_password" = {};
-        "caddy/inwx_mfatoken" = {};
         "caddy/upvoterss_password" = {};
       };
       templates."caddy_env" = {
@@ -21,7 +20,6 @@ in {
         content = ''
           INWX_USERNAME=${config.sops.placeholder."caddy/inwx_username"}
           INWX_PASSWORD=${config.sops.placeholder."caddy/inwx_password"}
-          INWX_MFATOKEN=${config.sops.placeholder."caddy/inwx_mfatoken"}
           UPVOTERSS_PASSWORD=${config.sops.placeholder."caddy/upvoterss_password"}
         '';
       };
@@ -39,7 +37,6 @@ in {
       caddy = pkgs.caddy.withPlugins {
         plugins = [
           "github.com/caddy-dns/inwx@v0.4.1"
-          # "github.com/mholt/caddy-ratelimit"
           "pkg.jsn.cam/caddy-defender@v0.10.1"
         ];
         hash = "sha256-pvj3aLQrKWLQnqCK+sd7EHOM3NMW5oxFMuBBWzuYd6I=";
