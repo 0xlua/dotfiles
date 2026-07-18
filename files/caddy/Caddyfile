@@ -3,11 +3,17 @@
 		username {$INWX_USERNAME}
 		password {$INWX_PASSWORD}
 	}
+
 	dns inwx {
 		username {$INWX_USERNAME}
 		password {$INWX_PASSWORD}
 	}
+
 	ech lukasjordan.com
+
+	events {
+		on cert_obtained exec /usr/bin/stalwart_reload_tls.sh
+	}
 }
 
 (common) {

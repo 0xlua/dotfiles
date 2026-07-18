@@ -14,6 +14,7 @@ in {
         "caddy/inwx_username" = {};
         "caddy/inwx_password" = {};
         "caddy/upvoterss_password" = {};
+        "caddy/stalwart_token" = {};
       };
       templates."caddy_env" = {
         owner = "lua";
@@ -21,6 +22,7 @@ in {
           INWX_USERNAME=${config.sops.placeholder."caddy/inwx_username"}
           INWX_PASSWORD=${config.sops.placeholder."caddy/inwx_password"}
           UPVOTERSS_PASSWORD=${config.sops.placeholder."caddy/upvoterss_password"}
+          STALWART_TOKEN=${config.sops.placeholder."caddy/stalwart_token"}
         '';
       };
     };
@@ -37,9 +39,10 @@ in {
       caddy = pkgs.caddy.withPlugins {
         plugins = [
           "github.com/caddy-dns/inwx@v0.4.1"
+          "github.com/mholt/caddy-events-exec@v0.1.0"
           "pkg.jsn.cam/caddy-defender@v0.10.1"
         ];
-        hash = "sha256-pvj3aLQrKWLQnqCK+sd7EHOM3NMW5oxFMuBBWzuYd6I=";
+        hash = "sha256-LlnBphFV3wqyEwP2KeUv5o2wUo1p12FY2TbmEIsLPfg=";
       };
       imageFile = pkgs.dockerTools.buildImage {
         name = "caddy";
@@ -75,6 +78,7 @@ in {
       environmentFiles = [config.sops.templates."caddy_env".path];
       volumes = [
         "${../../files/caddy}:/etc/caddy:ro"
+        "${../../files/stalwart_reload_tls.sh}:/usr/bin/stalwart_reload_tls.sh"
         "/home/lua/podman/static:/srv"
         "/home/lua/podman/caddy:/data"
       ];
