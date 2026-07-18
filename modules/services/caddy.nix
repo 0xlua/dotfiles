@@ -13,7 +13,7 @@ in {
       secrets = {
         "caddy/inwx_username" = {};
         "caddy/inwx_password" = {};
-        "caddy/inwx_mfattoken" = {};
+        "caddy/inwx_mfatoken" = {};
         "caddy/upvoterss_password" = {};
       };
       templates."caddy_env" = {
@@ -75,7 +75,7 @@ in {
         "--security-opt=no-new-privileges"
       ];
       autoStart = true;
-      environmentFils = [config.sops.templates."caddy_env".path];
+      environmentFiles = [config.sops.templates."caddy_env".path];
       volumes = [
         "${../../files/caddy}:/etc/caddy:ro"
         "/home/lua/podman/static:/srv"
