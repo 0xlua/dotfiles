@@ -65,6 +65,14 @@ in {
     programs.rust-motd = {
       enable = true;
       settings = {
+        banner = {
+          color = "magenta";
+          command = "${pkgs.figlet}/bin/figlet -f slant ${config.networking.hostName}";
+        };
+        cg_stats = {
+          state_file = "cg_stats.toml";
+          threshold = 0.01;
+        };
         service_status = {}; # filled by the services themselves
         uptime.prefix = "Up";
         load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
@@ -76,6 +84,7 @@ in {
         filesystems = {
           root = "/";
         };
+        last_run = {};
       };
     };
   };
