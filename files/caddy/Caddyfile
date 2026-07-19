@@ -16,7 +16,23 @@
 	}
 }
 
+(logging) {
+	log {
+		output file /data/logs/access.log {
+			roll_size 50mb
+			roll_keep 5
+		}
+		format json
+	}
+	log {
+		output stderr
+		format json
+	}
+}
+
 (common) {
+	import logging
+
 	@spam path *env* *.git* *wp-admin* *phpmyadmin*
 	handle @spam {
 		abort
@@ -111,7 +127,8 @@ lua.one {
 
 	@redlib host reddit.lua.one
 	handle @redlib {
-		reverse_proxy * redlib:8080
+		abort
+		# reverse_proxy * redlib:8080
 	}
 
 	@jellyfin host jellyfin.lua.one
