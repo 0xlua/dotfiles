@@ -1,4 +1,8 @@
-{inputs, ...}: {
+{
+  inputs,
+  lib,
+  ...
+}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
@@ -57,8 +61,27 @@
     allowedTCPPorts = [25 80 443 465 993 7835]; # smtp, http, https, smtps, imaps, bore
   };
 
-  services.fail2ban.enable = true;
-  programs.rust-motd.settings.fail_2_ban.jails = ["sshd"];
+  environment.etc."fail2ban/filter.d/caddy-status.conf".text = lib.mkDefault (lib.mkAfter ''
+    [Definition]
+    failregex = ^.*"remote_ip":"<HOST>",.*?"status":(?:0|401|403|500|502),.*$
+    ignoreregex =
+    datepattern = LongEpoch
+  '');
+
+  services.fail2ban = {
+    enable = true;
+    jails = {
+      caddy-status.settings = {
+        port = "http,https";
+        filter = "caddy-status";
+        # logpath = "/home/lua/podman/caddy/logs/access.log"; # systemd service can't access /home
+        enabled = true;
+        backend = "systemd";
+        journalmatch = "_SYSTEMD_UNIT=podman-caddy.service";
+      };
+    };
+  };
+  programs.rust-motd.settings.fail_2_ban.jails = ["sshd" "caddy-status"];
 
   system.stateVersion = "24.05"; # Don't change
 }
