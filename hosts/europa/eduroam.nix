@@ -24,6 +24,8 @@
     EDUROAM_PASSWORD=${config.sops.placeholder."eduroam/password"}
   '';
 
+  systemd.services.wpa_supplicant.serviceConfig = {BindReadOnlyPaths = ["/run/secrets/eduroam"];};
+
   networking.networkmanager.ensureProfiles = {
     environmentFiles = [config.sops.templates."eduroam/.env".path];
     profiles.eduroam = {
@@ -44,12 +46,9 @@
         altsubject-matches = "DNS:easyroam.eduroam.de";
         phase1-auth-flags = "0x100";
         identity = "$EDUROAM_IDENTITY";
-        ca-cert = "${./easyroam/easyroam_root_ca.pem}";
-        # ca-cert = config.sops.secrets."eduroam/ca-cert.pem".path;
-        client-cert = "${./easyroam/easyroam_client_cert.pem}";
-        # client-cert = config.sops.secrets."eduroam/client-cert.pem".path;
-        private-key = "${./easyroam/easyroam_client_key.pem}";
-        # private-key = config.sops.secrets."eduroam/private-key.pem".path;
+        ca-cert = config.sops.secrets."eduroam/ca-cert.pem".path;
+        client-cert = config.sops.secrets."eduroam/client-cert.pem".path;
+        private-key = config.sops.secrets."eduroam/private-key.pem".path;
         private-key-password = "$EDUROAM_PASSWORD";
       };
       ipv4.method = "auto";
