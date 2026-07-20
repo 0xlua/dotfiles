@@ -47,12 +47,14 @@
             "plowe-0"
             "https://raw.githubusercontent.com/DandelionSprout/adfilt/master/LegitimateURLShortener.txt"
           ];
+          dynamicFilteringString = lib.concatStringsSep "\n" [
+            "* * 3p-script block"
+            "* * 3p-frame block"
+          ];
           hostnameSwitchesString = lib.concatStringsSep "\n" [
             "no-large-media: behind-the-scene false"
             "no-csp-reports: * true"
             "no-scripting: マリウス.com true"
-            "* * 3p-script block"
-            "* * 3p-frame block"
           ];
         };
       };
