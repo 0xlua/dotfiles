@@ -70,6 +70,8 @@
         # re-enable native messaging (https://codeberg.org/celenity/Phoenix/commit/bb82bd987d8a5347d1d7213ffb8820298d51a52f)
         "webextensions.native-messaging.max-input-message-bytes" = 1048576;
         "webextensions.native-messaging.max-output-message-bytes" = 2147483647;
+        "network.protocol-handler.expose.bitwarden" = false;
+        "network.protocol-handler.external.bitwarden" = true;
       };
       search = {
         default = "ddg";
