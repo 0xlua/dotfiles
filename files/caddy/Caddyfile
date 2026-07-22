@@ -117,14 +117,6 @@ lua.one {
 		reverse_proxy * miniflux:8080
 	}
 
-	@upvoterss host feeds.lua.one
-	handle @upvoterss {
-		basic_auth {
-			moin@lua.one {$UPVOTERSS_PASSWORD}
-		}
-		reverse_proxy * upvoterss:80
-	}
-
 	@redlib host reddit.lua.one
 	handle @redlib {
 		abort

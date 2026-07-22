@@ -40,6 +40,7 @@ in {
           OAUTH2_USER_CREATION = "1";
           DISABLE_LOCAL_AUTH = "true";
           RUN_MIGRATIONS = "1";
+          FETCHER_ALLOW_PRIVATE_NETWORKS = "1";
         };
         volumes = [
           "${config.sops.secrets."miniflux/oidc_client_secret".path}:/run/secrets/oidc_client_secret"

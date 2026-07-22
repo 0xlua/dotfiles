@@ -13,7 +13,6 @@ in {
       secrets = {
         "caddy/inwx_username" = {};
         "caddy/inwx_password" = {};
-        "caddy/upvoterss_password" = {};
         "caddy/stalwart_token" = {};
       };
       templates."caddy_env" = {
@@ -21,7 +20,6 @@ in {
         content = ''
           INWX_USERNAME=${config.sops.placeholder."caddy/inwx_username"}
           INWX_PASSWORD=${config.sops.placeholder."caddy/inwx_password"}
-          UPVOTERSS_PASSWORD=${config.sops.placeholder."caddy/upvoterss_password"}
           STALWART_TOKEN=${config.sops.placeholder."caddy/stalwart_token"}
         '';
       };
