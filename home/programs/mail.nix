@@ -13,7 +13,8 @@ in {
   options.home-modules.mail.enable = lib.mkEnableOption "mail";
 
   config = let
-    userName = "moin@lua.one";
+    userName = "lua@lua.one";
+    email = "moin@lua.one";
     host = "mail.lua.one";
     passwordCommand = "cat ${config.sops.secrets."stalwart_app_token".path}";
   in
@@ -22,7 +23,7 @@ in {
 
       programs.gpg = {
         enable = true;
-        settings.encrypt-to = userName;
+        settings.encrypt-to = email;
       };
 
       services.gpg-agent = {
@@ -114,7 +115,7 @@ in {
             };
             khal = {
               inherit (config.programs.khal) enable;
-              addresses = [userName];
+              addresses = [email];
               type = "discover";
               color = "dark green";
             };
@@ -156,7 +157,7 @@ in {
             };
             khal = {
               # inherit (config.programs.khal) enable;
-              addresses = [userName];
+              addresses = [email];
               readOnly = true;
               color = "dark magenta";
             };
@@ -164,7 +165,7 @@ in {
           };
         };
         email.accounts.lua = {
-          address = userName;
+          address = email;
           inherit userName passwordCommand;
           primary = true;
           realName = "Lukas Jordan";
@@ -206,7 +207,6 @@ in {
               source-cred-cmd = passwordCommand;
               outgoing = lib.mkForce "jmap://";
               use-labels = true;
-              cache-state = true;
               cache-blobs = false;
               check-mail = "1m";
             };
