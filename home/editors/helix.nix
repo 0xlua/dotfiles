@@ -56,6 +56,7 @@
           };
         };
         texlab.config.texlab = {
+          latexFormatter = "tex-fmt";
           forwardSearch = {
             executable = "zathura";
             args = ["--synctex-forward" "%l:1:%f" "%p"];
@@ -64,6 +65,8 @@
             onSave = true;
             forwardSearchAfter = true;
             executable = "tectonic";
+            pdfDirectory = "build";
+            auxDirectory = "build";
             args = [
               "-X"
               "build"
