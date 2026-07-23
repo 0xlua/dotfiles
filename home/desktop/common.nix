@@ -34,29 +34,6 @@ in {
       };
     };
 
-    sops.secrets.syncthing_gui_password = {};
-
-    services.syncthing = {
-      enable = true;
-      guiCredentials = {
-        username = config.home.username;
-        passwordFile = config.sops.secrets.syncthing_gui_password.path;
-      };
-      overrideDevices = false;
-      tray.enable = true;
-      settings = {
-        folders = {
-          "default" = {
-            path = "${config.home.homeDirectory}/Sync";
-          };
-          "njho7-shvne" = {
-            path = "${config.home.homeDirectory}/notes";
-          };
-        };
-        options.urAccepted = -1;
-      };
-    };
-
     services.wpaperd.enable = true;
 
     dconf.settings = {

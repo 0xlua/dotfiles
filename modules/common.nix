@@ -51,7 +51,10 @@
     backupFileExtension = "back";
     useGlobalPkgs = true;
     useUserPackages = true;
-    extraSpecialArgs = {inherit inputs;};
+    extraSpecialArgs = {
+      inherit inputs;
+      inherit (config.networking) hostName;
+    };
   };
 
   stylix = {

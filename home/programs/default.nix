@@ -12,6 +12,7 @@
     ./music.nix
     ./rustypaste.nix
     ./ssh.nix
+    ./syncthing.nix
     ./terminals.nix
     ./video.nix
   ];
