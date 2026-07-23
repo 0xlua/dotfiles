@@ -29,7 +29,6 @@ in {
     programs.papis = {
       enable = false;
       libraries = {};
-      };
       settings = {
         editor = "hx";
         file-browser = "yazi";
