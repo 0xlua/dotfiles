@@ -26,6 +26,7 @@
       devices = {
         "callisto".id = "2LTFSWX-34JELVJ-K56YS3C-2H3V2XN-U6XDCFP-HQ4OHZL-C3CPZ5I-3JA5NQE";
         "pixel".id = "FUFYI35-GNBR3HW-OP3LWRW-Y7K4ANH-YU7CZ3X-IBBAUWD-CIWJIWR-R7F3KQV";
+        "europa".id = "GXIEAOZ-HAMBY5R-J3LWYM3-SFUQRQH-JEVPR2P-JMJIJ4B-SB2SZPJ-GJNTVAA";
       };
       folders = let
         devices = lib.attrNames config.services.syncthing.settings.devices;
