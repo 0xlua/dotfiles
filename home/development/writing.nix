@@ -27,15 +27,8 @@ in {
     };
 
     programs.papis = {
-      enable = true;
-      libraries = {
-        "default" = {
-          isDefault = true;
-          settings.dir = "~/papers/default";
-        };
-        "bachelor" = {
-          settings.dir = "~/papers/bachelor";
-        };
+      enable = false;
+      libraries = {};
       };
       settings = {
         editor = "hx";
