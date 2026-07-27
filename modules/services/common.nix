@@ -30,6 +30,7 @@ in {
         UseDns = true;
         PermitRootLogin = "no";
       };
+      extraConfig = "AuthenticationMethods publickey";
     };
     virtualisation = {
       containers.enable = true;
