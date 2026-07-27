@@ -21,7 +21,7 @@
       inherit (config.home) username;
       passwordFile = config.sops.secrets.syncthing_gui_password.path;
     };
-    # tray.enable = true;
+    tray.enable = true;
     settings = {
       devices = {
         "callisto".id = "2LTFSWX-34JELVJ-K56YS3C-2H3V2XN-U6XDCFP-HQ4OHZL-C3CPZ5I-3JA5NQE";
