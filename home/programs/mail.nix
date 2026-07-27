@@ -44,7 +44,7 @@ in {
           hooks.mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
           compose.address-book-cmd = "khard email --parsable --remove-first-line %s";
           filters = {
-            "text/plain" = "colorize";
+            "text/plain" = "wrap -w 100 | colorize";
             "text/html" = "html | colorize";
           };
           general = {
