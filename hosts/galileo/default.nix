@@ -24,7 +24,6 @@
     # podman-backup.enable = true;
     bore-server.enable = true;
     caddy.enable = true; # TODO: make Caddyfile config option
-    bookstack.enable = true;
     kitchenowl.enable = true;
     linkding.enable = true;
     littlelink.enable = true;

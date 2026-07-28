@@ -107,11 +107,6 @@ lua.one {
 		}
 	}
 
-	@bookstack host wiki.lua.one
-	handle @bookstack {
-		reverse_proxy * bookstack:80
-	}
-
 	@miniflux host rss.lua.one
 	handle @miniflux {
 		reverse_proxy * miniflux:8080
