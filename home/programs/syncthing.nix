@@ -3,7 +3,8 @@
   lib,
   hostName,
   ...
-}: {
+}:
+lib.mkIf config.home-modules.desktop.enable {
   sops.secrets = {
     syncthing_gui_password = {};
     syncthing_key = {
