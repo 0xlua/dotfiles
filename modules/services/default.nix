@@ -15,7 +15,6 @@
     ./mafl.nix
     ./littlelink.nix
     ./miniflux.nix
-    ./redlib.nix
     ./rustypaste.nix
     ./stalwart.nix
     ./vaultwarden.nix

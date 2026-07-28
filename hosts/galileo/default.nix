@@ -30,7 +30,6 @@
     littlelink.enable = true;
     miniflux.enable = true;
     pocket-id.enable = true;
-    redlib.enable = true;
     rustypaste.enable = true;
     stalwart.enable = true;
     upvoterss.enable = true;

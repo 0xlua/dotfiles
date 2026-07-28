@@ -117,12 +117,6 @@ lua.one {
 		reverse_proxy * miniflux:8080
 	}
 
-	@redlib host reddit.lua.one
-	handle @redlib {
-		abort
-		# reverse_proxy * redlib:8080
-	}
-
 	@jellyfin host jellyfin.lua.one
 	handle @jellyfin {
 		reverse_proxy * bore-server:8096
