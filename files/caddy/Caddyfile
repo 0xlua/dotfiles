@@ -33,7 +33,7 @@
 (common) {
 	import logging
 
-	@spam path *env* *.git* *wp-admin* *phpmyadmin*
+	@spam path *.env* *.git* *.ssh* *.php* *wp-* *phpmyadmin*
 	handle @spam {
 		abort
 	}
