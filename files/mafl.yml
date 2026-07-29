@@ -31,15 +31,6 @@ services:
         color: '#3dbcf3'
       status:
         enabled: true
-    - title: Zigbee2MQTT
-      description: Zigbee to MQTT bridge
-      link: http://ganymede.internal:8080
-      icon:
-        name: simple-icons:zigbee2mqtt
-        wrap: true
-        color: '#3dbcf3'
-      status:
-        enabled: true
   Media:
     - title: Jellyfin
       description: Media Library

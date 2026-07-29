@@ -29,7 +29,6 @@
     paperless.enable = true;
     homeassistant.enable = true;
     musicassistant.enable = true;
-    zigbee.enable = true;
     arr.enable = true;
     arr.deluge.enable = true;
     arr.flaresolverr.enable = true;

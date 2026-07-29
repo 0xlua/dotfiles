@@ -22,6 +22,5 @@
     ./paperless.nix
     ./homeassistant.nix
     ./musicassistant.nix
-    ./zigbee.nix
   ];
 }

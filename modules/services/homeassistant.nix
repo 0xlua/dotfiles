@@ -17,6 +17,7 @@ in {
       environment.TZ = "Europe/Berlin";
       networks = ["host"];
       privileged = true;
+      devices = ["/dev/ttyUSB0:/dev/ttyUSB0"];
       volumes = [
         "/home/lua/podman/homeassistant:/config:Z"
       ];
