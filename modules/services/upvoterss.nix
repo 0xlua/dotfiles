@@ -24,6 +24,22 @@ in {
     programs.rust-motd.settings.service_status.upvoterss = config.virtualisation.oci-containers.containers.upvoterss.serviceName;
     virtualisation.oci-containers.containers.upvoterss = {
       image = "ghcr.io/johnwarne/upvote-rss:latest";
+      capabilities = {
+        # That's a lot of caps...
+        ALL = false;
+        CHOWN = true;
+        SETGID = true;
+        SETUID = true;
+        FOWNER = true;
+        NET_BIND_SERVICE = true;
+      };
+      extraOptions = [
+        "--health-cmd=[\"curl\", \"-f\", \"http://localhost:80\"]"
+        "--health-interval=30s"
+        "--health-timeout=10s"
+        # "--read-only"
+        # "--security-opt=no-new-privileges"
+      ];
       autoStart = true;
       labels."io.containers.autoupdate" = "registry";
       environmentFiles = [
