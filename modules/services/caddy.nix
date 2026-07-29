@@ -39,8 +39,9 @@ in {
           "github.com/caddy-dns/inwx@v0.4.1"
           "github.com/mholt/caddy-events-exec@v0.1.0"
           "pkg.jsn.cam/caddy-defender@v0.10.1"
+          "github.com/mholt/caddy-l4@v0.1.2"
         ];
-        hash = "sha256-3jwOpj8w3WT+m0IqbV1ZSIDjoefrR0OVxm4X/XI7Uz4=";
+        hash = "sha256-8+pyjP9mtza85KRi8R9EkuAnxE9vTMf1PnInAPCzbXI=";
       };
       imageFile = pkgs.dockerTools.buildImage {
         name = "caddy";
