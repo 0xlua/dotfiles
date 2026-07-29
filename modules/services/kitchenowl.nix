@@ -18,9 +18,15 @@ in {
     virtualisation.oci-containers.containers.kitchenowl = {
       image = "docker.io/tombursch/kitchenowl:latest";
       autoStart = true;
-      labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      capabilities.ALL = false;
+      extraOptions = [
+        "--health-cmd=[\"uwsgi_curl\", \"localhost:5000\", \"/api/health/8M4F88S8ooi4sMbLBfkkV7ctWwgibW6V\"]"
+        "--health-interval=60s"
+        "--health-timeout=3s"
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
+      labels."io.containers.autoupdate" = "registry";
       user = "1000:100";
       environment = {
         FRONT_URL = "https://kitchen.lua.one";
