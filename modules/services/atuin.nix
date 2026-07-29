@@ -8,45 +8,27 @@ in {
   options.server.atuin.enable = lib.mkEnableOption "atuin";
 
   config = lib.mkIf cfg.enable {
-    sops.secrets."atuin/db" = {};
-    sops.secrets."atuin/password" = {};
-    sops.secrets."atuin/user" = {};
-    sops.templates."atuin-env".content = ''
-      ATUIN_DB_URI=postgres://${config.sops.placeholder."atuin/user"}:${config.sops.placeholder."atuin/password"}@atuin-db/${config.sops.placeholder."atuin/db"}?sslmode=disable
-    '';
-
     programs.rust-motd.settings.service_status.atuin = config.virtualisation.oci-containers.containers.atuin.serviceName;
-    virtualisation.oci-containers.containers = {
-      atuin = {
-        image = "ghcr.io/atuinsh/atuin:v18.12.0";
-        autoStart = true;
-        dependsOn = ["atuin-db"];
-        cmd = ["start"];
-        labels = {
-          "io.containers.autoupdate" = "registry";
-        };
-        environmentFiles = [
-          config.sops.templates."atuin-env".path
-        ];
-        environment = {
-          ATUIN_HOST = "0.0.0.0";
-          ATUIN_OPEN_REGISTRATION = "false";
-        };
+    virtualisation.oci-containers.containers.atuin = {
+      image = "ghcr.io/atuinsh/atuin:18.18";
+      autoStart = true;
+      user = "1000";
+      capabilities.ALL = false;
+      extraOptions = [
+        "--health-cmd=[\"curl\", \"-fsS\", \"http://localhost:8888/healthz\"]"
+        "--health-interval=30s"
+        "--health-timeout=5s"
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
+      cmd = ["start"];
+      labels."io.containers.autoupdate" = "registry";
+      environment = {
+        ATUIN_DB_URI = "sqlite:///config/atuin.db";
+        ATUIN_HOST = "0.0.0.0";
+        ATUIN_OPEN_REGISTRATION = "false";
       };
-      atuin-db = {
-        image = "docker.io/postgres:17-alpine";
-        environment = {
-          POSTGRES_USER_FILE = "/run/secrets/user";
-          POSTGRES_PASSWORD_FILE = "/run/secrets/password";
-          POSTGRES_DB_FILE = "/run/secrets/db";
-        };
-        volumes = [
-          "atuin:/var/lib/postgresql/data"
-          "${config.sops.secrets."atuin/password".path}:/run/secrets/password"
-          "${config.sops.secrets."atuin/user".path}:/run/secrets/user"
-          "${config.sops.secrets."atuin/db".path}:/run/secrets/db"
-        ];
-      };
+      volumes = ["/home/lua/podman/atuin:/config"];
     };
   };
 }
