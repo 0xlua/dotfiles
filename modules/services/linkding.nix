@@ -16,11 +16,17 @@ in {
     '';
     programs.rust-motd.settings.service_status.linkding = config.virtualisation.oci-containers.containers.linkding.serviceName;
     virtualisation.oci-containers.containers.linkding = {
-      image = "docker.io/sissbruecker/linkding:latest";
+      image = "ghcr.io/sissbruecker/linkding:latest-alpine";
       autoStart = true;
-      labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      capabilities.ALL = false;
+      extraOptions = [
+        "--health-cmd=[\"curl\", \"-f\", \"http://localhost:9090/health\"]"
+        "--health-interval=30s"
+        "--health-timeout=1s"
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
+      labels."io.containers.autoupdate" = "registry";
       user = "1000:100";
       environmentFiles = [
         config.sops.templates."linkding-env".path
