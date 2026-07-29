@@ -11,10 +11,17 @@ in {
     programs.rust-motd.settings.service_status.littlelink = config.virtualisation.oci-containers.containers.littlelink.serviceName;
     virtualisation.oci-containers.containers.littlelink = {
       image = "ghcr.io/techno-tim/littlelink-server:latest";
+      user = "nobody:nogroup";
       autoStart = true;
-      labels = {
-        "io.containers.autoupdate" = "registry";
-      };
+      capabilities.ALL = false;
+      extraOptions = [
+        "--health-cmd=[\"wget\", \"--no-verbose\", \"--tries=1\", \"--spider\", \"http://localhost:3000/healthcheck\"]"
+        "--health-interval=30s"
+        "--health-timeout=1s"
+        "--read-only"
+        "--security-opt=no-new-privileges"
+      ];
+      labels."io.containers.autoupdate" = "registry";
       environment = {
         META_TITLE = "Lua";
         META_DESCRIPTION = "hello there.";
