@@ -15,6 +15,24 @@ in {
 
     services.hardware.bolt.enable = true;
 
+    services.thermald.enable = true;
+
+    services.auto-cpufreq = {
+      enable = true;
+      settings = {
+        battery = {
+          governor = "powersave";
+          turbo = "never";
+        };
+        charger = {
+          governor = "performance";
+          turbo = "auto";
+        };
+      };
+    };
+
+    powerManagement.enable = true;
+
     services.greetd = {
       enable = true;
       settings = {
