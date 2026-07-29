@@ -40,7 +40,7 @@ in {
           "github.com/mholt/caddy-events-exec@v0.1.0"
           "pkg.jsn.cam/caddy-defender@v0.10.1"
         ];
-        hash = "sha256-LlnBphFV3wqyEwP2KeUv5o2wUo1p12FY2TbmEIsLPfg=";
+        hash = "sha256-3jwOpj8w3WT+m0IqbV1ZSIDjoefrR0OVxm4X/XI7Uz4=";
       };
       imageFile = pkgs.dockerTools.buildImage {
         name = "caddy";
