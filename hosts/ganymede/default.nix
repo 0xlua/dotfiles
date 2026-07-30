@@ -1,24 +1,12 @@
-{
-  pkgs,
-  inputs,
-  config,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.sops-nix.nixosModules.sops
     ./hardware-configuration.nix
   ];
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  networking.hostName = "ganymede"; # Define your hostname.
 
   home-manager.users.lua = ./home.nix;
-
-  networking.hostName = "ganymede"; # Define your hostname.
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   server = {
     enable = true;
@@ -38,40 +26,25 @@
     arr.bazarr.enable = true;
   };
 
-  sops = {
-    secrets = {
-      "nas/username_server" = {};
-      "nas/domain" = {};
-      "nas/password" = {};
-    };
-    templates = {
-      "smb-secret-server" = {
-        owner = "lua";
-        content = ''
-          username=${config.sops.placeholder."nas/username_server"}
-          domain=${config.sops.placeholder."nas/domain"}
-          password=${config.sops.placeholder."nas/password"}
-        '';
-      };
-    };
-  };
-
-  environment.systemPackages = [pkgs.cifs-utils];
-
-  fileSystems."/home/lua/media" = {
-    device = "//io.internal/media";
-    fsType = "cifs";
-    options = let
-      automount_opts = "nobrl,x-systemd.automount,x-systemd.requires=network-online.target";
-    in ["${automount_opts},credentials=${config.sops.templates."smb-secret-server".path},uid=1000,gid=100"];
-  };
-
-  fileSystems."/home/lua/scanner" = {
-    device = "//io.internal/scanner";
-    fsType = "cifs";
-    options = let
-      automount_opts = "nobrl,x-systemd.automount,x-systemd.requires=network-online.target";
-    in ["${automount_opts},credentials=${config.sops.templates."smb-secret-server".path},uid=1000,gid=100"];
+  modules.samba = {
+    enable = true;
+    mounts = let
+      specialOptions = [
+        "nobrl"
+        "x-systemd.requires=network-online.target"
+      ];
+    in [
+      {
+        source = "//io.internal/media";
+        target = "/home/lua/media";
+        inherit specialOptions;
+      }
+      {
+        source = "//io.internal/scanner";
+        target = "/home/lua/scanner";
+        inherit specialOptions;
+      }
+    ];
   };
 
   system.stateVersion = "25.11"; # Don't change

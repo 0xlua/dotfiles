@@ -8,7 +8,6 @@
   cfg = config.modules.desktop;
 in {
   imports = [
-    inputs.sops-nix.nixosModules.sops
     ./niri.nix
     ./cosmic.nix
   ];
@@ -24,26 +23,43 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
-    sops = {
-      secrets = {
-        "nas/username" = {};
-        "nas/domain" = {};
-        "nas/password" = {};
-      };
-      templates = {
-        "smb-secrets" = {
-          owner = "lua";
-          content = ''
-            username=${config.sops.placeholder."nas/username"}
-            domain=${config.sops.placeholder."nas/domain"}
-            password=${config.sops.placeholder."nas/password"}
-          '';
-        };
-      };
-    };
+    nixpkgs.overlays = [
+      inputs.eilmeldung.overlays.default
+      (final: prev: {
+        wayprompt = let
+          version = "0.1.2-mzte.2";
+          src = final.fetchFromGitea {
+            domain = "git.mzte.de";
+            owner = "LordMZTE";
+            repo = "wayprompt";
+            tag = "v${version}";
+            hash = "sha256-uVkeLJgvdc6c7xmNUdWlUS1f3fx8cCIV/raw2prP4O4=";
+          };
+          deps = final.zig_0_16.fetchDeps {
+            inherit version src;
+            pname = "wayprompt";
+            hash = "sha256-j1SrpUFgrtcv2pf43ZxRo3poYtMDQnWS3vmKkU5trE0=";
+          };
+        in
+          prev.wayprompt.overrideAttrs {
+            inherit version src;
 
-    environment.systemPackages = [pkgs.cifs-utils];
+            nativeBuildInputs = with final; [
+              zig_0_16
+              pkg-config
+              wayland
+              wayland-scanner
+              scdoc
+            ];
+
+            zigBuildFlags = [];
+
+            preBuild = ''
+              ln -sf "${deps}" "$ZIG_GLOBAL_CACHE_DIR/p"
+            '';
+          };
+      })
+    ];
 
     stylix.image = ../../files/wallpaper/patagonia.jpg;
 
@@ -81,27 +97,27 @@ in {
     virtualisation.libvirtd.enable = true;
     users.groups.libvirtd.members = ["lua"];
 
-    fileSystems = let
-      options = [
-        "x-systemd.automount"
-        "noauto"
-        "x-systemd.idle-timeout=60"
-        "x-systemd.device-timeout=5s"
-        "x-systemd.mount-timeout=5s"
-        "credentials=${config.sops.templates."smb-secrets".path}"
-        "uid=1000"
-        "gid=100"
+    modules.samba = {
+      enable = true;
+      mounts = let
+        specialOptions = [
+          "noauto"
+          "x-systemd.idle-timeout=60"
+          "x-systemd.device-timeout=5s"
+          "x-systemd.mount-timeout=5s"
+        ];
+      in [
+        {
+          source = "//io.internal/lua";
+          target = "/home/lua/nas";
+          inherit specialOptions;
+        }
+        {
+          source = "//io.internal/scanner";
+          target = "/home/lua/paperless_inbox";
+          inherit specialOptions;
+        }
       ];
-      fsType = "cifs";
-    in {
-      "/home/lua/nas" = {
-        device = "//io.internal/lua";
-        inherit options fsType;
-      };
-      "/home/lua/paperless_inbox" = {
-        device = "//io.internal/scanner";
-        inherit options fsType;
-      };
     };
 
     security.rtkit.enable = true;

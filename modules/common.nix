@@ -13,13 +13,16 @@
     '';
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "daily";
-  #   options = "--delete-older-than 7d";
-  # };
+  boot = {
+    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
+    loader = {
+      efi.canTouchEfiVariables = true;
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+      };
+    };
+  };
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -27,11 +30,12 @@
   # Configure console keymap
   console.keyMap = lib.mkDefault "us";
 
-  users.mutableUsers = false;
-
   security.sudo-rs.enable = true;
 
-  networking.nftables.enable = true;
+  networking = {
+    networkmanager.enable = true; # Enable networking
+    nftables.enable = true;
+  };
 
   sops = {
     defaultSopsFile = ../secrets.yaml;
@@ -42,11 +46,14 @@
     };
   };
 
-  users.users.lua = {
-    isNormalUser = true;
-    description = "Lua";
-    hashedPasswordFile = config.sops.secrets.hashedPassword.path;
-    extraGroups = ["networkmanager" "wheel" "libvird"];
+  users = {
+    mutableUsers = false;
+    users.lua = {
+      isNormalUser = true;
+      description = "Lua";
+      hashedPasswordFile = config.sops.secrets.hashedPassword.path;
+      extraGroups = ["networkmanager" "wheel" "libvird"];
+    };
   };
 
   home-manager = {

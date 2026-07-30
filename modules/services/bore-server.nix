@@ -14,6 +14,9 @@ in {
     '';
 
     programs.rust-motd.settings.service_status.bore-server = config.virtualisation.oci-containers.containers.bore-server.serviceName;
+
+    networking.firewall.allowedTCPPorts = [7835]; # bore
+
     virtualisation.oci-containers.containers.bore-server = {
       image = "docker.io/ekzhang/bore:latest";
       cmd = ["server"];

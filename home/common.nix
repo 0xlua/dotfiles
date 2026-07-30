@@ -2,8 +2,11 @@
   inputs,
   config,
   pkgs,
+  lib,
   ...
 }: {
+  nixpkgs.overlays = lib.mkForce null;
+
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];

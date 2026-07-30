@@ -24,7 +24,11 @@ in {
         '';
       };
     };
+
     programs.rust-motd.settings.service_status.caddy = config.virtualisation.oci-containers.containers.caddy.serviceName;
+
+    networking.firewall.allowedTCPPorts = [80 443]; # http, https
+
     virtualisation.oci-containers.containers.caddy = let
       # TODO: flake input?
       tag = "2";

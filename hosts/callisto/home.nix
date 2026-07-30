@@ -1,20 +1,23 @@
-{lib, ...}: {
+{...}: {
   imports = [../../home];
-  nixpkgs.overlays = lib.mkForce null;
-  home-modules.desktop.enable = true;
-  home-modules.desktop.compositor = "cosmic";
-  home-modules.mail.enable = true;
-  home-modules.gaming.enable = true;
-  home-modules.llm.enable = true;
-  home-modules.development = {
-    enable = true;
-    languages = {
-      android.enable = true;
-      rust.enable = true;
-      python.enable = true;
-      javascript.enable = true;
-      typesetting.enable = true;
-      data.enable = true;
+  home-modules = {
+    desktop = {
+      enable = true;
+      compositor = "cosmic";
+    };
+    mail.enable = true;
+    gaming.enable = true;
+    llm.enable = true;
+    development = {
+      enable = true;
+      languages = {
+        android.enable = true;
+        rust.enable = true;
+        python.enable = true;
+        javascript.enable = true;
+        typesetting.enable = true;
+        data.enable = true;
+      };
     };
   };
 }

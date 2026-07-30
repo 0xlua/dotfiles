@@ -1,22 +1,14 @@
-{
-  inputs,
-  lib,
-  ...
-}: {
+{inputs, ...}: {
   imports = [
     inputs.home-manager.nixosModules.home-manager
     ./hardware-configuration.nix
+    ./fail2ban.nix
+    ./hetzner.nix
   ];
-  # Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-  boot.loader.grub.configurationLimit = 10;
-
-  home-manager.users.lua = ./home.nix;
 
   networking.hostName = "galileo"; # Define your hostname.
 
-  networking.useNetworkd = true;
+  home-manager.users.lua = ./home.nix;
 
   server = {
     enable = true;
@@ -34,50 +26,6 @@
     upvoterss.enable = true;
     vaultwarden.enable = true;
   };
-
-  systemd.network.enable = true;
-  systemd.network.networks."10-wan" = {
-    matchConfig.Name = "enp1s0";
-    networkConfig.DHCP = "ipv4";
-    address = [
-      "157.90.165.87/32"
-      "2a01:4f8:1c1c:1dc9::1/64"
-    ];
-    routes = [
-      {
-        Gateway = "172.31.1.1";
-        GatewayOnLink = true;
-      }
-      {Gateway = "fe80::1";}
-    ];
-  };
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [25 80 443 465 993 7835]; # smtp, http, https, smtps, imaps, bore
-  };
-
-  environment.etc."fail2ban/filter.d/caddy-status.conf".text = lib.mkDefault (lib.mkAfter ''
-    [Definition]
-    failregex = ^.*"remote_ip":"<HOST>",.*?"status":(?:0|401|403|500|502),.*$
-    ignoreregex =
-    datepattern = LongEpoch
-  '');
-
-  services.fail2ban = {
-    enable = true;
-    jails = {
-      caddy-status.settings = {
-        port = "http,https";
-        filter = "caddy-status";
-        # logpath = "/home/lua/podman/caddy/logs/access.log"; # systemd service can't access /home
-        enabled = true;
-        backend = "systemd";
-        journalmatch = "_SYSTEMD_UNIT=podman-caddy.service";
-      };
-    };
-  };
-  programs.rust-motd.settings.fail_2_ban.jails = ["sshd" "caddy-status"];
 
   system.stateVersion = "24.05"; # Don't change
 }

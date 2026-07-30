@@ -10,6 +10,9 @@ in {
 
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.stalwart = config.virtualisation.oci-containers.containers.stalwart.serviceName;
+
+    networking.firewall.allowedTCPPorts = [25 465 993]; # smtp, smtps, imaps
+
     virtualisation.oci-containers.containers.stalwart = let
       stalwart_config = (pkgs.formats.json {}).generate "stalwart_config" {
         "@type" = "RocksDb";
