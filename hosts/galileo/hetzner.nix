@@ -12,7 +12,7 @@
 
   networking = {
     useNetworkd = true;
-    networkmanager.enable = lib.mkForce true;
+    networkmanager.enable = lib.mkForce false;
   };
 
   systemd.network = {
