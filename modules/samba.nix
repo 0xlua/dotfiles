@@ -31,7 +31,7 @@ in {
   config = lib.mkIf cfg.enable {
     sops = {
       secrets = {
-        "nas/username_server" = {};
+        "nas/username" = {};
         "nas/domain" = {};
         "nas/password" = {};
       };
@@ -39,7 +39,7 @@ in {
         "smb-secrets" = {
           owner = "lua";
           content = ''
-            username=${config.sops.placeholder."nas/username_server"}
+            username=${config.sops.placeholder."nas/username"}
             domain=${config.sops.placeholder."nas/domain"}
             password=${config.sops.placeholder."nas/password"}
           '';
