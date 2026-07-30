@@ -113,7 +113,20 @@ in {
       pulse.enable = true;
     };
 
-    services.fwupd.enable = true;
+    services.fwupd = {
+      enable = true;
+      package = pkgs.fwupd.overrideAttrs (old: {
+        mesonFlags =
+          map (
+            flag:
+              if lib.hasPrefix "-Defi_app_location=" flag
+              then "-Defi_app_location=/run/fwupd-efi"
+              else flag
+          )
+          old.mesonFlags;
+      });
+    };
+
     services.udisks2.enable = true;
 
     stylix = {
