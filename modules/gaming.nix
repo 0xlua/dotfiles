@@ -11,13 +11,9 @@ in {
   config = lib.mkIf cfg.gaming.enable {
     nixpkgs.config.allowUnfree = true;
 
-    programs.corectrl = {
-      enable = true;
-    };
+    programs.corectrl.enable = true;
 
-    services.lact = {
-      enable = true;
-    };
+    # services.lact.enable = true;
 
     hardware.amdgpu.overdrive.enable = true;
 
