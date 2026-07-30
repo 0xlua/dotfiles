@@ -24,9 +24,15 @@ in {
       };
     };
 
+    gtk.iconTheme = {
+      package = pkgs.colloid-icon-theme;
+      name = "Colloid";
+    };
+
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
+      # extraPortals = [pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal-gnome pkgs.xdg-desktop-portal-wlr];
       extraPortals = [pkgs.xdg-desktop-portal-gtk];
       configPackages = [pkgs.xdg-desktop-portal-gtk];
       config.common.default = "gtk";
@@ -34,7 +40,20 @@ in {
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri;
+      # package = pkgs.niri-stable;
+      # package = pkgs.niri;
+      package = pkgs.niri.override {
+        libdisplay-info = pkgs.libdisplay-info.overrideAttrs (finalAttrs: {
+          version = "0.3.0";
+          src = pkgs.fetchFromGitLab {
+            domain = "gitlab.freedesktop.org";
+            owner = "emersion";
+            repo = "libdisplay-info";
+            rev = finalAttrs.version;
+            sha256 = "sha256-nXf2KGovNKvcchlHlzKBkAOeySMJXgxMpbi5z9gLrdc=";
+          };
+        });
+      };
       settings = {
         binds = with config.lib.niri.actions; {
           "Mod+Shift+Slash".action = show-hotkey-overlay;
@@ -311,7 +330,7 @@ in {
           ];
         }
         {
-          profile.name = "work";
+          profile.name = "docked";
           profile.exec = ["wpaperctl reload"];
           profile.outputs = [
             {
@@ -319,31 +338,8 @@ in {
               status = "disable";
             }
             {
-              criteria = "Dell Inc. DELL U2412M YPPY07CL112U";
+              criteria = "Philips Consumer Electronics Company 34M2C6500 AU42423000414";
               position = "0,0";
-              scale = 1.0;
-            }
-            {
-              criteria = "Dell Inc. DELL U2412M YPPY077J5X3S";
-              position = "1920,0";
-              scale = 1.0;
-            }
-          ];
-        }
-        {
-          profile.name = "002";
-          profile.exec = ["wpaperctl reload"];
-          profile.outputs = [
-            {
-              criteria = "eDP-1";
-              position = "0,0";
-              mode = "1920x1080@60.049";
-              scale = 1.0;
-            }
-            {
-              criteria = "Samsung Electric Company SAMSUNG 0x01000600";
-              position = "0,-1080";
-              mode = "1920x1080@60.000";
               scale = 1.0;
             }
           ];

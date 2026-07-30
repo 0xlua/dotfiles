@@ -1,12 +1,19 @@
 {
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }: let
   cfg = config.modules;
 in {
   config = lib.mkIf (cfg.desktop.compositor == "niri") {
+    nixpkgs.overlays = [inputs.niri.overlays.niri];
+    nix.settings = {
+      substituters = ["https://niri-epireyn.cachix.org"];
+      trusted-public-keys = ["niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="];
+    };
+
     security.pam.services.gtklock = {};
 
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
