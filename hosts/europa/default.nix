@@ -22,13 +22,63 @@
       autoReboot = true;
     };
   };
+  nixpkgs.overlays = [
+    (final: prev: {
+      wayprompt = let
+        version = "0.1.2-mzte.2";
+        src = final.fetchFromGitea {
+          domain = "git.mzte.de";
+          owner = "LordMZTE";
+          repo = "wayprompt";
+          tag = "v${version}";
+          hash = "sha256-uVkeLJgvdc6c7xmNUdWlUS1f3fx8cCIV/raw2prP4O4=";
+        };
+        deps = final.zig_0_16.fetchDeps {
+          inherit version src;
+          pname = "wayprompt";
+          hash = "sha256-j1SrpUFgrtcv2pf43ZxRo3poYtMDQnWS3vmKkU5trE0=";
+        };
+      in
+        prev.wayprompt.overrideAttrs {
+          inherit version src;
 
-  networking.hostName = "europa"; # Define your hostname.
-  networking.networkmanager.enable = true; # Enable networking
-  networking.networkmanager.wifi = {
-    scanRandMacAddress = true;
-    # backend = "iwd";
-    # macAdress = "random";
+          nativeBuildInputs = with final; [
+            zig_0_16
+            pkg-config
+            wayland
+            wayland-scanner
+            scdoc
+          ];
+
+          zigBuildFlags = [];
+
+          preBuild = ''
+            ln -sf "${deps}" "$ZIG_GLOBAL_CACHE_DIR/p"
+          '';
+        };
+    })
+  ];
+
+  networking = let
+    dhcpInterfaces = ["enp0s31f6"];
+  in {
+    hostName = "europa"; # Define your hostname.
+    dhcpcd = {
+      enable = true;
+      allowInterfaces = dhcpInterfaces;
+    };
+    wireless.iwd = {
+      enable = true;
+      settings.General = {
+        EnableNetworkConfiguration = "True";
+        AddressRandomization = "once";
+      };
+    };
+    networkmanager = {
+      unmanaged = dhcpInterfaces;
+      enable = true; # Enable networking
+      wifi.backend = "iwd";
+    };
   };
 
   hardware.bluetooth = {

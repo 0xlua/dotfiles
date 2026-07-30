@@ -28,7 +28,7 @@
         id = "eduroam";
         type = "wifi";
         uuid = "e0ca8591-5948-3c69-8474-f35bc56aff0d";
-        interface-name = "wlp3s0";
+        interface-name = "wlan0";
       };
       wifi = {
         ssid = "eduroam";
