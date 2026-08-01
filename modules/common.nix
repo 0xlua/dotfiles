@@ -90,6 +90,7 @@ in {
     users = {
       mutableUsers = false;
       users.${cfg.user.name} = {
+        uid = lib.mkDefault 1000;
         isNormalUser = true;
         description = cfg.user.desc;
         hashedPasswordFile = config.sops.secrets.hashedPassword.path;

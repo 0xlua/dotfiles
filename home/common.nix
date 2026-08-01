@@ -17,7 +17,6 @@
   };
   home = {
     username = "lua";
-    homeDirectory = "/home/lua";
 
     preferXdgDirectories = true;
 

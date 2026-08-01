@@ -65,12 +65,10 @@ in {
     virtualisation.libvirtd.enable = true;
     users.groups.libvirtd.members = [config.modules.user.name];
 
-    modules.samba = let
-      user = config.modules.user.name;
-      inherit (config.users.users.${user}) home;
-    in {
+    modules.samba = {
       enable = true;
       mounts = let
+        user = config.modules.user.name;
         specialOptions = [
           "noauto"
           "x-systemd.idle-timeout=60"
@@ -80,12 +78,12 @@ in {
       in [
         {
           source = "//io.internal/${user}";
-          target = "${home}/nas";
+          target = "/home/${user}/nas";
           inherit specialOptions;
         }
         {
           source = "//io.internal/scanner";
-          target = "${home}/paperless_inbox";
+          target = "/home/${user}/paperless_inbox";
           inherit specialOptions;
         }
       ];

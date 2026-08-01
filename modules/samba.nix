@@ -67,8 +67,8 @@ in {
             [
               "x-systemd.automount"
               "credentials=${config.sops.templates."smb-secrets".path}"
-              "uid=${user.uid}"
-              "gid=${group.gid}"
+              "uid=${lib.toString user.uid}"
+              "gid=${lib.toString group.gid}"
             ]
             ++ mount.specialOptions;
         };
