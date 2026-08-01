@@ -23,8 +23,14 @@ in {
           };
         });
       default = [];
-      example = "cosmic";
-      description = "What desktop envrionment to use";
+      example = [
+        {
+          source = "//example.com/share";
+          target = "/mnt/nas";
+          specialOptions = ["noauto"];
+        }
+      ];
+      description = "List of Samba Shares to mount";
     };
   };
 

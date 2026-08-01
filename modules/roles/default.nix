@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./laptop
+    ./desktop
+    ./server
+  ];
+}

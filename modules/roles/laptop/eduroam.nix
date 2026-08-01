@@ -4,12 +4,12 @@
     "eduroam/password" = {};
     "eduroam/client-cert.pem" = {
       format = "binary";
-      sopsFile = ../../secrets/eduroam/client_cert.pem;
+      sopsFile = ../../../secrets/eduroam/client_cert.pem;
       mode = "0444";
     };
     "eduroam/private-key.pem" = {
       format = "binary";
-      sopsFile = ../../secrets/eduroam/client_key.pem;
+      sopsFile = ../../../secrets/eduroam/client_key.pem;
       mode = "0444";
     };
   };
@@ -41,7 +41,7 @@
         altsubject-matches = "DNS:easyroam.eduroam.de";
         phase1-auth-flags = "0x100";
         identity = "$EDUROAM_IDENTITY";
-        ca-cert = "${../../files/certs/eduroam/root_ca.pem}";
+        ca-cert = "${../../../files/certs/eduroam/root_ca.pem}";
         client-cert = config.sops.secrets."eduroam/client-cert.pem".path;
         private-key = config.sops.secrets."eduroam/private-key.pem".path;
         private-key-password = "$EDUROAM_PASSWORD";

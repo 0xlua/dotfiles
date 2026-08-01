@@ -5,9 +5,9 @@
   lib,
   ...
 }: let
-  cfg = config.modules;
+  cfg = config.modules.roles.desktop;
 in {
-  config = lib.mkIf (cfg.desktop.compositor == "niri") {
+  config = lib.mkIf (cfg.compositor == "niri") {
     nixpkgs.overlays = [inputs.niri.overlays.niri];
     nix.settings = {
       substituters = ["https://niri-epireyn.cachix.org"];
@@ -17,28 +17,6 @@ in {
     security.pam.services.gtklock = {};
 
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
-
-    services.upower.enable = true;
-
-    services.hardware.bolt.enable = true;
-
-    services.thermald.enable = true;
-
-    services.auto-cpufreq = {
-      enable = true;
-      settings = {
-        battery = {
-          governor = "powersave";
-          turbo = "never";
-        };
-        charger = {
-          governor = "performance";
-          turbo = "auto";
-        };
-      };
-    };
-
-    powerManagement.enable = true;
 
     services.greetd = {
       enable = true;

@@ -25,7 +25,6 @@
       nil # nix lsp
       alejandra # nix formatter
       sops # nix secrets
-      sbctl # secure boot
       uutils-coreutils-noprefix # coreutils
     ];
 

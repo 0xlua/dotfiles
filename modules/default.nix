@@ -1,10 +1,9 @@
 {
   imports = [
+    ./roles
     ./common.nix
-    ./gaming.nix
-    ./desktop
     ./samba.nix
-    ./services
-    ./yubikey.nix
+    ./secureboot.nix
+    ./patches.nix
   ];
 }

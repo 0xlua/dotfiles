@@ -5,63 +5,26 @@
   lib,
   ...
 }: let
-  cfg = config.modules.desktop;
+  cfg = config.modules.roles.desktop;
 in {
   imports = [
     ./niri.nix
     ./cosmic.nix
+    ./gaming.nix
   ];
 
-  options.modules.desktop = {
-    enable = lib.mkEnableOption "a graphic desktop";
+  options.modules.roles.desktop = {
+    enable = lib.mkEnableOption "the desktop role";
     compositor = lib.mkOption {
-      type = with lib.types; nullOr (enum ["cosmic" "niri"]);
-      default = null;
+      type = lib.types.enum ["none" "cosmic" "niri"];
+      default = "none";
       example = "cosmic";
-      description = "What desktop envrionment to use";
+      description = "What desktop envrionment to use. `none` installs no compositor and only relies on the tty";
     };
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [
-      inputs.eilmeldung.overlays.default
-      (final: prev: {
-        wayprompt = let
-          version = "0.1.2-mzte.2";
-          src = final.fetchFromGitea {
-            domain = "git.mzte.de";
-            owner = "LordMZTE";
-            repo = "wayprompt";
-            tag = "v${version}";
-            hash = "sha256-uVkeLJgvdc6c7xmNUdWlUS1f3fx8cCIV/raw2prP4O4=";
-          };
-          deps = final.zig_0_16.fetchDeps {
-            inherit version src;
-            pname = "wayprompt";
-            hash = "sha256-j1SrpUFgrtcv2pf43ZxRo3poYtMDQnWS3vmKkU5trE0=";
-          };
-        in
-          prev.wayprompt.overrideAttrs {
-            inherit version src;
-
-            nativeBuildInputs = with final; [
-              zig_0_16
-              pkg-config
-              wayland
-              wayland-scanner
-              scdoc
-            ];
-
-            zigBuildFlags = [];
-
-            preBuild = ''
-              ln -sf "${deps}" "$ZIG_GLOBAL_CACHE_DIR/p"
-            '';
-          };
-      })
-    ];
-
-    stylix.image = ../../files/wallpaper/patagonia.jpg;
+    nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
 
     programs.nix-ld = {
       enable = true;
@@ -88,6 +51,11 @@ in {
       ];
     };
 
+    programs.yubikey-manager = {
+      enable = cfg.compositor != "none";
+      package = pkgs.yubioath-flutter;
+    };
+
     programs.appimage = {
       enable = true;
       binfmt = true;
@@ -95,7 +63,7 @@ in {
 
     programs.virt-manager.enable = true;
     virtualisation.libvirtd.enable = true;
-    users.groups.libvirtd.members = ["lua"];
+    users.groups.libvirtd.members = ["${config.modules.user.name}"];
 
     modules.samba = {
       enable = true;
@@ -129,23 +97,12 @@ in {
       pulse.enable = true;
     };
 
-    services.fwupd = {
-      enable = true;
-      package = pkgs.fwupd.overrideAttrs (old: {
-        mesonFlags =
-          map (
-            flag:
-              if lib.hasPrefix "-Defi_app_location=" flag
-              then "-Defi_app_location=/run/fwupd-efi"
-              else flag
-          )
-          old.mesonFlags;
-      });
-    };
+    services.fwupd.enable = true;
 
     services.udisks2.enable = true;
 
     stylix = {
+      image = ../../../files/wallpaper/patagonia.jpg;
       polarity = "dark";
       fonts = {
         sizes.terminal = 16;

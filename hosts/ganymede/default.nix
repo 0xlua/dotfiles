@@ -1,50 +1,52 @@
-{inputs, ...}: {
-  imports = [
-    inputs.home-manager.nixosModules.home-manager
-    ./hardware-configuration.nix
-  ];
+{...}: {
+  imports = [./hardware-configuration.nix];
 
-  networking.hostName = "ganymede"; # Define your hostname.
-
-  home-manager.users.lua = ./home.nix;
-
-  server = {
-    enable = true;
-    jellyfin.enable = true;
-    jellyfin.publiclyAccessible = true;
-    calibre.enable = true;
-    mafl.enable = true;
-    paperless.enable = true;
-    homeassistant.enable = true;
-    musicassistant.enable = true;
-    arr.enable = true;
-    arr.deluge.enable = true;
-    arr.flaresolverr.enable = true;
-    arr.prowlarr.enable = true;
-    arr.radarr.enable = true;
-    arr.sonarr.enable = true;
-    arr.bazarr.enable = true;
-  };
-
-  modules.samba = {
-    enable = true;
-    mounts = let
-      specialOptions = [
-        "nobrl"
-        "x-systemd.requires=network-online.target"
+  modules = {
+    hostname = "ganymede";
+    user = {
+      name = "lua";
+      desc = "Lua";
+      homeConfig = ./home.nix;
+    };
+    samba = {
+      enable = true;
+      mounts = let
+        specialOptions = [
+          "nobrl"
+          "x-systemd.requires=network-online.target"
+        ];
+      in [
+        {
+          source = "//io.internal/media";
+          target = "/home/lua/media";
+          inherit specialOptions;
+        }
+        {
+          source = "//io.internal/scanner";
+          target = "/home/lua/scanner";
+          inherit specialOptions;
+        }
       ];
-    in [
-      {
-        source = "//io.internal/media";
-        target = "/home/lua/media";
-        inherit specialOptions;
-      }
-      {
-        source = "//io.internal/scanner";
-        target = "/home/lua/scanner";
-        inherit specialOptions;
-      }
-    ];
+    };
+    roles = {
+      server = {
+        enable = true;
+        jellyfin.enable = true;
+        jellyfin.publiclyAccessible = true;
+        calibre.enable = true;
+        mafl.enable = true;
+        paperless.enable = true;
+        homeassistant.enable = true;
+        musicassistant.enable = true;
+        arr.enable = true;
+        arr.deluge.enable = true;
+        arr.flaresolverr.enable = true;
+        arr.prowlarr.enable = true;
+        arr.radarr.enable = true;
+        arr.sonarr.enable = true;
+        arr.bazarr.enable = true;
+      };
+    };
   };
 
   system.stateVersion = "25.11"; # Don't change

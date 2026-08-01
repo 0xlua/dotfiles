@@ -4,70 +4,111 @@
   pkgs,
   config,
   ...
-}: {
-  imports = [inputs.stylix.nixosModules.stylix];
-  nix = {
-    settings.experimental-features = "nix-command flakes";
-    extraOptions = ''
-      trusted-users = root lua
-    '';
+}: let
+  cfg = config.modules;
+in {
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.stylix.nixosModules.stylix
+  ];
+
+  options.modules = {
+    hostname = lib.mkOption {
+      type = lib.types.str;
+      default = "";
+      example = "galileo";
+      description = "Set the system hostname";
+    };
+    kernel = lib.mkOption {
+      type = lib.types.raw;
+      default = pkgs.linuxPackages_latest;
+      example = pkgs.linuxPackages_latest;
+      description = "Which kernel to use";
+    };
+    keyMap = lib.mkOption {
+      type = lib.types.str;
+      default = "us";
+      example = "de";
+      description = "keyboard layout";
+    };
+    user = lib.mkOption {
+      type = with lib.types;
+        submodule {
+          options = {
+            name = lib.mkOption {type = str;};
+            desc = lib.mkOption {type = str;};
+            homeConfig = lib.mkOption {type = path;};
+          };
+        };
+    };
   };
 
-  boot = {
-    kernelPackages = lib.mkDefault pkgs.linuxPackages_latest;
-    loader = {
-      efi.canTouchEfiVariables = true;
-      systemd-boot = {
-        enable = true;
-        configurationLimit = 10;
+  config = {
+    nix = {
+      settings.experimental-features = "nix-command flakes";
+      extraOptions = ''
+        trusted-users = root ${cfg.user.name}
+      '';
+    };
+
+    boot = {
+      kernelPackages = cfg.kernel;
+      loader = {
+        efi.canTouchEfiVariables = true;
+        systemd-boot = {
+          enable = true;
+          configurationLimit = 10;
+        };
       };
     };
-  };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Berlin";
+    # Set your time zone.
+    time.timeZone = "Europe/Berlin";
 
-  # Configure console keymap
-  console.keyMap = lib.mkDefault "us";
+    # Configure console keymap
+    console = {inherit (cfg) keyMap;};
 
-  security.sudo-rs.enable = true;
+    security.sudo-rs.enable = true;
 
-  networking = {
-    networkmanager.enable = true; # Enable networking
-    nftables.enable = true;
-  };
-
-  sops = {
-    defaultSopsFile = ../secrets.yaml;
-    age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
-    age.keyFile = "/home/lua/.config/sops/age/keys.txt";
-    secrets = {
-      hashedPassword.neededForUsers = true;
+    networking = {
+      hostName = cfg.hostname; # Define your hostname.
+      networkmanager.enable = true; # Enable networking
+      nftables.enable = true;
     };
-  };
 
-  users = {
-    mutableUsers = false;
-    users.lua = {
-      isNormalUser = true;
-      description = "Lua";
-      hashedPasswordFile = config.sops.secrets.hashedPassword.path;
-      extraGroups = ["networkmanager" "wheel" "libvird"];
+    sops = {
+      defaultSopsFile = ../secrets.yaml;
+      age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
+      age.keyFile = "/home/lua/.config/sops/age/keys.txt";
+      secrets = {
+        hashedPassword.neededForUsers = true;
+      };
     };
-  };
 
-  home-manager = {
-    backupFileExtension = "back";
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit (config.networking) hostName;
+    users = {
+      mutableUsers = false;
+      users."${cfg.user.name}" = {
+        isNormalUser = true;
+        description = cfg.user.desc;
+        hashedPasswordFile = config.sops.secrets.hashedPassword.path;
+        extraGroups = ["networkmanager" "wheel" "libvird"];
+      };
     };
-  };
 
-  stylix = {
-    enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
+    home-manager = {
+      backupFileExtension = "back";
+      useGlobalPkgs = true;
+      useUserPackages = true;
+      extraSpecialArgs = {
+        inherit inputs;
+        inherit (config.networking) hostName;
+      };
+      users.${cfg.user.name} = cfg.user.homeConfig;
+    };
+
+    stylix = {
+      enable = true;
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
+    };
   };
 }
