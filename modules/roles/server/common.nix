@@ -4,21 +4,17 @@
   pkgs,
   ...
 }: let
-  cfg = config.server;
+  cfg = config.modules.roles.server;
 in {
-  options.server.enable = lib.mkEnableOption "Server role incl. Podman";
+  options.modules.roles.server.enable = lib.mkEnableOption "Server role incl. Podman";
 
   config = lib.mkIf cfg.enable {
-    programs.fish.enable = true;
     users.users = {
       root.hashedPassword = "*";
-      lua = {
-        shell = pkgs.fish;
-        openssh.authorizedKeys.keys = [
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXnCtIbRMHYs6zmB/LNqARTJbIK+SWMpghHIDBJ7hiS"
-          "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJlfUoi3tLKbWSaqrGbqy76GbeDua/LZvOVkSGfX1J2p"
-        ];
-      };
+      ${config.modules.user.name}.openssh.authorizedKeys.keys = [
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFXnCtIbRMHYs6zmB/LNqARTJbIK+SWMpghHIDBJ7hiS"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJlfUoi3tLKbWSaqrGbqy76GbeDua/LZvOVkSGfX1J2p"
+      ];
     };
     # Enable the OpenSSH daemon.
     services.openssh = {
@@ -26,7 +22,7 @@ in {
       openFirewall = true;
       settings = {
         PasswordAuthentication = false;
-        AllowUsers = ["lua"];
+        AllowUsers = [config.modules.user.name];
         UseDns = true;
         PermitRootLogin = "no";
       };
@@ -79,7 +75,7 @@ in {
         load_avg.format = "Load (1, 5, 15 min.): {one:.02}, {five:.02}, {fifteen:.02}";
         memory.swap_pos = "none";
         last_login = {
-          lua = 3;
+          ${config.modules.user.name} = 3;
           root = 1;
         };
         filesystems = {

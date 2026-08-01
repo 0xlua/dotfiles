@@ -38,6 +38,10 @@ in {
             name = lib.mkOption {type = str;};
             desc = lib.mkOption {type = str;};
             homeConfig = lib.mkOption {type = path;};
+            shell = lib.mkOption {
+              type = package;
+              default = pkgs.fish;
+            };
           };
         };
     };
@@ -87,9 +91,12 @@ in {
       };
     };
 
+    programs.fish.enable = true;
+
     users = {
       mutableUsers = false;
       users.${cfg.user.name} = {
+        inherit (config.modules.user) shell;
         uid = lib.mkDefault 1000;
         isNormalUser = true;
         description = cfg.user.desc;
