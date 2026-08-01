@@ -43,7 +43,7 @@ in {
       };
       templates = {
         "smb-secrets" = {
-          owner = "lua";
+          owner = config.modules.user.name;
           content = ''
             username=${config.sops.placeholder."nas/username"}
             domain=${config.sops.placeholder."nas/domain"}
@@ -60,12 +60,15 @@ in {
         value = {
           device = mount.source;
           fsType = "cifs";
-          options =
+          options = let
+            user = config.users.users.${config.modules.user.name};
+            group = config.users.groups.${user.group};
+          in
             [
               "x-systemd.automount"
               "credentials=${config.sops.templates."smb-secrets".path}"
-              "uid=1000"
-              "gid=100"
+              "uid=${user.uid}"
+              "gid=${group.gid}"
             ]
             ++ mount.specialOptions;
         };

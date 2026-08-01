@@ -63,9 +63,12 @@ in {
 
     programs.virt-manager.enable = true;
     virtualisation.libvirtd.enable = true;
-    users.groups.libvirtd.members = ["${config.modules.user.name}"];
+    users.groups.libvirtd.members = [config.modules.user.name];
 
-    modules.samba = {
+    modules.samba = let
+      user = config.modules.user.name;
+      inherit (config.users.users.${user}) home;
+    in {
       enable = true;
       mounts = let
         specialOptions = [
@@ -76,13 +79,13 @@ in {
         ];
       in [
         {
-          source = "//io.internal/lua";
-          target = "/home/lua/nas";
+          source = "//io.internal/${user}";
+          target = "${home}/nas";
           inherit specialOptions;
         }
         {
           source = "//io.internal/scanner";
-          target = "/home/lua/paperless_inbox";
+          target = "${home}/paperless_inbox";
           inherit specialOptions;
         }
       ];

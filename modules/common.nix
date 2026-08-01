@@ -76,10 +76,12 @@ in {
       nftables.enable = true;
     };
 
-    sops = {
+    sops = let
+      inherit (config.users.users.${cfg.user.name}) home;
+    in {
       defaultSopsFile = ../secrets.yaml;
-      age.sshKeyPaths = ["/home/lua/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
-      age.keyFile = "/home/lua/.config/sops/age/keys.txt";
+      age.sshKeyPaths = ["${home}/.ssh/id_ed25519" "/etc/ssh/ssh_host_ed25519_key"];
+      age.keyFile = "${home}/.config/sops/age/keys.txt";
       secrets = {
         hashedPassword.neededForUsers = true;
       };
@@ -87,7 +89,7 @@ in {
 
     users = {
       mutableUsers = false;
-      users."${cfg.user.name}" = {
+      users.${cfg.user.name} = {
         isNormalUser = true;
         description = cfg.user.desc;
         hashedPasswordFile = config.sops.secrets.hashedPassword.path;
