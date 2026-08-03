@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.jellyfin;
+  cfg = config.modules.roles.server.jellyfin;
 in {
-  options.server.jellyfin.enable = lib.mkEnableOption "jellyfin";
+  options.modules.roles.server.jellyfin.enable = lib.mkEnableOption "jellyfin";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.jellyfin = {

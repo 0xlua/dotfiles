@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.mafl;
+  cfg = config.modules.roles.server.mafl;
 in {
-  options.server.mafl.enable = lib.mkEnableOption "mafl";
+  options.modules.roles.server.mafl.enable = lib.mkEnableOption "mafl";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.mafl = {

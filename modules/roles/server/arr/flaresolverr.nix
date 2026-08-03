@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.flaresolverr;
+  cfg = config.modules.roles.server.arr.flaresolverr;
 in {
-  options.server.arr.flaresolverr.enable = lib.mkEnableOption "flaresolverr";
+  options.modules.roles.server.arr.flaresolverr.enable = lib.mkEnableOption "flaresolverr";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.flaresolverr = {

@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.server.stalwart;
+  cfg = config.modules.roles.server.stalwart;
 in {
-  options.server.stalwart.enable = lib.mkEnableOption "stalwart";
+  options.modules.roles.server.stalwart.enable = lib.mkEnableOption "stalwart";
 
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.stalwart = config.virtualisation.oci-containers.containers.stalwart.serviceName;

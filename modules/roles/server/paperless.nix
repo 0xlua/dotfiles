@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.paperless;
+  cfg = config.modules.roles.server.paperless;
 in {
-  options.server.paperless.enable = lib.mkEnableOption "paperless-ngx";
+  options.modules.roles.server.paperless.enable = lib.mkEnableOption "paperless-ngx";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers = {

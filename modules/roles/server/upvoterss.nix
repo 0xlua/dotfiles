@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.upvoterss;
+  cfg = config.modules.roles.server.upvoterss;
 in {
-  options.server.upvoterss.enable = lib.mkEnableOption "upvote-rss";
+  options.modules.roles.server.upvoterss.enable = lib.mkEnableOption "upvote-rss";
 
   config = lib.mkIf cfg.enable {
     sops = {

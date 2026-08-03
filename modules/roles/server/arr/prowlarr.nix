@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.prowlarr;
+  cfg = config.modules.roles.server.arr.prowlarr;
 in {
-  options.server.arr.prowlarr.enable = lib.mkEnableOption "prowlarr";
+  options.modules.roles.server.arr.prowlarr.enable = lib.mkEnableOption "prowlarr";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.prowlarr = {

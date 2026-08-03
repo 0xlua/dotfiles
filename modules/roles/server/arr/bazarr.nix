@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.bazarr;
+  cfg = config.modules.roles.server.arr.bazarr;
 in {
-  options.server.arr.bazarr.enable = lib.mkEnableOption "bazarr";
+  options.modules.roles.server.arr.bazarr.enable = lib.mkEnableOption "bazarr";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.bazarr = {

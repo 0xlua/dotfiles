@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.bore-server;
+  cfg = config.modules.roles.server.bore-server;
 in {
-  options.server.bore-server.enable = lib.mkEnableOption "bore server";
+  options.modules.roles.server.bore-server.enable = lib.mkEnableOption "bore server";
 
   config = lib.mkIf cfg.enable {
     sops.secrets.boreSecret = {};

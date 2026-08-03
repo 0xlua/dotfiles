@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.radarr;
+  cfg = config.modules.roles.server.arr.radarr;
 in {
-  options.server.arr.radarr.enable = lib.mkEnableOption "radarr";
+  options.modules.roles.server.arr.radarr.enable = lib.mkEnableOption "radarr";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.radarr = {

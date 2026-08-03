@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.vaultwarden;
+  cfg = config.modules.roles.server.vaultwarden;
 in {
-  options.server.vaultwarden.enable = lib.mkEnableOption "Vaultwarden";
+  options.modules.roles.server.vaultwarden.enable = lib.mkEnableOption "Vaultwarden";
 
   config = lib.mkIf cfg.enable {
     sops = {

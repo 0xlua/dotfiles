@@ -4,9 +4,9 @@
   pkgs,
   ...
 }: let
-  cfg = config.server.arr;
+  cfg = config.modules.roles.server.arr;
 in {
-  options.server.arr.enable = lib.mkEnableOption "the *arr-stack & gluetun";
+  options.modules.roles.server.arr.enable = lib.mkEnableOption "the *arr-stack & gluetun";
 
   config = lib.mkIf cfg.enable {
     sops.secrets."wireguard/private_key" = {};

@@ -4,9 +4,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.caddy;
+  cfg = config.modules.roles.server.caddy;
 in {
-  options.server.caddy.enable = lib.mkEnableOption "caddy";
+  options.modules.roles.server.caddy.enable = lib.mkEnableOption "caddy";
 
   config = lib.mkIf cfg.enable {
     sops = {

@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.littlelink;
+  cfg = config.modules.roles.server.littlelink;
 in {
-  options.server.littlelink.enable = lib.mkEnableOption "littlelink";
+  options.modules.roles.server.littlelink.enable = lib.mkEnableOption "littlelink";
 
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.littlelink = config.virtualisation.oci-containers.containers.littlelink.serviceName;

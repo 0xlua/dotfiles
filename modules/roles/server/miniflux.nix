@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.miniflux;
+  cfg = config.modules.roles.server.miniflux;
 in {
-  options.server.miniflux.enable = lib.mkEnableOption "miniflux";
+  options.modules.roles.server.miniflux.enable = lib.mkEnableOption "miniflux";
 
   config = lib.mkIf cfg.enable {
     sops = {

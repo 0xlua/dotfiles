@@ -5,9 +5,9 @@
   inputs,
   ...
 }: let
-  cfg = config.server.rustypaste;
+  cfg = config.modules.roles.server.rustypaste;
 in {
-  options.server.rustypaste.enable = lib.mkEnableOption "rustypaste";
+  options.modules.roles.server.rustypaste.enable = lib.mkEnableOption "rustypaste";
 
   config = lib.mkIf cfg.enable {
     sops.secrets.rustypasteToken = {

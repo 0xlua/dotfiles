@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.musicassistant;
+  cfg = config.modules.roles.server.musicassistant;
 in {
-  options.server.musicassistant.enable = lib.mkEnableOption "musicassistant";
+  options.modules.roles.server.musicassistant.enable = lib.mkEnableOption "musicassistant";
 
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [8095];

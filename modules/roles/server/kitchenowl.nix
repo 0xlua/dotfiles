@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.kitchenowl;
+  cfg = config.modules.roles.server.kitchenowl;
 in {
-  options.server.kitchenowl.enable = lib.mkEnableOption "kitchenowl";
+  options.modules.roles.server.kitchenowl.enable = lib.mkEnableOption "kitchenowl";
 
   config = lib.mkIf cfg.enable {
     sops.secrets."kitchenowl/jwt_token" = {

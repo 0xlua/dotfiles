@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.atuin;
+  cfg = config.modules.roles.server.atuin;
 in {
-  options.server.atuin.enable = lib.mkEnableOption "atuin";
+  options.modules.roles.server.atuin.enable = lib.mkEnableOption "atuin";
 
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.atuin = config.virtualisation.oci-containers.containers.atuin.serviceName;

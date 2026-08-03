@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.homeassistant;
+  cfg = config.modules.roles.server.homeassistant;
 in {
-  options.server.homeassistant.enable = lib.mkEnableOption "homeassistant";
+  options.modules.roles.server.homeassistant.enable = lib.mkEnableOption "homeassistant";
 
   config = lib.mkIf cfg.enable {
     networking.firewall.allowedTCPPorts = [8123];

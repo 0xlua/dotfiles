@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.pocket-id;
+  cfg = config.modules.roles.server.pocket-id;
 in {
-  options.server.pocket-id.enable = lib.mkEnableOption "pocket-id";
+  options.modules.roles.server.pocket-id.enable = lib.mkEnableOption "pocket-id";
 
   config = lib.mkIf cfg.enable {
     sops.secrets."pocket_id/key" = {

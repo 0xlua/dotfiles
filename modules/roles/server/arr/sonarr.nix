@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.sonarr;
+  cfg = config.modules.roles.server.arr.sonarr;
 in {
-  options.server.arr.sonarr.enable = lib.mkEnableOption "sonarr";
+  options.modules.roles.server.arr.sonarr.enable = lib.mkEnableOption "sonarr";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.sonarr = {

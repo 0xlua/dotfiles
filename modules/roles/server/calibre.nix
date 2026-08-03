@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.calibre;
+  cfg = config.modules.roles.server.calibre;
 in {
-  options.server.calibre.enable = lib.mkEnableOption "calibre-web-automated";
+  options.modules.roles.server.calibre.enable = lib.mkEnableOption "calibre-web-automated";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.calibre = {

@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.linkding;
+  cfg = config.modules.roles.server.linkding;
 in {
-  options.server.linkding.enable = lib.mkEnableOption "linkding";
+  options.modules.roles.server.linkding.enable = lib.mkEnableOption "linkding";
 
   config = lib.mkIf cfg.enable {
     sops.secrets."linkding/oidc_client_id" = {};

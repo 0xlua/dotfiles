@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.podman-backup;
+  cfg = config.modules.roles.server.podman-backup;
 in {
-  options.server.podman-backup.enable = lib.mkEnableOption "docker/podman volume backup";
+  options.modules.roles.server.podman-backup.enable = lib.mkEnableOption "docker/podman volume backup";
 
   config = lib.mkIf cfg.enable {
     sops.secrets.backupSshPassword = {};

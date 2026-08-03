@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.jellyfin;
+  cfg = config.modules.roles.server.jellyfin;
 in {
-  options.server.jellyfin.publiclyAccessible = lib.mkEnableOption "a public tunnel for jellyfin";
+  options.modules.roles.server.jellyfin.publiclyAccessible = lib.mkEnableOption "a public tunnel for jellyfin";
 
   config = lib.mkIf cfg.publiclyAccessible {
     sops.secrets.boreSecret = {};

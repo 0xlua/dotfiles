@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  cfg = config.server.arr.deluge;
+  cfg = config.modules.roles.server.arr.deluge;
 in {
-  options.server.arr.deluge.enable = lib.mkEnableOption "deluge";
+  options.modules.roles.server.arr.deluge.enable = lib.mkEnableOption "deluge";
 
   config = lib.mkIf cfg.enable {
     virtualisation.oci-containers.containers.deluge = {
