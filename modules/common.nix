@@ -37,7 +37,6 @@ in {
           options = {
             name = lib.mkOption {type = str;};
             desc = lib.mkOption {type = str;};
-            homeConfig = lib.mkOption {type = path;};
             shell = lib.mkOption {
               type = package;
               default = pkgs.fish;
@@ -113,7 +112,7 @@ in {
         inherit inputs;
         inherit (config.networking) hostName;
       };
-      users.${cfg.user.name} = cfg.user.homeConfig;
+      users.${cfg.user.name} = ./home.nix;
     };
 
     stylix = {

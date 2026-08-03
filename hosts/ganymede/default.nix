@@ -6,7 +6,6 @@
     user = {
       name = "lua";
       desc = "Lua";
-      homeConfig = ./home.nix;
     };
     samba = {
       enable = true;

@@ -4,9 +4,9 @@
   config,
   ...
 }: let
-  cfg = config.home-modules.gaming;
+  cfg = config.home-modules.desktop.gaming;
 in {
-  options.home-modules.gaming.enable = lib.mkEnableOption "gaming";
+  options.home-modules.desktop.gaming.enable = lib.mkEnableOption "gaming";
   config = lib.mkIf cfg.enable {
     assertions = [
       {

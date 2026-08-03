@@ -10,7 +10,6 @@
     user = {
       name = "lua";
       desc = "Lua";
-      homeConfig = ./home.nix;
     };
     roles = {
       server = {
