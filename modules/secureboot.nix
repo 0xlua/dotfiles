@@ -2,11 +2,15 @@
   lib,
   config,
   pkgs,
+  inputs,
   ...
 }: let
   cfg = config.modules.secureBoot;
 in {
+  imports = [inputs.lanzaboote.nixosModules.lanzaboote];
+
   options.modules.secureBoot.enable = lib.mkEnableOption "Secure Boot";
+
   config = lib.mkIf cfg.enable {
     environment.systemPackages = [pkgs.sbctl];
     boot = {

@@ -20,7 +20,7 @@ in {
       trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
     };
 
-    boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+    modules.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
 
     hardware.amdgpu.overdrive.enable = true;
 

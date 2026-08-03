@@ -1,4 +1,9 @@
-{config, ...}: {
+{
+  config,
+  lib,
+  ...
+}:
+lib.mkIf config.modules.roles.laptop.enable {
   sops.secrets = {
     "eduroam/identity" = {};
     "eduroam/password" = {};

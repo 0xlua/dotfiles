@@ -41,7 +41,6 @@
         system = "x86_64-linux";
         specialArgs = {inherit inputs;};
         modules = [
-          inputs.lanzaboote.nixosModules.lanzaboote
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.phoenix.nixosModules.default
           inputs.dove.nixosModules.default
