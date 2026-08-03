@@ -1,5 +1,8 @@
 {...}: {
-  programs.bat.enable = true;
+  programs.bat = {
+    enable = true;
+    config.style = "plain";
+  };
 
   programs.eza = {
     enable = true;
