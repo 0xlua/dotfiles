@@ -1,4 +1,8 @@
-{...}: {
+{
+  lib,
+  config,
+  ...
+}: {
   programs.bat = {
     enable = true;
     config.style = "plain";
@@ -27,7 +31,7 @@
         rounded_corners = true;
         hide_session_name = true;
       };
-      default_shell = "fish";
+      default_shell = lib.getExe config.home-modules.user.shell;
       # theme = "nord";
       # copy_clipboard = "primary" # default is "system"
       default_layout = "compact";

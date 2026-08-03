@@ -1,7 +1,6 @@
 {
   config,
   lib,
-  hostName,
   ...
 }:
 lib.mkIf config.home-modules.desktop.enable {
@@ -9,14 +8,14 @@ lib.mkIf config.home-modules.desktop.enable {
     syncthing_gui_password = {};
     syncthing_key = {
       format = "binary";
-      sopsFile = ../../secrets/syncthing/${hostName}.pem;
+      sopsFile = ../../secrets/syncthing/${config.home-modules.hostname}.pem;
       mode = "0600";
     };
   };
 
   services.syncthing = {
     inherit (config.home-modules.desktop) enable;
-    cert = "${../../files/certs/syncthing/${hostName}.pem}";
+    cert = "${../../files/certs/syncthing/${config.home-modules.hostname}.pem}";
     key = config.sops.secrets.syncthing_key.path;
     guiCredentials = {
       inherit (config.home) username;

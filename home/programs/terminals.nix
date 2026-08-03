@@ -13,14 +13,14 @@
       enable = true;
       settings = {
         window.dynamic_padding = true;
-        terminal.shell.program = "fish";
+        terminal.shell.program = lib.getExe config.home-modules.user.shell;
       };
     };
 
     programs.ghostty = {
       enable = true;
       settings = {
-        command = "fish";
+        command = lib.getExe config.home-modules.user.shell;
         mouse-hide-while-typing = true;
         window-decoration = "none";
         shell-integration-features = "cursor, ssh-env";

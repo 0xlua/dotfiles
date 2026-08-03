@@ -110,7 +110,6 @@ in {
       useUserPackages = true;
       extraSpecialArgs = {
         inherit inputs;
-        inherit (config.networking) hostName;
       };
       users.${cfg.user.name} = ./home.nix;
     };

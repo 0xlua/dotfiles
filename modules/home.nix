@@ -6,6 +6,7 @@
   imports = [../home];
   programs.thunderbird.enable = lib.mkForce osConfig.modules.roles.desktop.gaming.enable; # TODO: osConfig.modules.fewerGuis
   home-modules = {
+    inherit (osConfig.modules) user hostname keyMap;
     inherit (osConfig.modules.roles) desktop;
     mail = {inherit (osConfig.modules.roles.desktop) enable;};
     llm = {inherit (osConfig.modules.roles.desktop.gaming) enable;};
