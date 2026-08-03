@@ -3,5 +3,6 @@
     ./laptop
     ./desktop
     ./server
+    ./vps
   ];
 }

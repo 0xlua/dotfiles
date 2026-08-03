@@ -12,6 +12,7 @@
       desc = "Lua";
     };
     roles = {
+      vps.enable = true;
       server = {
         enable = true;
         atuin.enable = true;

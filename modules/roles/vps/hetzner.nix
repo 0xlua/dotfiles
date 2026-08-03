@@ -1,4 +1,9 @@
-{lib, ...}: {
+{
+  lib,
+  config,
+  ...
+}:
+lib.mkIf config.home-modules.role.vps.enable {
   # Use the GRUB 2 boot loader.
   boot.loader = {
     efi.canTouchEfiVariables = lib.mkForce false;
