@@ -18,9 +18,5 @@
     };
 
     programs.anki.enable = true;
-
-    xdg.mimeApps.associations.removed = {"application/pdf" = ["com.github.flxzt.rnote.desktop"];};
-
-    xdg.mimeApps.defaultApplications."application/pdf" = ["org.pwmt.zathura.desktop"];
   };
 }

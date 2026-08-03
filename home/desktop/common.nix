@@ -43,6 +43,16 @@ in {
       };
     };
 
-    xdg.mimeApps.enable = true;
+    xdg.mimeApps = {
+      enable = true;
+      defaultApplicationPackages = [
+        config.programs.zathura.package
+        config.programs.firefox.package
+        config.programs.yazi.package
+        config.programs.helix.package
+        config.programs.mpv.package
+        pkgs.oculante
+      ];
+    };
   };
 }

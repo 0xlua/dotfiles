@@ -7,13 +7,7 @@
 }: {
   stylix.targets.firefox.profileNames = ["default"];
 
-  xdg = {
-    configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
-    mimeApps = {
-      associations.added = {"application/pdf" = ["firefox.desktop"];};
-      defaultApplications."application/json" = ["firefox.desktop"];
-    };
-  };
+  xdg.configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
 
   programs.firefox = {
     inherit (config.home-modules.desktop) enable;
