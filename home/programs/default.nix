@@ -6,6 +6,7 @@
     ./firefox.nix
     ./gaming.nix
     ./git.nix
+    ./gpg.nix
     ./images.nix
     ./llm.nix
     ./mail.nix

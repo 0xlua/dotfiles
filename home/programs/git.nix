@@ -1,4 +1,9 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}: {
   home.packages = with pkgs; [
     gitu # magit-like git interface
   ];
@@ -16,7 +21,7 @@
 
   programs.git = {
     enable = true;
-    signing = {
+    signing = lib.mkIf config.home-modules.gpg.enable {
       format = "openpgp";
       key = "51BCC5BB";
       signByDefault = true;

@@ -9,6 +9,7 @@
     inherit (osConfig.modules) user hostname keyMap;
     inherit (osConfig.modules.roles) desktop;
     mail = {inherit (osConfig.modules.roles.desktop) enable;};
+    gpg = {inherit (osConfig.modules.roles.desktop) enable;};
     llm = {inherit (osConfig.modules.roles.desktop.gaming) enable;};
     development = {
       enable = true;

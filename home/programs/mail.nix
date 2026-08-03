@@ -27,27 +27,6 @@ in {
       ];
       sops.secrets."stalwart_app_token".mode = "0440";
 
-      programs.gpg = {
-        enable = true;
-        settings.encrypt-to = email;
-        publicKeys = let
-          trust = 5;
-        in
-          map (source: {inherit source trust;}) [
-            ../../files/certs/gpg/lukasjordan.com/hu/aeii9rmagouy1owpp7e5ftpxjof7h41n # hi@lukasjordan.com
-            ../../files/certs/gpg/lukasjordan.com/hu/ze6x9uruirzyt6bcgxni5ndsc569g3fq # moin@lukasjordan.com
-            ../../files/certs/gpg/lua.one/hu/ze6x9uruirzyt6bcgxni5ndsc569g3fq # moin@lua.one
-          ];
-      };
-
-      services.gpg-agent = {
-        enable = true;
-        pinentry = {
-          package = pkgs.wayprompt;
-          program = "pinentry-wayprompt";
-        };
-      };
-
       services.pimsync.enable = true;
 
       programs.pimsync.enable = true;
@@ -63,7 +42,7 @@ in {
           };
           general = {
             unsafe-accounts-conf = true;
-            pgp-provider = "gpg";
+            pgp-provider = lib.mkIf config.home-modules.gpg.enable "gpg";
             use-terminal-pinentry = true;
           };
         };
@@ -81,7 +60,7 @@ in {
           };
           settings = {
             "calendar.week.start" = 1; # Start Week on Monday
-            "mail.openpgp.fetch_pubkeys_from_gnupg" = true; # Import public keys from host gpg
+            "mail.openpgp.fetch_pubkeys_from_gnupg" = config.home-modules.gpg.enable; # Import public keys from host gpg
             "general.autoScroll" = true; # Enable Auto-Scroll
             "mail.threadpane.listview" = 1; # Show Messages in list view
             "mail.default_send_format" = 1; # compose messages in plain text
@@ -192,7 +171,7 @@ in {
             inherit host;
             port = 465;
           };
-          gpg = {
+          gpg = lib.mkIf config.home-modules.gpg.enable {
             # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
             key = "0A8B4FCA78F832FA";
             signByDefault = true;
@@ -207,7 +186,7 @@ in {
           thunderbird = {
             inherit (config.programs.thunderbird) enable;
             settings = id: {
-              "mail.identity.id_${id}.attachPgpKey" = true;
+              "mail.identity.id_${id}.attachPgpKey" = config.home-modules.gpg.enable;
               "mail.identity.id_${id}.protectSubject" = false;
               "mail.identity.id_${id}.compose_html" = false;
               "mail.identity.id_${id}.reply_on_top" = true;
