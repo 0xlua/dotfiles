@@ -19,6 +19,12 @@ in {
     passwordCommand = "cat ${config.sops.secrets."stalwart_app_token".path}";
   in
     lib.mkIf cfg.enable {
+      assertions = [
+        {
+          assertion = config.home-modules.desktop.enable;
+          message = "Set home-modules.desktop.enable = true, if you want to enable mail";
+        }
+      ];
       sops.secrets."stalwart_app_token".mode = "0440";
 
       programs.gpg = {
@@ -64,7 +70,7 @@ in {
       };
 
       programs.thunderbird = {
-        inherit (config.home-modules.desktop) enable;
+        enable = !config.home-modules.desktop.preferLessGuis;
         package = pkgs.thunderbird-latest;
         profiles.lua = {
           isDefault = true;

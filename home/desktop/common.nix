@@ -8,6 +8,7 @@
 in {
   options.home-modules.desktop = {
     enable = lib.mkEnableOption "a graphic desktop envrionment";
+    preferLessGuis = lib.mkEnableOption "less GUI Apps";
     compositor = lib.mkOption {
       type = with lib.types; nullOr (enum ["cosmic" "niri"]);
       default = null;

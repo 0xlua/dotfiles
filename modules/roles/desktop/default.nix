@@ -15,6 +15,7 @@ in {
 
   options.modules.roles.desktop = {
     enable = lib.mkEnableOption "the desktop role";
+    preferLessGuis = lib.mkEnableOption "less GUI Apps";
     compositor = lib.mkOption {
       type = lib.types.enum ["none" "cosmic" "niri"];
       default = "none";

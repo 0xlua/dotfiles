@@ -4,11 +4,13 @@
   pkgs,
   lib,
   ...
-}: {
+}: let
+  cfg = config.home-modules.desktop;
+in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
-  config = lib.mkIf config.home-modules.desktop.enable {
+  config = lib.mkIf cfg.enable {
     sops.secrets."irc/libera".mode = "0440";
     home.packages = with pkgs; [
       rustdesk-flutter # remote desktop
@@ -21,7 +23,7 @@
     };
 
     programs.halloy = {
-      enable = true;
+      enable = !cfg.preferLessGuis;
       settings = {
         buffer.channel.topic = {
           enabled = true;

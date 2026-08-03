@@ -14,6 +14,7 @@
       desktop = {
         enable = true;
         compositor = "niri";
+        preferLessGuis = true;
       };
     };
   };
