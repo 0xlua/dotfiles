@@ -3,10 +3,7 @@
 
   modules = {
     hostname = "ganymede";
-    user = {
-      name = "lua";
-      desc = "Lua";
-    };
+    user.name = "lua";
     samba = {
       enable = true;
       mounts = let

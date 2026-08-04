@@ -27,7 +27,6 @@
         submodule {
           options = {
             name = lib.mkOption {type = str;};
-            desc = lib.mkOption {type = str;};
             shell = lib.mkOption {
               type = package;
               default = pkgs.fish;

@@ -7,10 +7,7 @@
 
   modules = {
     hostname = "galileo";
-    user = {
-      name = "lua";
-      desc = "Lua";
-    };
+    user.name = "lua";
     roles = {
       vps.enable = true;
       server = {

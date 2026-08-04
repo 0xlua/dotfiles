@@ -8,10 +8,7 @@
   modules = {
     hostname = "callisto";
     kernel = lib.mkForce pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-zen4;
-    user = {
-      name = "lua";
-      desc = "Lua";
-    };
+    user.name = "lua";
     roles = {
       desktop = {
         enable = true;

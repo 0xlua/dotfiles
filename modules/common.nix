@@ -36,7 +36,6 @@ in {
         submodule {
           options = {
             name = lib.mkOption {type = str;};
-            desc = lib.mkOption {type = str;};
             shell = lib.mkOption {
               type = package;
               default = pkgs.fish;
@@ -98,7 +97,7 @@ in {
         inherit (config.modules.user) shell;
         uid = lib.mkDefault 1000;
         isNormalUser = true;
-        description = cfg.user.desc;
+        description = lib.toSentenceCase config.modules.user.name;
         hashedPasswordFile = config.sops.secrets.hashedPassword.path;
         extraGroups = ["networkmanager" "wheel" "libvird"];
       };

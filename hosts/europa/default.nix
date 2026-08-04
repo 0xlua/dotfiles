@@ -5,10 +5,7 @@
     hostname = "europa";
     keyMap = "uk";
     secureBoot.enable = true;
-    user = {
-      name = "lua";
-      desc = "Lua";
-    };
+    user.name = "lua";
     roles = {
       laptop.enable = true;
       desktop = {
