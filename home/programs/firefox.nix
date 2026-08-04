@@ -10,7 +10,8 @@
   xdg.configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
 
   programs.firefox = let
-    extensions = with inputs.firefox-addons.packages.x86_64-linux; [bitwarden ublock-origin linkding-extension tridactyl libredirect];
+    ext = inputs.firefox-addons.packages.x86_64-linux;
+    extensions = with ext; [bitwarden ublock-origin linkding-extension tridactyl libredirect];
   in {
     inherit (config.home-modules.desktop) enable;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
@@ -21,7 +22,7 @@
       TranslateEnabled = false;
       PictureInPicture.Enabled = false;
       "3rdparty".Extensions = {
-        "uBlock0@raymondhill.net".adminSettings = {
+        ${ext.ublock-origin.addonId}.adminSettings = {
           userSettings = rec {
             advancedUserEnabled = true;
             externalLists = lib.concatLines importedLists;
