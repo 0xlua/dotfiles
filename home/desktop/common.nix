@@ -54,6 +54,7 @@ in {
         config.programs.mpv.package
         pkgs.oculante
       ];
+      defaultApplications."x-scheme-handler/mpv" = ["mpv.desktop"];
     };
   };
 }
