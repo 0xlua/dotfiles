@@ -23,7 +23,8 @@ in {
     };
 
     services = {
-      blueman.enable = !config.modules.desktop.preferLessGuis;
+      # blueman.enable = !config.modules.roles.desktop.preferLessGuis;
+      blueman.enable = true;
       upower.enable = true;
       hardware.bolt.enable = true;
       thermald.enable = true;
