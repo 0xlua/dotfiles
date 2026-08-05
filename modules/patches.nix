@@ -68,26 +68,6 @@
       old.mesonFlags;
   });
 
-  # niri pins libdisplay-info to v0.3.0, but nixpkgs only has v0.4.0
-  # Credit: https://github.com/NixOS/nixpkgs/issues/545976#issuecomment-5084074580
-  # I switched to https://github.com/epireyn/niri-flake, sodiboos flake seems no longer maintained
-  # Using their binary cache should also resolve this
-  home-manager.users.${config.modules.user.name} = lib.mkIf (config.modules.roles.desktop.compositor
-    == "niri") {
-    programs.niri.package = lib.mkForce (pkgs.niri.override {
-      libdisplay-info = pkgs.libdisplay-info.overrideAttrs (finalAttrs: {
-        version = "0.3.0";
-        src = pkgs.fetchFromGitLab {
-          domain = "gitlab.freedesktop.org";
-          owner = "emersion";
-          repo = "libdisplay-info";
-          rev = finalAttrs.version;
-          sha256 = "sha256-nXf2KGovNKvcchlHlzKBkAOeySMJXgxMpbi5z9gLrdc=";
-        };
-      });
-    });
-  };
-
   # lact build failure
   # upstream issue: https://github.com/NixOS/nixpkgs/issues/546141
   services.lact.enable = lib.mkForce false;
