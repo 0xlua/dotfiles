@@ -9,7 +9,6 @@
 in {
   imports = [
     inputs.ironbar.homeManagerModules.default
-    inputs.niri.homeModules.niri
   ];
   config = lib.mkIf (cfg.desktop.compositor == "niri") {
     home = {
@@ -38,92 +37,91 @@ in {
       config.common.default = "gtk";
     };
 
-    programs.niri = {
+    wayland.windowManager.niri = {
       enable = true;
-      # package = pkgs.niri-stable;
-      package = pkgs.niri;
+      # portalPackage = "TODO";
       settings = {
-        binds = with config.lib.niri.actions; {
-          "Mod+Shift+Slash".action = show-hotkey-overlay;
-          "Mod+Return".action = spawn-sh "GTK_IM_MODULE=simple ghostty";
-          "Mod+D".action = spawn "centerpiece";
-          "Mod+Escape".action = spawn "gtklock";
+        binds = {
+          "Mod+Shift+Slash".show-hotkey-overlay = {};
+          "Mod+Return".spawn-sh = ["GTK_IM_MODULE=simple ghostty"];
+          "Mod+D".spawn = ["centerpiece"];
+          "Mod+Escape".spawn = ["gtklock"];
           XF86AudioRaiseVolume = {
-            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+";
-            allow-when-locked = true;
+            spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
+            _props.allow-when-locked = true;
           };
           XF86AudioLowerVolume = {
-            action = spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-";
-            allow-when-locked = true;
+            spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1-"];
+            _props.allow-when-locked = true;
           };
           XF86AudioMute = {
-            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle";
-            allow-when-locked = true;
+            spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"];
+            _props.allow-when-locked = true;
           };
           XF86AudioMicMute = {
-            action = spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle";
-            allow-when-locked = true;
+            spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
+            _props.allow-when-locked = true;
           };
 
-          "Mod+Q".action = close-window;
-          "Mod+O".action = toggle-overview;
+          "Mod+Q".close-window = {};
+          "Mod+O".toggle-overview = {};
 
-          "Mod+H".action = focus-column-left;
-          "Mod+J".action = focus-window-or-workspace-down;
-          "Mod+K".action = focus-window-or-workspace-up;
-          "Mod+L".action = focus-column-right;
+          "Mod+H".focus-column-left = {};
+          "Mod+J".focus-window-or-workspace-down = {};
+          "Mod+K".focus-window-or-workspace-up = {};
+          "Mod+L".focus-column-right = {};
 
-          "Mod+Shift+H".action = move-column-left;
-          "Mod+Shift+J".action = move-window-down-or-to-workspace-down;
-          "Mod+Shift+K".action = move-window-up-or-to-workspace-up;
-          "Mod+Shift+L".action = move-column-right;
+          "Mod+Shift+H".move-column-left = {};
+          "Mod+Shift+J".move-window-down-or-to-workspace-down = {};
+          "Mod+Shift+K".move-window-up-or-to-workspace-up = {};
+          "Mod+Shift+L".move-column-right = {};
 
-          "Mod+Ctrl+H".action = focus-monitor-left;
-          "Mod+Ctrl+J".action = focus-monitor-down;
-          "Mod+Ctrl+K".action = focus-monitor-up;
-          "Mod+Ctrl+L".action = focus-monitor-right;
+          "Mod+Ctrl+H".focus-monitor-left = {};
+          "Mod+Ctrl+J".focus-monitor-down = {};
+          "Mod+Ctrl+K".focus-monitor-up = {};
+          "Mod+Ctrl+L".focus-monitor-right = {};
 
-          "Mod+Shift+Ctrl+H".action = move-window-to-monitor-left;
-          "Mod+Shift+Ctrl+J".action = move-window-to-monitor-down;
-          "Mod+Shift+Ctrl+K".action = move-window-to-monitor-up;
-          "Mod+Shift+Ctrl+L".action = move-window-to-monitor-right;
+          "Mod+Shift+Ctrl+H".move-window-to-monitor-left = {};
+          "Mod+Shift+Ctrl+J".move-window-to-monitor-down = {};
+          "Mod+Shift+Ctrl+K".move-window-to-monitor-up = {};
+          "Mod+Shift+Ctrl+L".move-window-to-monitor-right = {};
 
-          "Mod+1".action = focus-workspace 1;
-          "Mod+2".action = focus-workspace 2;
-          "Mod+3".action = focus-workspace 3;
-          "Mod+4".action = focus-workspace 4;
-          "Mod+5".action = focus-workspace 5;
-          "Mod+6".action = focus-workspace 6;
-          "Mod+7".action = focus-workspace 7;
-          "Mod+8".action = focus-workspace 8;
-          "Mod+9".action = focus-workspace 9;
+          "Mod+1".focus-workspace = 1;
+          "Mod+2".focus-workspace = 2;
+          "Mod+3".focus-workspace = 3;
+          "Mod+4".focus-workspace = 4;
+          "Mod+5".focus-workspace = 5;
+          "Mod+6".focus-workspace = 6;
+          "Mod+7".focus-workspace = 7;
+          "Mod+8".focus-workspace = 8;
+          "Mod+9".focus-workspace = 9;
 
-          "Mod+Comma".action = consume-window-into-column;
-          "Mod+Period".action = expel-window-from-column;
-          "Mod+R".action = switch-preset-column-width;
-          "Mod+Shift+R".action = reset-window-height;
-          "Mod+F".action = fullscreen-window;
-          "Mod+Shift+F".action = toggle-windowed-fullscreen;
-          "Mod+C".action = center-column;
-          "Mod+T".action = switch-focus-between-floating-and-tiling;
-          "Mod+Shift+T".action = toggle-window-floating;
+          "Mod+Comma".consume-window-into-column = {};
+          "Mod+Period".expel-window-from-column = {};
+          "Mod+R".switch-preset-column-width = {};
+          "Mod+Shift+R".reset-window-height = {};
+          "Mod+F".fullscreen-window = {};
+          "Mod+Shift+F".toggle-windowed-fullscreen = {};
+          "Mod+C".center-column = {};
+          "Mod+T".switch-focus-between-floating-and-tiling = {};
+          "Mod+Shift+T".toggle-window-floating = {};
 
-          "Mod+Minus".action = set-column-width "-10%";
-          "Mod+Equal".action = set-column-width "+10%";
-          "Mod+Shift+Minus".action = set-window-height "-10%";
-          "Mod+Shift+Equal".action = set-window-height "+10%";
+          "Mod+Minus".set-column-width = "-10%";
+          "Mod+Equal".set-column-width = "+10%";
+          "Mod+Shift+Minus".set-window-height = "-10%";
+          "Mod+Shift+Equal".set-window-height = "+10%";
 
-          "Print".action.screenshot = [];
-          "Ctrl+Print".action.screenshot-screen = [];
-          "Alt+Print".action.screenshot-window = [];
+          "Print".screenshot = [];
+          "Ctrl+Print".screenshot-screen = [];
+          "Alt+Print".screenshot-window = [];
 
-          "Mod+Shift+E".action = quit;
-          "Mod+Shift+P".action = power-off-monitors;
+          "Mod+Shift+E".quit = {};
+          "Mod+Shift+P".power-off-monitors = {};
         };
-        hotkey-overlay.skip-at-startup = true;
-        prefer-no-csd = true;
-        gestures.hot-corners.enable = false;
-        switch-events.lid-close.action.spawn = "gtklock";
+        hotkey-overlay.skip-at-startup = {};
+        prefer-no-csd = {};
+        gestures.hot-corners.off = {};
+        switch-events.lid-close.spawn = ["gtklock"];
         input = {
           keyboard.xkb = {
             layout = "us";
@@ -131,32 +129,26 @@ in {
             options = "caps:escape";
           };
           touchpad = {
-            tap = true;
-            natural-scroll = true;
+            tap = {};
+            natural-scroll = {};
           };
           mouse.accel-profile = "flat";
           trackpoint.accel-profile = "flat";
-          warp-mouse-to-focus.enable = true;
-          focus-follows-mouse = {
-            enable = true;
-            max-scroll-amount = "0%";
-          };
+          warp-mouse-to-focus = {};
+          focus-follows-mouse._props.max-scroll-amount = "0%";
         };
-        cursor.hide-when-typing = true;
+        cursor.hide-when-typing = {};
         layout = {
           default-column-width = {};
           focus-ring.width = 3;
         };
-        window-rules = [
+        _children = [
           {
-            geometry-corner-radius = {
-              bottom-left = 12.0;
-              bottom-right = 12.0;
-              top-left = 12.0;
-              top-right = 12.0;
+            window-rule = {
+              geometry-corner-radius = 12;
+              clip-to-geometry = true;
+              open-maximized = true;
             };
-            clip-to-geometry = true;
-            open-maximized = true;
           }
         ];
       };

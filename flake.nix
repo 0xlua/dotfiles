@@ -18,8 +18,6 @@
     firefox-addons.inputs.nixpkgs.follows = "nixpkgs";
     ironbar.url = "github:JakeStanger/ironbar";
     ironbar.inputs.nixpkgs.follows = "nixpkgs";
-    niri.url = "github:epireyn/niri-flake";
-    niri.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     eilmeldung.url = "github:christo-auer/eilmeldung";
     sops-nix.url = "github:Mic92/sops-nix";
