@@ -67,8 +67,4 @@
       )
       old.mesonFlags;
   });
-
-  # lact build failure
-  # upstream issue: https://github.com/NixOS/nixpkgs/issues/546141
-  services.lact.enable = lib.mkForce false;
 }
