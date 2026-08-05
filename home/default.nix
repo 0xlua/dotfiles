@@ -6,5 +6,6 @@
     ./programs
     ./editors
     ./development
+    ./laptop.nix
   ];
 }

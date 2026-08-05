@@ -1,13 +1,8 @@
-{
-  osConfig,
-  lib,
-  ...
-}: {
+{osConfig, ...}: {
   imports = [../home];
-  programs.thunderbird.enable = lib.mkForce osConfig.modules.roles.desktop.gaming.enable; # TODO: osConfig.modules.fewerGuis
   home-modules = {
     inherit (osConfig.modules) user hostname keyMap;
-    inherit (osConfig.modules.roles) desktop;
+    inherit (osConfig.modules.roles) desktop laptop;
     mail = {inherit (osConfig.modules.roles.desktop) enable;};
     gpg = {inherit (osConfig.modules.roles.desktop) enable;};
     llm = {inherit (osConfig.modules.roles.desktop.gaming) enable;};
@@ -17,7 +12,7 @@
         android = {inherit (osConfig.modules.roles.desktop) enable;};
         rust = {inherit (osConfig.modules.roles.desktop) enable;};
         python = {inherit (osConfig.modules.roles.desktop) enable;};
-        javascript.enable = with osConfig.modules.roles; desktop.enable || server.caddy.enable; # TODO: || vps.enable
+        javascript.enable = with osConfig.modules.roles; desktop.enable || vps.enable;
         typesetting = {inherit (osConfig.modules.roles.desktop) enable;};
         data.enable = true;
       };
