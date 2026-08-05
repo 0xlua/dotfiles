@@ -9,7 +9,6 @@ in {
   config = lib.mkIf cfg.enable {
     services.kanshi = {
       enable = true;
-      systemdTarget = "graphical-session.target";
       settings = [
         {
           profile.name = "undocked";
