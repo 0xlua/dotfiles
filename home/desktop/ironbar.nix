@@ -4,53 +4,52 @@
   inputs,
   pkgs,
   ...
-}:
-lib.mkIf (config.home-modules.desktop.compositor == "niri") {
+}: {
   imports = [
     inputs.ironbar.homeManagerModules.default
   ];
-
-  programs.ironbar = {
-    enable = true;
-    systemd = true;
-    package = pkgs.ironbar;
-    config = {
-      position = "top";
-      height = 24;
-      layer = "overlay";
-      start = [
-        {
-          type = "workspaces";
-        }
-      ];
-      center = [
-        {
-          type = "clock";
-          format = "%H:%M";
-        }
-      ];
-      end = [
-        {
-          type = "tray";
-        }
-        {
-          type = "network_manager";
-          types_blacklist = ["loopback" "bridge"];
-        }
-        {
-          type = "volume";
-          max_volume = 100;
-        }
-        {
-          type = "battery";
-        }
-        {
-          type = "notifications";
-          show_count = true;
-        }
-      ];
-    };
-    style = "
+  config = lib.mkIf (config.home-modules.desktop.compositor == "niri") {
+    programs.ironbar = {
+      enable = true;
+      systemd = true;
+      package = pkgs.ironbar;
+      config = {
+        position = "top";
+        height = 24;
+        layer = "overlay";
+        start = [
+          {
+            type = "workspaces";
+          }
+        ];
+        center = [
+          {
+            type = "clock";
+            format = "%H:%M";
+          }
+        ];
+        end = [
+          {
+            type = "tray";
+          }
+          {
+            type = "network_manager";
+            types_blacklist = ["loopback" "bridge"];
+          }
+          {
+            type = "volume";
+            max_volume = 100;
+          }
+          {
+            type = "battery";
+          }
+          {
+            type = "notifications";
+            show_count = true;
+          }
+        ];
+      };
+      style = "
         :root {
             --color-dark-primary: #1c1c1c;
             --color-dark-secondary: #2d2d2d;
@@ -147,5 +146,6 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
         .workspaces .item.urgent {
             background-color: var(--color-urgent);
         }";
+    };
   };
 }
