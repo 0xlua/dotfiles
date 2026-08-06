@@ -6,13 +6,37 @@
 }:
 lib.mkIf (config.home-modules.desktop.compositor == "niri") {
   home = {
-    packages = with pkgs; [
-      # Desktop
-      centerpiece
-      gtklock
-    ];
-
+    packages = with pkgs; [gtklock];
     shellAliases.lock = "gtklock";
+  };
+
+  services = {
+    swaync.enable = true;
+    elephant = {
+      enable = true;
+      settings.providers.default = [
+        "bluetooth"
+        # "bookmarks"
+        # calc
+        "clipboard"
+        "desktopapplications"
+        "files"
+        "menus"
+        "playerctl"
+        "providerlist"
+        "runner"
+        "symbols"
+        "unicode"
+        # "bitwarden"
+        "nirisessions"
+        "niriactions"
+      ];
+    };
+    walker = {
+      enable = true;
+      systemd.enable = true;
+      settings = {};
+    };
   };
 
   gtk.iconTheme = {
@@ -36,7 +60,8 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
       binds = {
         "Mod+Shift+Slash".show-hotkey-overlay = {};
         "Mod+Return".spawn-sh = ["GTK_IM_MODULE=simple ghostty"];
-        "Mod+D".spawn = ["centerpiece"];
+        # "Mod+D".spawn = ["centerpiece"];
+        "Mod+D".spawn = ["walker"];
         "Mod+Escape".spawn = ["gtklock"];
         XF86AudioRaiseVolume = {
           spawn = ["wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "0.1+"];
@@ -145,6 +170,4 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
       ];
     };
   };
-
-  services.swaync.enable = true;
 }
