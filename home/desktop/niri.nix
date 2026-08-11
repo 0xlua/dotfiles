@@ -10,32 +10,74 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
     shellAliases.lock = "gtklock";
   };
 
-  services = {
-    swaync.enable = true;
-    elephant = {
-      enable = true;
-      settings.providers.default = [
-        "bluetooth"
-        # "bookmarks"
-        # calc
-        "clipboard"
-        "desktopapplications"
-        "files"
-        "menus"
-        "playerctl"
-        "providerlist"
-        "runner"
-        "symbols"
-        "unicode"
-        # "bitwarden"
-        "nirisessions"
-        "niriactions"
+  xdg.configFile = let
+    tomlFormat = pkgs.formats.toml {};
+  in {
+    "elephant/websearch.toml".source = tomlFormat.generate "elephant-websearch" {
+      entries = [
+        {
+          default = true;
+          name = "DuckDuckGo";
+          prefix = "ddg";
+          url = "https://duckduckgo.com/?q=%TERM%";
+        }
       ];
     };
+    "elephant/menus/power.toml".source = tomlFormat.generate "elephant-websearch" {
+      name = "power";
+      pretty_name = "Power Menu";
+      icon = "am-power";
+      entries = [
+        {
+          text = "Poweroff";
+          keywords = ["poweroff" "shutdown"];
+          icon = "system-shutdown";
+          actions.poweroff = "systemctl poweroff";
+        }
+        {
+          text = "Reboot";
+          keywords = ["reboot" "restart"];
+          icon = "system-reboot";
+          actions.reboot = "systemctl reboot";
+        }
+        {
+          text = "Bios";
+          keywords = ["bios" "firmware"];
+          icon = "application-x-firmware";
+          actions.reboot = "systemctl reboot --firmware-setup";
+        }
+        {
+          text = "Logout";
+          keywords = ["logout" "exit"];
+          icon = "exit";
+          actions.reboot = "niri msg action quit";
+        }
+      ];
+    };
+  };
+
+  services = {
+    swaync.enable = true;
+    elephant.enable = true;
     walker = {
       enable = true;
       systemd.enable = true;
-      settings = {};
+      settings = {
+        keybinds = {
+          next = ["ctrl j" "Tab"];
+          previous = ["ctrl k" "shift Tab"];
+          down = ["ctrl j" "Tab"];
+          up = ["ctrl k" "shift Tab"];
+          quick_actibate = ["ctrl 1" "ctrl 2" "ctrl 3" "ctrl 4"];
+        };
+        providers.default = [
+          "desktopapplications"
+          "calc"
+          "menus:power"
+          "websearch"
+          "windows"
+        ];
+      };
     };
   };
 
