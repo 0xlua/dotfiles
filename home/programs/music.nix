@@ -2,12 +2,15 @@
   config,
   lib,
   inputs,
+  pkgs,
   ...
 }: {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
   config = lib.mkIf config.home-modules.desktop.enable {
+    home.packages = with pkgs; [picard];
+
     services.mpd = {
       enable = true;
       musicDirectory = "${config.home.homeDirectory}/nas/Music";
