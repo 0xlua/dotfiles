@@ -80,10 +80,10 @@ in {
       autoStart = true;
       environmentFiles = [config.sops.templates."caddy_env".path];
       volumes = [
-        "${../../files/caddy}:/etc/caddy:ro"
-        "${../../files/stalwart_reload_tls.sh}:/usr/bin/stalwart_reload_tls.sh"
+        "${../../../files/caddy}:/etc/caddy:ro"
+        "${../../../files/stalwart_reload_tls.sh}:/usr/bin/stalwart_reload_tls.sh"
         "/home/lua/podman/static/ftp:/srv/ftp"
-        "${../../files/certs/gpg}:/srv/wkd"
+        "${../../../files/certs/gpg}:/srv/wkd"
         "/home/lua/podman/caddy:/data"
       ];
       ports = ["80:80/tcp" "443:443/tcp" "443:443/udp"];

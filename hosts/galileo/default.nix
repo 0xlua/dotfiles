@@ -1,9 +1,5 @@
 {...}: {
-  imports = [
-    ./hardware-configuration.nix
-    ./fail2ban.nix
-    ./hetzner.nix
-  ];
+  imports = [./hardware-configuration.nix];
 
   modules = {
     hostname = "galileo";

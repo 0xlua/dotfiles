@@ -3,7 +3,7 @@
   config,
   ...
 }:
-lib.mkIf config.home-modules.roles.vps.enable {
+lib.mkIf config.modules.roles.vps.enable {
   environment.etc."fail2ban/filter.d/caddy-status.conf".text = lib.mkDefault (lib.mkAfter ''
     [Definition]
     failregex = ^.*"remote_ip":"<HOST>",.*?"status":(?:0|401|403|500|502),.*$
