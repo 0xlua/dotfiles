@@ -98,7 +98,7 @@
   programs.numbat.enable = true;
 
   programs.rbw = {
-    # enable = true;
+    enable = true;
     settings = {
       base_url = "https://vault.lua.one";
       ui_url = "https://vault.lua.one";
