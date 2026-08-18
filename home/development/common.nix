@@ -17,6 +17,6 @@ in {
         just # command runner
         grex # regex generator
       ]
-      ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) yaak;
+      ++ lib.lists.optional (with config.home-modules.desktop; (enable && ! preferLessGuis)) yaak;
   };
 }
