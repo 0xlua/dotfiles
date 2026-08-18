@@ -13,7 +13,7 @@ in {
       autoStart = true;
       labels."io.containers.autoupdate" = "registry";
       volumes = [
-        "${../../files/mafl.yml}:/app/data/config.yml:Z"
+        "${../../../files/mafl.yml}:/app/data/config.yml:Z"
       ];
       ports = ["3000:3000"];
     };

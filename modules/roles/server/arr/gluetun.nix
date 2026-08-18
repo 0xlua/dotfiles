@@ -43,7 +43,7 @@ in {
         "${config.sops.secrets."wireguard/private_key".path}:/run/secrets/wireguard_private_key"
         "${config.sops.secrets."deluge_password".path}:/run/secrets/deluge_password"
         "${authConfig}:/gluetun/auth/config.toml"
-        "${../../../files/${script_file}}:/gluetun/script/${script_file}"
+        "${../../../../files/${script_file}}:/gluetun/script/${script_file}"
       ];
       devices = ["/dev/net/tun:/dev/net/tun"];
       ports = [
