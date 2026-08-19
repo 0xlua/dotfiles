@@ -105,7 +105,8 @@
       ui_url = "https://vault.lua.one";
       sso_id = "moin@lua.one";
       email = "moin@lua.one";
-      pinentry = pkgs.wayprompt;
+      # pinentry = pkgs.pinentry-egui;
+      pinentry = pkgs.pinentry-gnome3;
     };
   };
 

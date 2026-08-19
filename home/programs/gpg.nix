@@ -28,8 +28,10 @@ in {
       services.gpg-agent = {
         enable = true;
         pinentry = {
-          package = pkgs.wayprompt;
-          program = "pinentry-wayprompt";
+          # package = pkgs.pinentry-egui;
+          # program = "pinentry-egui";
+          package = pkgs.pinentry-gnome3;
+          program = "pinentry-gnome3";
         };
       };
     };

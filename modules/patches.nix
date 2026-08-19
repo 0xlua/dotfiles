@@ -8,49 +8,6 @@
   config,
   ...
 }: {
-  # Wayprompt depended on an old Zig version, that is no longer included in nix.
-  # This overlay uses a port to a newer zig version. Credit https://github.com/NixOS/nixpkgs/issues/545176#issuecomment-5097415975
-  # Two options, to resolve this:
-  # - Fixed Wayprompt build:  https://github.com/NixOS/nixpkgs/issues/545176
-  # - pinentry-egui: https://github.com/NixOS/nixpkgs/pull/546505
-  # Note: The tty fallback doesn't work with this port
-  nixpkgs.overlays = [
-    (final: prev: {
-      wayprompt = let
-        version = "0.1.2-mzte.2";
-        src = final.fetchFromGitea {
-          domain = "git.mzte.de";
-          owner = "LordMZTE";
-          repo = "wayprompt";
-          tag = "v${version}";
-          hash = "sha256-uVkeLJgvdc6c7xmNUdWlUS1f3fx8cCIV/raw2prP4O4=";
-        };
-        deps = final.zig_0_16.fetchDeps {
-          inherit version src;
-          pname = "wayprompt";
-          hash = "sha256-j1SrpUFgrtcv2pf43ZxRo3poYtMDQnWS3vmKkU5trE0=";
-        };
-      in
-        prev.wayprompt.overrideAttrs {
-          inherit version src;
-
-          nativeBuildInputs = with final; [
-            zig_0_16
-            pkg-config
-            wayland
-            wayland-scanner
-            scdoc
-          ];
-
-          zigBuildFlags = [];
-
-          preBuild = ''
-            ln -sf "${deps}" "$ZIG_GLOBAL_CACHE_DIR/p"
-          '';
-        };
-    })
-  ];
-
   # fwupd didn't work with secure boot
   # Credit: https://github.com/nix-community/lanzaboote/pull/640
   # Upstream issues:
