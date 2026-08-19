@@ -15,7 +15,7 @@
   };
 
   programs.nixvim = {
-    enable = true;
+    inherit (config.home-modules.desktop) enable;
     nixpkgs.useGlobalPackages = true;
     extraPlugins = [pkgs.vimPlugins.onenord-nvim pkgs.vimPlugins.nordic-nvim];
     colorschemes.kanagawa = {
