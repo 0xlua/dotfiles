@@ -11,7 +11,8 @@ in {
     inputs.sops-nix.homeManagerModules.sops
   ];
   config = lib.mkIf cfg.enable {
-    sops.secrets."irc/libera".mode = "0440";
+    sops.secrets."irc/soju".mode = "0440";
+
     home.packages = with pkgs; [
       rustdesk-flutter # remote desktop
     ];
@@ -28,38 +29,16 @@ in {
         buffer.channel.topic = {
           enabled = true;
         };
-        servers = {
-          # https://hackint.org/
-          hackint = {
-            channels = [
-              "#nixos"
-              "#ccchh"
-              # "ffhh"
-            ];
-            nickname = "lua";
-            server = "irc.hackint.org";
-            # sasl.plain = {};
-          };
-          liberachat = {
-            channels = [
-              "#selfhosted"
-              "#gamingonlinux"
-              "#lobsters"
-              "#nixos"
-              "#homeassistant"
-              "#jellyfin"
-              "#firefox"
-              "#neovim"
-              "##cycling"
-              "#halloy"
-              "#voidlinux"
-            ];
-            nickname = "lua";
-            server = "irc.libera.chat";
-            sasl.plain = {
-              username = "lua";
-              password_file = config.sops.secrets."irc/libera".path;
-            };
+        servers.soju = {
+          nickname = "lua";
+          server = "irc.lua.one";
+          port = 443;
+          use_tls = true;
+          use_websocket = true;
+          websocket_path = "/socket";
+          sasl.plain = {
+            username = "lua";
+            password_file = config.sops.secrets."irc/soju".path;
           };
         };
       };
