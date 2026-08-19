@@ -37,6 +37,7 @@
 
   programs.eilmeldung = {
     inherit (config.home-modules.desktop) enable;
+    package = pkgs.eilmeldung;
     settings = {
       login_setup = {
         login_type = "direct_token";

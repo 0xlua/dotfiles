@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   config,
   lib,
@@ -25,8 +24,6 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    nixpkgs.overlays = [inputs.eilmeldung.overlays.default];
-
     programs.nix-ld = {
       enable = true;
       libraries = with pkgs; [
