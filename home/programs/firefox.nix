@@ -47,6 +47,8 @@
           dynamicFilteringString = lib.concatLines [
             "* * 3p-script block"
             "* * 3p-frame block"
+            "letterboxd.com ltrbxd.com * noop"
+            "github.com githubassets.com * noop"
           ];
           hostnameSwitchesString = lib.concatLines [
             "no-large-media: behind-the-scene false"
