@@ -27,7 +27,7 @@ in {
 
     programs.rust-motd.settings.service_status.caddy = config.virtualisation.oci-containers.containers.caddy.serviceName;
 
-    networking.firewall.allowedTCPPorts = [80 443]; # http, https
+    networking.firewall.allowedTCPPorts = [80 443 6697]; # http, https, irc
 
     virtualisation.oci-containers.containers.caddy = let
       # TODO: flake input?
@@ -86,7 +86,7 @@ in {
         "${../../../files/certs/gpg}:/srv/wkd"
         "/home/lua/podman/caddy:/data"
       ];
-      ports = ["80:80/tcp" "443:443/tcp" "443:443/udp"];
+      ports = ["80:80/tcp" "443:443/tcp" "443:443/udp" "6697:6697/tcp"];
     };
   };
 }

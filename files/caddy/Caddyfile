@@ -14,6 +14,22 @@
 	events {
 		on cert_obtained exec /usr/bin/stalwart_reload_tls.sh
 	}
+
+	layer4 {
+		:6697 {
+			route {
+				tls {
+					connection_policy {
+						alpn irc
+					}
+				}
+				proxy {
+					proxy_protocol v2
+					upstream soju:6667
+				}
+			}
+		}
+	}
 }
 
 (logging) {
@@ -115,6 +131,11 @@ lua.one {
 	@jellyfin host jellyfin.lua.one
 	handle @jellyfin {
 		reverse_proxy * bore-server:8096
+	}
+
+	@soju host irc.lua.one
+	handle @soju {
+		reverse_proxy * soju:3030
 	}
 
 	@stalwart host mail.lua.one

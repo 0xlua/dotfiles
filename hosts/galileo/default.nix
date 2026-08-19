@@ -18,6 +18,7 @@
         miniflux.enable = true;
         pocket-id.enable = true;
         rustypaste.enable = true;
+        soju.enable = true;
         stalwart.enable = true;
         upvoterss.enable = true;
         vaultwarden.enable = true;

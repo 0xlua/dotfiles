@@ -15,6 +15,7 @@
     ./littlelink.nix
     ./miniflux.nix
     ./rustypaste.nix
+    ./soju.nix
     ./stalwart.nix
     ./vaultwarden.nix
     ./upvoterss.nix
