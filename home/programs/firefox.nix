@@ -49,6 +49,8 @@
             "* * 3p-frame block"
             "letterboxd.com ltrbxd.com * noop"
             "github.com githubassets.com * noop"
+            "www2.buecherhallen.de cloudflare.com * noop"
+            "www2.buecherhallen.de mylibrary.digital * noop"
           ];
           hostnameSwitchesString = lib.concatLines [
             "no-large-media: behind-the-scene false"
