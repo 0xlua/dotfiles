@@ -33,7 +33,12 @@
     hl-log-viewer
   ];
 
-  sops.secrets."miniflux/token_eilmeldung".mode = "0440";
+  sops.secrets = {
+    "miniflux/token_eilmeldung".mode = "0440";
+    "managarr/radarr_token".mode = "0440";
+    "managarr/sonarr_token".mode = "0440";
+    "atuin/key".mode = "0440";
+  };
 
   programs.eilmeldung = {
     inherit (config.home-modules.desktop) enable;
@@ -58,8 +63,6 @@
       };
     };
   };
-
-  sops.secrets."atuin/key".mode = "0440";
 
   programs.atuin = {
     enable = true;
@@ -122,4 +125,23 @@
     enableFishIntegration = true;
     shellWrapperName = "y";
   };
+
+  xdg.configFile."managarr/config.yaml".source = (pkgs.formats.yaml {}).generate "managarr-config" (let
+    host = "ganymede";
+  in {
+    radarr = [
+      {
+        inherit host;
+        port = 7878;
+        api_token_file = config.sops.secrets."managarr/radarr_token".path;
+      }
+    ];
+    sonarr = [
+      {
+        inherit host;
+        port = 8989;
+        api_token_file = config.sops.secrets."managarr/sonarr_token".path;
+      }
+    ];
+  });
 }
