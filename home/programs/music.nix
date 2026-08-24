@@ -4,12 +4,14 @@
   inputs,
   pkgs,
   ...
-}: {
+}: let
+  cfg = config.home-modules.desktop;
+in {
   imports = [
     inputs.sops-nix.homeManagerModules.sops
   ];
-  config = lib.mkIf config.home-modules.desktop.enable {
-    home.packages = with pkgs; [picard];
+  config = lib.mkIf cfg.enable {
+    home.packages = lib.lists.optionals (!cfg.preferLessGuis) (with pkgs; [picard music-assistant-desktop]);
 
     services.mpd = {
       enable = true;
