@@ -26,6 +26,18 @@ in {
     programs.halloy = {
       enable = !cfg.preferLessGuis;
       settings = {
+        actions = {
+          sidebar.buffer = "replace-pane";
+          buffer = {
+            click_channel_name = "replace-pane";
+            click_highlight = "replace-pane";
+            click_nickname = "replace-pane";
+            join_channel = "replace-pane";
+            local = "replace-pane";
+            message_channel = "replace-pane";
+            message_user = "replace-pane";
+          };
+        };
         buffer.channel.topic = {
           enabled = true;
         };
