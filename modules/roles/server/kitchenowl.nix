@@ -35,6 +35,7 @@ in {
         JWT_SECRET_KEY_FILE = "/run/secrets/jwt_secret_key";
         OIDC_CLIENT_SECRET_FILE = "/run/secrets/oidc_client_secret";
         OIDC_RFC_COMPLIANT_REDIRECT = "False";
+        DISABLE_USERNAME_PASSWORD_LOGIN = "true";
       };
       volumes = [
         "/home/lua/podman/kitchenowl:/data"
