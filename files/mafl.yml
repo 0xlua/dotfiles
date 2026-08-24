@@ -13,6 +13,15 @@ services:
         color: '#3dbcf3'
       status:
         enabled: true
+    - title: Music Assistant
+      description: Music Server
+      link: http://ganymede.internal:8095/
+      icon:
+        name: simple-icons:musicassistant
+        wrap: true
+        color: '#3dbcf3'
+      status:
+        enabled: true
     - title: Paperless
       description: Document Store
       link: http://ganymede.internal:4000/
