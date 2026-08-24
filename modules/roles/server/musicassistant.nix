@@ -15,13 +15,13 @@ in {
       autoStart = true;
       labels."io.containers.autoupdate" = "registry";
       capabilities = {
-        SYS_ADMIN = true;
-        DAC_READ_SEARCH = true;
+        ALL = false;
+        DAC_OVERRIDE = true;
       };
       networks = ["host"];
-      extraOptions = ["--security-opt=apparmor=unconfined"];
       volumes = [
         "/home/lua/podman/musicassistant:/data:Z"
+        "/home/lua/Music:/media:ro"
       ];
     };
   };

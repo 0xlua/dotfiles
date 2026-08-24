@@ -22,6 +22,11 @@
           target = "/home/lua/scanner";
           inherit specialOptions;
         }
+        {
+          source = "//io.internal/lua/Music";
+          target = "/home/lua/Music";
+          inherit specialOptions;
+        }
       ];
     };
     roles = {
