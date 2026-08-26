@@ -4,10 +4,7 @@
   inputs,
   ...
 }: {
-  imports = [
-    inputs.sops-nix.homeManagerModules.sops
-    inputs.eilmeldung.homeManager.default
-  ];
+  imports = [inputs.sops-nix.homeManagerModules.sops];
 
   home.packages = with pkgs; [
     # file viewer
@@ -42,7 +39,6 @@
 
   programs.eilmeldung = {
     inherit (config.home-modules.desktop) enable;
-    package = pkgs.eilmeldung;
     settings = {
       login_setup = {
         login_type = "direct_token";
