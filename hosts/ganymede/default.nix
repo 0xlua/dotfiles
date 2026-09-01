@@ -36,6 +36,7 @@
         jellyfin.publiclyAccessible = true;
         calibre.enable = true;
         mafl.enable = true;
+        koito.enable = true;
         paperless.enable = true;
         homeassistant.enable = true;
         musicassistant.enable = true;

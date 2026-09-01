@@ -10,6 +10,7 @@
     ./calibre.nix
     ./jellyfin.nix
     ./kitchenowl.nix
+    ./koito.nix
     ./linkding.nix
     ./mafl.nix
     ./littlelink.nix
