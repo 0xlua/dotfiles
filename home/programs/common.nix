@@ -28,6 +28,10 @@
     # logs
     tailspin
     hl-log-viewer
+
+    # encryption
+    age
+    rage
   ];
 
   sops.secrets = {
