@@ -8,18 +8,16 @@ services:
       description: Home automation
       link: http://ganymede.internal:8123/
       icon:
-        name: simple-icons:homeassistant
+        name: selfhst:home-assistant
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Music Assistant
       description: Music Server
       link: http://ganymede.internal:8095/
       icon:
-        name: simple-icons:musicassistant
+        name: selfhst:music-assistant
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Multi-Scrobbler
@@ -42,18 +40,16 @@ services:
       description: Document Store
       link: http://ganymede.internal:4000/
       icon:
-        name: simple-icons:paperlessngx
+        name: selfhst:paperless-ngx
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Calibre
       description: eBooks
       link: http://ganymede.internal:8083
       icon:
-        name: simple-icons:calibreweb
+        name: selfhst:calibre-web
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
   Media:
@@ -61,54 +57,48 @@ services:
       description: Media Library
       link: http://ganymede.internal:8096
       icon:
-        name: simple-icons:jellyfin
+        name: selfhst:jellyfin
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Deluge
       description: Torrent Download Client
       link: http://ganymede.internal:8112/
       icon:
-        name: simple-icons:deluge
+        name: selfhst:deluge
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Sonarr
       description: TV Shows
       link: http://ganymede.internal:8989
       icon:
-        name: simple-icons:sonarr
+        name: selfhst:sonarr
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Radarr
       description: Movies
       link: http://ganymede.internal:7878
       icon:
-        name: simple-icons:radarr
+        name: selfhst:radarr
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Bazarr
       description: Subtitles
       link: http://ganymede.internal:6767
       icon:
-        name: simple-icons:bazarr
+        name: selfhst:bazarr
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
     - title: Prowlarr
       description: Indexer
       link: http://ganymede.internal:9696
       icon:
-        name: simple-icons:prowlarr
+        name: selfhst:prowlarr
         wrap: true
-        color: '#3dbcf3'
       status:
         enabled: true
   Devices:
@@ -116,7 +106,7 @@ services:
       description: OPNsense
       link: http://jupiter/
       icon:
-        name: mdi:router-network
+        name: selfhst:opnsense
         wrap: true
       status:
         enabled: true
@@ -124,7 +114,7 @@ services:
       description: TrueNAS
       link: http://io/
       icon:
-        name: mdi:nas
+        name: selfhst:truenas-core
         wrap: true
       status:
         enabled: true
