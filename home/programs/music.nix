@@ -31,6 +31,23 @@ in {
       notifications.enable = true;
     };
 
+    services.playerctld.enable = true;
+
+    sops.secrets."multi_scrobbler/listenbrainz_source_token".mode = "0440";
+
+    services.rescrobbled = {
+      enable = true;
+      settings = {
+        player-whitelist = ["mpd"];
+        listenbrainz = [
+          {
+            token-file = config.sops.secrets."multi_scrobbler/listenbrainz_source_token".path;
+            url = "http://ganymede:9078/1/";
+          }
+        ];
+      };
+    };
+
     programs.rmpc = {
       enable = true;
       config = ''
