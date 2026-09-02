@@ -22,6 +22,22 @@ services:
         color: '#3dbcf3'
       status:
         enabled: true
+    - title: Multi-Scrobbler
+      description: Scrobble to anywhere
+      link: http://ganymede.internal:9078/
+      icon:
+        name: selfhst:multi-scrobbler
+        wrap: true
+      status:
+        enabled: true
+    - title: Koito
+      description: Music Srobbler
+      link: http://ganymede.internal:4110/
+      icon:
+        name: selfhst:koito
+        wrap: true
+      status:
+        enabled: true
     - title: Paperless
       description: Document Store
       link: http://ganymede.internal:4000/
