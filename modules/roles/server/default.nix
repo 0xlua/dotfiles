@@ -24,5 +24,6 @@
     ./paperless.nix
     ./homeassistant.nix
     ./musicassistant.nix
+    ./multiscrobbler.nix
   ];
 }

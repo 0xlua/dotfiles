@@ -40,6 +40,7 @@
         paperless.enable = true;
         homeassistant.enable = true;
         musicassistant.enable = true;
+        multiscrobbler.enable = true;
         arr.enable = true;
         arr.deluge.enable = true;
         arr.flaresolverr.enable = true;
