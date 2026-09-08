@@ -19,7 +19,6 @@ in {
       environment = {
         PUID = "1000";
         PGID = "100";
-        DOCKER_MODS = "ghcr.io/jumoog/intro-skipper";
       };
       ports = ["8096:8096/tcp"];
       devices = ["/dev/dri/:/dev/dri/"];
