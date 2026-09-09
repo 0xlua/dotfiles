@@ -47,7 +47,7 @@ in {
 
   config = {
     nix = {
-      settings.experimental-features = "nix-command flakes";
+      settings.experimental-features = ["nix-command" "flakes"];
       extraOptions = ''
         trusted-users = root ${cfg.user.name}
       '';
