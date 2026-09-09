@@ -19,6 +19,7 @@ in {
 
       markdown-oxide # markdown lsp
       ltex-ls-plus # grammar lsp
+      pandoc # document converter
     ];
 
     xdg.configFile."moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
