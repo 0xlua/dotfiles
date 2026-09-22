@@ -56,5 +56,5 @@ This is my VPS hosted by Hetzner. It runs services I want to access no matter wh
 - [Bcachefs](https://wiki.nixos.org/wiki/Bcachefs)
 - Automatic / Remote Install: [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) with [disko](https://github.com/nix-community/disko)
 - [Native Secure Boot](https://github.com/NixOS/nixpkgs/issues/42127) (Stage 1)
-- [Boot Time Integrity](https://discourse.nixos.org/t/boot-time-integrity-checks-for-the-nix-store/36793) (Stage 2) (compare to [IMA](https://www.redhat.com/en/blog/how-use-linux-kernels-integrity-measurement-architecture))
+- [Boot Time Integrity](https://discourse.nixos.org/t/boot-time-integrity-checks-for-the-nix-store/36793) (Stage 2) (compare to [IMA](https://www.redhat.com/en/blog/how-use-linux-kernels-integrity-measurement-architecture), [dm-verity](https://wiki.archlinux.org/title/Dm-verity))
 - [SELinux](https://tristanxr.com/post/selinux-on-nixos/)
