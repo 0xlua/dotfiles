@@ -49,10 +49,7 @@ in {
       ];
     };
 
-    programs.yubikey-manager = {
-      enable = cfg.compositor != "none";
-      package = pkgs.yubioath-flutter;
-    };
+    programs.yubikey-manager.enable = true;
 
     programs.appimage = {
       enable = true;

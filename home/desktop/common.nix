@@ -18,11 +18,13 @@ in {
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      wl-clipboard
-      libnotify
-      xwayland-satellite
-    ];
+    home.packages = with pkgs;
+      [
+        wl-clipboard
+        libnotify
+        xwayland-satellite
+      ]
+      ++ lib.lists.optional (!cfg.preferLessGuis) yubioath-flutter;
 
     services.udiskie = {
       enable = true;
@@ -37,11 +39,9 @@ in {
 
     services.wpaperd.enable = true;
 
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
+    dconf.settings."org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
     };
 
     xdg.mimeApps = {
