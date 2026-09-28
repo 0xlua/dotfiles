@@ -19,7 +19,6 @@
     ./soju.nix
     ./stalwart.nix
     ./vaultwarden.nix
-    ./upvoterss.nix
     ./pocketid.nix
     ./paperless.nix
     ./homeassistant.nix
