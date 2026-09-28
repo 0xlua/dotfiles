@@ -24,7 +24,7 @@ in {
         ];
       };
     in {
-      image = "ghcr.io/qdm12/gluetun:latest";
+      image = "docker.io/qmcgaw/gluetun:latest";
       autoStart = true;
       labels = {"io.containers.autoupdate" = "registry";};
       capabilities = {
