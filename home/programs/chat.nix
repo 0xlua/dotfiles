@@ -23,6 +23,32 @@ in {
       };
     };
 
+    programs.tiny = {
+      enable = true;
+      settings = {
+        servers = [
+          {
+            addr = "irc.lua.one";
+            port = 6697;
+            tls = true;
+            realname = "lua";
+            nicks = ["lua"];
+            join = [];
+            sasl = {
+              username = "lua";
+              password.command = "cat ${config.sops.secrets."irc/soju".path}";
+            };
+          }
+        ];
+        defaults = {
+          nicks = ["lua"];
+          realname = "lua";
+          join = [];
+          tls = true;
+        };
+      };
+    };
+
     programs.halloy = {
       enable = !cfg.preferLessGuis;
       settings = {
