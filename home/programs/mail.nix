@@ -25,7 +25,10 @@ in {
           message = "Set home-modules.desktop.enable = true, if you want to enable mail";
         }
       ];
-      sops.secrets."stalwart_app_token".mode = "0440";
+      sops.secrets = {
+        "stalwart_app_token".mode = "0440";
+        "mailbox_app_token".mode = "0440";
+      };
 
       services.pimsync.enable = true;
 
@@ -157,51 +160,74 @@ in {
             # thunderbird = {inherit (config.programs.thunderbird) enable;};
           };
         };
-        email.accounts.lua = {
-          address = email;
-          inherit userName passwordCommand;
-          primary = true;
-          realName = "Lukas Jordan";
-          jmap.host = "${host}/.well-known/jmap";
-          imap = {
-            inherit host;
-            port = 993;
-          };
-          smtp = {
-            inherit host;
-            port = 465;
-          };
-          gpg = lib.mkIf config.home-modules.gpg.enable {
-            # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
-            key = "0A8B4FCA78F832FA";
-            signByDefault = true;
-            encryptByDefault = true;
-          };
-          folders = {
-            inbox = "Inbox";
-            sent = "Sent Items";
-            drafts = "Drafts";
-            trash = "Deleted Items";
-          };
-          thunderbird = {
-            inherit (config.programs.thunderbird) enable;
-            settings = id: {
-              "mail.identity.id_${id}.attachPgpKey" = config.home-modules.gpg.enable;
-              "mail.identity.id_${id}.protectSubject" = false;
-              "mail.identity.id_${id}.compose_html" = false;
-              "mail.identity.id_${id}.reply_on_top" = true;
+        email.accounts = {
+          lua = {
+            address = email;
+            inherit userName passwordCommand;
+            primary = true;
+            realName = "Lukas Jordan";
+            jmap.host = "${host}/.well-known/jmap";
+            imap = {
+              inherit host;
+              port = 993;
             };
-            profiles = ["lua"];
+            smtp = {
+              inherit host;
+              port = 465;
+            };
+            gpg = lib.mkIf config.home-modules.gpg.enable {
+              # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
+              key = "0A8B4FCA78F832FA";
+              signByDefault = true;
+              encryptByDefault = true;
+            };
+            folders = {
+              inbox = "Inbox";
+              sent = "Sent Items";
+              drafts = "Drafts";
+              trash = "Deleted Items";
+            };
+            thunderbird = {
+              inherit (config.programs.thunderbird) enable;
+              settings = id: {
+                "mail.identity.id_${id}.attachPgpKey" = config.home-modules.gpg.enable;
+                "mail.identity.id_${id}.protectSubject" = false;
+                "mail.identity.id_${id}.compose_html" = false;
+                "mail.identity.id_${id}.reply_on_top" = true;
+              };
+              profiles = ["lua"];
+            };
+            aerc = {
+              enable = true;
+              extraAccounts = {
+                source = lib.mkForce "jmap://${lib.strings.escapeURL userName}@${host}/.well-known/jmap";
+                source-cred-cmd = passwordCommand;
+                outgoing = lib.mkForce "jmap://";
+                use-labels = true;
+                cache-blobs = false;
+                check-mail = "1m";
+              };
+            };
           };
-          aerc = {
-            enable = true;
-            extraAccounts = {
-              source = lib.mkForce "jmap://${lib.strings.escapeURL userName}@${host}/.well-known/jmap";
-              source-cred-cmd = passwordCommand;
-              outgoing = lib.mkForce "jmap://";
-              use-labels = true;
-              cache-blobs = false;
-              check-mail = "1m";
+          mailbox = {
+            address = "lukas.jordan@mailbox.org"; # TODO: change to hi@lukasjordan.com
+            userName = "lukas.jordan@mailbox.org";
+            passwordCommand = "cat ${config.sops.secrets."mailbox_app_token".path}";
+            realName = "Lukas Jordan";
+            imap = {
+              host = "imap.mailbox.org";
+              port = 993;
+            };
+            smtp = {
+              host = "smtp.mailbox.org";
+              port = 465;
+            };
+            aerc.enable = true;
+            gpg = lib.mkIf config.home-modules.gpg.enable {
+              # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
+              key = "1AFE0BFF09B6CAF8";
+              signByDefault = true;
+              # encryptByDefault = true;
             };
           };
         };
