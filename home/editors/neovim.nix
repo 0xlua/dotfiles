@@ -14,6 +14,8 @@
     settings = {};
   };
 
+  programs.stylua.enable = true;
+
   programs.nixvim = {
     inherit (config.home-modules.desktop) enable;
     nixpkgs.useGlobalPackages = true;
@@ -108,14 +110,14 @@
         denols.enable = true;
         markdown_oxide.enable = true;
         nil_ls.enable = true;
-        ruff.enable = true;
+        ruff = {inherit (config.programs.ruff) enable;};
         rust_analyzer.enable = true;
-        stylua.enable = true;
+        stylua = {inherit (config.programs.stylua) enable;};
         superhtml.enable = true;
         taplo.enable = true;
         texlab.enable = true;
         tinymist.enable = true;
-        ty.enable = true;
+        ty = {inherit (config.programs.ty) enable;};
       };
     };
 
