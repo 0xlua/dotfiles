@@ -21,9 +21,19 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
           prefix = "ddg";
           url = "https://duckduckgo.com/?q=%TERM%";
         }
+        {
+          name = "Ecosia";
+          prefix = "eco";
+          url = "https://www.ecosia.org/search?q=%TERM%";
+        }
+        {
+          name = "SearXNG";
+          prefix = "xng";
+          url = "https://gruble.de/search?q=%TERM%";
+        }
       ];
     };
-    "elephant/menus/power.toml".source = tomlFormat.generate "elephant-websearch" {
+    "elephant/menus/power.toml".source = tomlFormat.generate "elephant-powermenu" {
       name = "power";
       pretty_name = "Power Menu";
       icon = "am-power";
@@ -58,7 +68,10 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
 
   services = {
     swaync.enable = true;
-    elephant.enable = true;
+    elephant = {
+      enable = true;
+      package = pkgs.elephant.override {enabledProviders = ["bluetooth" "bookmarks" "calc" "clipboard" "desktopapplications" "files" "menus" "niriactions" "playerctl" "providerlist" "symbols" "unicode" "websearch" "windows" "wireplumber"];};
+    };
     walker = {
       enable = true;
       systemd.enable = true;
