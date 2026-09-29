@@ -54,7 +54,7 @@ This is my VPS hosted by Hetzner. It runs services I want to access no matter wh
 - [Impermanence](https://github.com/nix-community/impermanence): Make sure important paths persist: e.g. Secure Boot keys. Persistent Paths overlap with what should be [backed up](https://github.com/0xlua/dotfiles/issues/124).
 - [Measured Boot](https://github.com/nix-community/lanzaboote/blob/master/docs/how-to-guides/enable-measured-boot.md): Includes unlocking the disk using TPM, be aware of [this attack](https://oddlama.org/blog/bypassing-disk-encryption-with-tpm2-unlock/) - use at least a pin
 - [Bcachefs](https://wiki.nixos.org/wiki/Bcachefs)
-- Automatic / Remote Install: [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) with [disko](https://github.com/nix-community/disko)
+- Automatic / Remote Install: [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) / [deploy-rs](https://github.com/serokell/deploy-rs) with [disko](https://github.com/nix-community/disko)
 - [Native Secure Boot](https://github.com/NixOS/nixpkgs/issues/42127) (Stage 1)
 - [Boot Time Integrity](https://discourse.nixos.org/t/boot-time-integrity-checks-for-the-nix-store/36793) (Stage 2) (compare to [IMA](https://www.redhat.com/en/blog/how-use-linux-kernels-integrity-measurement-architecture), [dm-verity](https://wiki.archlinux.org/title/Dm-verity))
 - [SELinux](https://tristanxr.com/post/selinux-on-nixos/)

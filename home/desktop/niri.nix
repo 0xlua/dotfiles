@@ -83,13 +83,25 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
           up = ["ctrl k" "shift Tab"];
           quick_actibate = ["ctrl 1" "ctrl 2" "ctrl 3" "ctrl 4"];
         };
-        providers.default = [
-          "desktopapplications"
-          "calc"
-          "menus:power"
-          "websearch"
-          "windows"
-        ];
+        providers = {
+          default = [
+            "desktopapplications"
+            "calc"
+            "menus:power"
+            "websearch"
+            "windows"
+          ];
+          prefixes = [
+            {
+              prefix = ">";
+              provider = "niriactions";
+            }
+            {
+              prefix = "!";
+              provider = "playerctl";
+            }
+          ];
+        };
       };
     };
   };
@@ -115,7 +127,6 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
       binds = {
         "Mod+Shift+Slash".show-hotkey-overlay = {};
         "Mod+Return".spawn-sh = ["GTK_IM_MODULE=simple ghostty"];
-        # "Mod+D".spawn = ["centerpiece"];
         "Mod+D".spawn = ["walker"];
         "Mod+Escape".spawn = ["gtklock"];
         XF86AudioRaiseVolume = {
@@ -133,6 +144,27 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
         XF86AudioMicMute = {
           spawn = ["wpctl" "set-mute" "@DEFAULT_AUDIO_SOURCE@" "toggle"];
           _props.allow-when-locked = true;
+        };
+
+        XF86AudioPlay = {
+          _props.allow-when-locked = true;
+          spawn-sh = "playerctl play-pause";
+        };
+        XF86AudioPause = {
+          _props.allow-when-locked = true;
+          spawn-sh = "playerctl play-pause";
+        };
+        XF86AudioStop = {
+          _props.allow-when-locked = true;
+          spawn-sh = "playerctl stop";
+        };
+        XF86AudioPrev = {
+          _props.allow-when-locked = true;
+          spawn-sh = "playerctl previous";
+        };
+        XF86AudioNext = {
+          _props.allow-when-locked = true;
+          spawn-sh = "playerctl next";
         };
 
         "Mod+Q".close-window = {};
