@@ -4,7 +4,8 @@
   config,
   lib,
   ...
-}: {
+}:
+lib.mkIf config.home-modules.desktop.enable {
   home.packages = [pkgs.tor-browser];
 
   stylix.targets.firefox.profileNames = ["default"];
@@ -15,7 +16,7 @@
     ext = inputs.firefox-addons.packages.x86_64-linux;
     extensions = with ext; [bitwarden ublock-origin linkding-extension tridactyl libredirect];
   in {
-    inherit (config.home-modules.desktop) enable;
+    enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
     nativeMessagingHosts = [pkgs.tridactyl-native];
     policies = {
