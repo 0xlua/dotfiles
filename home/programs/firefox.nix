@@ -5,6 +5,8 @@
   lib,
   ...
 }: {
+  home.packages = [pkgs.tor-browser];
+
   stylix.targets.firefox.profileNames = ["default"];
 
   xdg.configFile."tridactyl/tridactylrc".source = ../../files/tridactylrc;
