@@ -16,6 +16,7 @@ in {
     ];
 
     home.packages = with pkgs; [
+      steamguard-cli
       mumble
       teamspeak6-client
       chess-tui
