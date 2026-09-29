@@ -48,6 +48,14 @@ in {
       };
     };
 
+    systemd.user.services = {
+      mpdris2-rs.Unit.Requires = ["mpd.service"];
+      rescrobbled.Unit = {
+        Requires = ["mpd.service" "mpdris2-rs.service"];
+        After = ["mpd.service" "mpdris2-rs.service"];
+      };
+    };
+
     programs.rmpc = {
       enable = true;
       config = ''
