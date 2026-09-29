@@ -13,22 +13,13 @@ in {
 
     services.greetd = {
       enable = true;
+      useTextGreeter = true;
       settings = {
         default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
+          command = "${pkgs.tuigreet}/bin/tuigreet --time --remember --cmd niri-session";
           user = config.modules.user.name;
         };
       };
-    };
-
-    systemd.services.greetd.serviceConfig = {
-      Type = "idle";
-      StandardInput = "tty";
-      StandardOutput = "tty";
-      StandardError = "journal";
-      TTYReset = true;
-      TTYHangup = true;
-      TTYVTDisallocate = true;
     };
   };
 }
