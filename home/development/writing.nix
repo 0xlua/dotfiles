@@ -9,18 +9,20 @@ in {
   options.home-modules.development.languages.typesetting.enable = lib.mkEnableOption "LaTeX, Typst and Markdown tooling";
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      tectonic # LaTeX
-      texlab # LaTeX lsp
+    home.packages = with pkgs;
+      [
+        tectonic # LaTeX
+        texlab # LaTeX lsp
 
-      typst # typst
-      tinymist # typst lsp
-      typstyle # typst formatter
+        typst # typst
+        tinymist # typst lsp
+        typstyle # typst formatter
 
-      markdown-oxide # markdown lsp
-      ltex-ls-plus # grammar lsp
-      pandoc # document converter
-    ];
+        markdown-oxide # markdown lsp
+        ltex-ls-plus # grammar lsp
+        pandoc # document converter
+      ]
+      ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) typesetter;
 
     xdg.configFile."moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
       include_md_extension_md_link = true;
