@@ -17,6 +17,7 @@ in {
         "--health-interval=30s"
         "--health-timeout=10s"
         "--read-only"
+        "--tmpfs=/run/soju"
         "--security-opt=no-new-privileges"
       ];
       autoStart = true;
