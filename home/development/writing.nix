@@ -21,13 +21,23 @@ in {
         markdown-oxide # markdown lsp
         rumdl # markdown lint + format
         ltex-ls-plus # grammar lsp
+
+        treemd # markdown viewer
         pandoc # document converter
       ]
       ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) typesetter;
 
-    xdg.configFile."moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
-      include_md_extension_md_link = true;
-      include_md_extension_wikilink = true;
+    xdg.configFile = {
+      "rumdl/rumdl.toml".source = (pkgs.formats.toml {}).generate "rumdl-config" {
+        global = {
+          cache-dir = "~/.cache/rumdl";
+          extend-enable = ["MD060"];
+        };
+      };
+      "moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
+        include_md_extension_md_link = true;
+        include_md_extension_wikilink = true;
+      };
     };
 
     programs.papis = {

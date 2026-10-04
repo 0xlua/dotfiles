@@ -12,7 +12,8 @@
         }
         {
           name = "markdown";
-          language-servers = ["rumdl" "markdown-oxide" "ltex-ls-plus"];
+          # language-servers = ["rumdl" "markdown-oxide" "ltex-ls-plus"];
+          language-servers = ["rumdl" "markdown-oxide"];
           auto-format = true;
           formatter = {
             command = "rumdl";
