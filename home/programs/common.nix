@@ -9,7 +9,6 @@
   home.packages = with pkgs; [
     # file viewer
     viu # images
-    mdcat # md
     doxx # docx
     hygg # pdf
     xleak # xlsx
@@ -31,7 +30,6 @@
 
     # encryption
     age
-    rage
   ];
 
   sops.secrets = {
