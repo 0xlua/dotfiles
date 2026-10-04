@@ -40,6 +40,11 @@ lib.mkIf config.home-modules.desktop.enable {
           label = "notes";
           path = "${config.home.homeDirectory}/notes";
         };
+        "0g4ps-mp8vu" = {
+          inherit devices;
+          label = "anki";
+          path = "${config.home.homeDirectory}/.local/share/Anki2/User 1";
+        };
       };
       options = {
         localAnnounceEnabled = true;
