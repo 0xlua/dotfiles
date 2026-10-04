@@ -19,6 +19,7 @@ in {
         typstyle # typst formatter
 
         markdown-oxide # markdown lsp
+        rumdl # markdown lint + format
         ltex-ls-plus # grammar lsp
         pandoc # document converter
       ]

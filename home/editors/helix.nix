@@ -11,6 +11,15 @@
           formatter = {command = "tex-fmt";};
         }
         {
+          name = "markdown";
+          language-servers = ["rumdl" "markdown-oxide" "ltex-ls-plus"];
+          auto-format = true;
+          formatter = {
+            command = "rumdl";
+            args = ["fmt" "-" "--silent"];
+          };
+        }
+        {
           name = "python";
           auto-format = true;
         }
@@ -54,6 +63,10 @@
             inlayHints.functionLikeReturnTypes.enabled = true;
             inlayHints.enumMemberValues.enabled = true;
           };
+        };
+        rumdl = {
+          command = "rumdl";
+          args = ["server"];
         };
         texlab.config.texlab = {
           latexFormatter = "tex-fmt";
