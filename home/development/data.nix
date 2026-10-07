@@ -12,19 +12,15 @@ in {
     home.packages = with pkgs; [
       # LSP
       taplo # toml
-      postgres-language-server
+      postgres-language-server # postgres
 
-      # json
-      jnv # interactive jq filter
-      jaq # faster jq clone
-
-      # CSV (choose one)
-      qsv # manipulate csv
-      xan # process csv: view, plots, etc
-      tabiew # view csv
+      # formats
+      jaq # json, yaml, toml, xml, ...
+      tabiew # csv, sql, excel
+      rainfrog # database client
+      squix # sql stash
 
       # Misc
-      rainfrog # database client
       stu # s3 client
     ];
   };

@@ -15,12 +15,11 @@
 
     # system
     dysk
-    dua # disk usage
+    ncdu
 
     # tools
     ouch # archiving
     managarr # *arr
-    podman-tui
     magic-wormhole-rs
     dig # dns lookup
 
@@ -90,8 +89,6 @@
     };
   };
 
-  programs.broot.enable = false;
-
   programs.fzf = {
     enable = true;
     historyWidget.command = "";
@@ -112,11 +109,9 @@
   };
 
   programs.television = {
-    enable = false;
+    enable = true;
     settings.use_nerd_font_icons = true;
   };
-
-  programs.nix-search-tv.enable = false;
 
   programs.yazi = {
     enable = true;

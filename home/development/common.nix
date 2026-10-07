@@ -9,13 +9,10 @@ in {
   options.home-modules.development.enable = lib.mkEnableOption "dev tooling";
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs;
-      [
-        mago # php lsp
-        hurl # HTTP Requests from files
-        just # command runner
-        grex # regex generator
-      ]
-      ++ lib.lists.optional (with config.home-modules.desktop; (enable && ! preferLessGuis)) yaak;
+    home.packages = with pkgs; [
+      hurl # HTTP Requests from files
+      just # command runner
+      grex # regex generator
+    ];
   };
 }

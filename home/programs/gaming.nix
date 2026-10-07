@@ -20,16 +20,12 @@ in {
       mumble
       teamspeak6-client
       chess-tui
-      # bottles
       # mangohud
     ];
     home.file.counterstrike-autoexec = {
       target = ".steam/steam/steamapps/common/Counter-Strike\ Global\ Offensive/game/csgo/cfg/autoexec.cfg";
       source = ../../files/autoexec.cfg;
       force = true;
-    };
-    programs.obs-studio = {
-      enable = true;
     };
     programs.discord = {
       enable = true;

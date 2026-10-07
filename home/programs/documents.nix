@@ -1,12 +1,9 @@
 {
   config,
-  pkgs,
   lib,
   ...
 }: {
   config = lib.mkIf config.home-modules.desktop.enable {
-    home.packages = with pkgs; [rnote];
-
     programs.zathura = {
       enable = true;
       options = {
