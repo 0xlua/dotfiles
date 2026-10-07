@@ -49,10 +49,17 @@ in {
     };
 
     systemd.user.services = {
-      mpdris2-rs.Unit.Requires = ["mpd.service"];
-      rescrobbled.Unit = {
-        Requires = ["mpd.service" "mpdris2-rs.service"];
-        After = ["mpd.service" "mpdris2-rs.service"];
+      mpd.Install.WantedBy = ["mpdris2-rs.service"];
+      mpdris2-rs = {
+        Install.WantedBy = ["rescrobbled.service"];
+        Unit.Requires = ["mpd.service"];
+      };
+      rescrobbled = {
+        Install.WantedBy = [];
+        Unit = {
+          Requires = ["mpd.service" "mpdris2-rs.service"];
+          After = ["mpd.service" "mpdris2-rs.service"];
+        };
       };
     };
 
