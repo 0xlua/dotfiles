@@ -65,7 +65,7 @@ in {
       settings = {
         banner = {
           color = "magenta";
-          command = "${pkgs.figlet}/bin/figlet -f slant ${config.networking.hostName}";
+          command = "${lib.getExe pkgs.figlet} -f slant ${config.networking.hostName}";
         };
         cg_stats = {
           state_file = "cg_stats.toml";
