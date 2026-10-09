@@ -126,7 +126,7 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
     settings = {
       binds = {
         "Mod+Shift+Slash".show-hotkey-overlay = {};
-        "Mod+Return".spawn-sh = ["GTK_IM_MODULE=simple ghostty"];
+        "Mod+Return".spawn = ["foot"];
         "Mod+D".spawn = ["walker"];
         "Mod+Escape".spawn = ["gtklock"];
         XF86AudioRaiseVolume = {

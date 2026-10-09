@@ -31,8 +31,8 @@ in {
       settings = {
         # see https://github.com/nix-community/home-manager/issues/632
         program_options = {
-          file_manager = "${pkgs.yazi}/bin/yazi";
-          terminal = "${pkgs.ghostty}/bin/ghostty";
+          file_manager = lib.getExe config.programs.yazi.package;
+          terminal = lib.getExe config.programs.foot.package;
         };
       };
     };

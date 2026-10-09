@@ -90,8 +90,8 @@ in {
                   Super,
               ],
               key: \"Return\",
-              description: Some(\"Ghostty\"),
-          ): Spawn(\"GTK_IM_MODULE=simple ghostty\"),
+              description: Some(\"Terminal\"),
+          ): Spawn(\"foot\"),
           (
               modifiers: [
                   Super,
