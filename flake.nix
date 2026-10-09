@@ -40,7 +40,6 @@
         modules = [
           inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
           inputs.phoenix.nixosModules.default
-          inputs.dove.nixosModules.default
           ./modules
           ./hosts/europa
         ];
