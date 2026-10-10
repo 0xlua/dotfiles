@@ -5,6 +5,11 @@
   ...
 }: {
   config = lib.mkIf config.home-modules.desktop.enable {
-    home.packages = with pkgs; [oculante];
+    home.packages = with pkgs; [oculante qview];
+
+    programs.imv = {
+      enable = true;
+      settings = {};
+    };
   };
 }

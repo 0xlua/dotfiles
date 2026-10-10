@@ -53,11 +53,7 @@
       share_targets = [
         "clipboard"
         "mpv mpv {url}"
-        "oculante oculante {url}"
       ];
-      input_config.mappings = {
-        "; i" = ["cmd hintshare oculante"];
-      };
     };
   };
 

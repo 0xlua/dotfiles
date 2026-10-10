@@ -52,7 +52,7 @@ in {
         config.programs.yazi.package
         config.programs.helix.package
         config.programs.mpv.package
-        pkgs.oculante
+        config.programs.imv.package
       ];
       defaultApplications."x-scheme-handler/mpv" = ["mpv.desktop"];
     };
