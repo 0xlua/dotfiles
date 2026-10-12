@@ -42,25 +42,5 @@ in {
         };
       };
     };
-
-    networking = let
-      dhcpInterfaces = ["enp0s31f6"];
-    in {
-      dhcpcd = {
-        enable = true;
-        allowInterfaces = dhcpInterfaces;
-      };
-      wireless.iwd = {
-        enable = true;
-        settings.General = {
-          EnableNetworkConfiguration = "True";
-          AddressRandomization = "once";
-        };
-      };
-      networkmanager = {
-        unmanaged = dhcpInterfaces;
-        wifi.backend = "iwd";
-      };
-    };
   };
 }
