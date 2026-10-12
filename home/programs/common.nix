@@ -19,6 +19,7 @@
 
     # tools
     ouch # archiving
+    edir # bulk rename
     managarr # *arr
     magic-wormhole-rs
     dig # dns lookup
