@@ -95,7 +95,10 @@
       # theme = "nord";
       keys.normal = {
         ret = "goto_word";
-        space.o = "file_picker_in_current_buffer_directory";
+        space = {
+          o = "file_picker_in_current_buffer_directory";
+          q = ":buffer-close";
+        };
       };
       editor = {
         lsp.display-inlay-hints = true;
