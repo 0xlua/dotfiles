@@ -54,6 +54,7 @@ lib.mkIf config.home-modules.desktop.enable {
             "github.com githubassets.com * noop"
             "www2.buecherhallen.de cloudflare.com * noop"
             "www2.buecherhallen.de mylibrary.digital * noop"
+            "mailbox.org heinlein-support.de * noop"
           ];
           hostnameSwitchesString = lib.concatLines [
             "no-large-media: behind-the-scene false"
