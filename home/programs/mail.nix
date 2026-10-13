@@ -210,8 +210,8 @@ in {
             };
           };
           mailbox = {
-            address = "lukas.jordan@mailbox.org"; # TODO: change to hi@lukasjordan.com
-            userName = "lukas.jordan@mailbox.org";
+            address = "hi@lukasjordan.com";
+            userName = "hi@lukasjordan.com";
             passwordCommand = "cat ${config.sops.secrets."mailbox_app_token".path}";
             realName = "Lukas Jordan";
             imap = {
@@ -224,10 +224,9 @@ in {
             };
             aerc.enable = true;
             gpg = lib.mkIf config.home-modules.gpg.enable {
-              # Note: In Thunderbird the Public Key also has to be imported: Key Manager -> Keyserver -> Discover Keys Online
-              key = "1AFE0BFF09B6CAF8";
+              key = "F49C2A49F161077C";
               signByDefault = true;
-              # encryptByDefault = true;
+              encryptByDefault = true;
             };
           };
         };
