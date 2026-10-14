@@ -9,15 +9,19 @@ in {
 
   config = lib.mkIf cfg.enable {
     sops = {
-      secrets."vaultwarden/smtp_username" = {};
-      secrets."vaultwarden/smtp_password" = {};
-      secrets."vaultwarden/oidc_client_id" = {};
-      secrets."vaultwarden/oidc_client_secret" = {};
+      secrets = {
+        "vaultwarden/smtp_username" = {};
+        "vaultwarden/smtp_password" = {};
+        "vaultwarden/oidc_client_id" = {};
+        "vaultwarden/oidc_client_secret" = {};
+        "vaultwarden/admin_token" = {};
+      };
       templates."vaultwarden.env".content = ''
         SMTP_USERNAME=${config.sops.placeholder."vaultwarden/smtp_username"}
         SMTP_PASSWORD=${config.sops.placeholder."vaultwarden/smtp_password"}
         SSO_CLIENT_ID=${config.sops.placeholder."vaultwarden/oidc_client_id"}
         SSO_CLIENT_SECRET=${config.sops.placeholder."vaultwarden/oidc_client_secret"}
+        ADMIN_TOKEN=${config.sops.placeholder."vaultwarden/admin_token"}
       '';
     };
     programs.rust-motd.settings.service_status.vaultwarden = config.virtualisation.oci-containers.containers.vaultwarden.serviceName;
