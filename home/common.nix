@@ -52,6 +52,8 @@
         nil # nix lsp
         alejandra # nix formatter
         sops # nix secrets
+        cryptsetup # LUKS / dm-crypt
+        openssl # TLS tools, maybe switch to BoringSSL
         uutils-coreutils-noprefix # coreutils
       ];
 
