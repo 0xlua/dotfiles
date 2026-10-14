@@ -26,14 +26,24 @@ in {
       ]
       ++ lib.lists.optional (!cfg.preferLessGuis) yubioath-flutter;
 
+    sops.secrets.luks_thumbdrive.mode = "0440";
+
     services.udiskie = {
       enable = true;
       settings = {
         # see https://github.com/nix-community/home-manager/issues/632
-        program_options = {
-          file_manager = lib.getExe config.programs.yazi.package;
-          terminal = lib.getExe config.programs.foot.package;
+        program_options = let
+          foot = lib.getExe config.programs.foot.package;
+        in {
+          file_manager = "${foot} ${lib.getExe config.programs.yazi.package}";
+          terminal = "${foot} -D";
         };
+        device_config = [
+          {
+            id_uuid = "20f971c7-bed2-49a2-8810-56c2e02ff087";
+            keyfile = config.sops.secrets.luks_thumbdrive.path;
+          }
+        ];
       };
     };
 
