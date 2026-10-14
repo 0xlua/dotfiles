@@ -10,17 +10,17 @@ in {
   options.modules.roles.desktop.gaming.enable = lib.mkEnableOption "gaming";
 
   config = lib.mkIf cfg.gaming.enable {
-    nixpkgs = {
-      config.allowUnfree = true;
-      overlays = [inputs.nix-cachyos-kernel.overlays.pinned];
-    };
+    nixpkgs.overlays = [inputs.nix-cachyos-kernel.overlays.pinned];
 
     nix.settings = {
       substituters = ["https://attic.xuyh0120.win/lantian"];
       trusted-public-keys = ["lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="];
     };
 
-    modules.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+    modules = {
+      kernel = pkgs.cachyosKernels.linuxPackages-cachyos-bore-lto-x86_64-v4;
+      unfreePackages = [(lib.getName config.programs.steam.package) "steam-unwrapped" "teamspeak6-client" "discord-ptb" "discord-ptb-unwrapped"];
+    };
 
     hardware.amdgpu.overdrive.enable = true;
 

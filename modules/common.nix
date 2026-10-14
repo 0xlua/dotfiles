@@ -43,6 +43,12 @@ in {
           };
         };
     };
+    unfreePackages = lib.mkOption {
+      type = with lib.types; listOf str;
+      default = [];
+      example = [pkgs.steam];
+      description = "List of unfree packages to allow";
+    };
   };
 
   config = {
@@ -117,5 +123,7 @@ in {
       enable = true;
       base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
     };
+
+    nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) config.modules.unfreePackages;
   };
 }
