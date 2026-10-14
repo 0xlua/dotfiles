@@ -228,6 +228,7 @@ in {
               signByDefault = true;
               encryptByDefault = true;
             };
+            folders.inbox = "INBOX";
           };
         };
       };
