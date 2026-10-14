@@ -5,6 +5,5 @@
     ./samba.nix
     ./secureboot.nix
     ./patches.nix
-    ./unfree.nix
   ];
 }
