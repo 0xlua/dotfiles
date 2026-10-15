@@ -105,6 +105,10 @@
     };
   };
 
+  programs.rclone = {
+    enable = true;
+  };
+
   programs.television = {
     enable = true;
     settings.use_nerd_font_icons = true;
