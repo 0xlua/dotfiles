@@ -5,13 +5,14 @@
     enableDefaultConfig = false;
     settings = {
       "*" = {
-        ForwardAgent = true;
         AddKeysToAgent = "yes";
         ServerAliveInterval = 60;
       };
       galileo = {
         HostName = "lua.one";
+        ForwardAgent = true;
       };
+      ganymede.ForwardAgent = true;
       backup = {
         HostName = "u413359.your-storagebox.de";
         User = "u413359";
