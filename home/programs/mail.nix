@@ -36,12 +36,36 @@ in {
 
       programs.aerc = {
         enable = true;
+        # TODO: this replaces all bindings
+        # extraBinds = {
+        #   global = {
+        #     gn = ":next-tab<Enter>";
+        #     gp = ":prev-tab<Enter>";
+        #   };
+        #   messages = {
+        #     A = ":move -a LocalLua Archive<Enter>";
+        #     x = ":mark -t<Enter>:next<Enter>";
+        #   };
+        # };
         extraConfig = {
           hooks.mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
           compose.address-book-cmd = "khard email --parsable --remove-first-line %s";
           filters = {
             "text/plain" = "wrap -w 100 | colorize";
             "text/html" = "html | colorize";
+            "text/calendar" = "calendar";
+            # TODO: https://man.archlinux.org/man/aerc-config.5.en#EXAMPLES
+            # "application/pdf" = "${pkgs.xpdf}/bin/pdftotext -l 10 -nopgbrk -q  -";
+            "image/*" = "viu";
+            ".headers" = "colorize";
+          };
+          openers = {
+            "text/calendar" = "khal import";
+            "text/html" = lib.getExe config.programs.firefox.package;
+            "text/plain" = lib.getExe config.programs.helix.package;
+            "application/pdf" = lib.getExe config.programs.zathura.package;
+            "video/*" = lib.getExe config.programs.mpv.package;
+            "image/*" = lib.getExe config.programs.imv.package;
           };
           general = {
             unsafe-accounts-conf = true;
