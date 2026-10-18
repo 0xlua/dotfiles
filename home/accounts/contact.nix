@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.mkIf config.home-modules.mail {
+lib.mkIf config.home-modules.mail.enable {
   accounts.contact = {
     basePath = ".contacts";
     accounts.lua = let

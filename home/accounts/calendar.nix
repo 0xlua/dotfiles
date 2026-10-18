@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.mkIf config.home-modules.mail {
+lib.mkIf config.home-modules.mail.enable {
   accounts.calendar = {
     basePath = ".calendars";
     accounts.lua = let

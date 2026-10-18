@@ -3,7 +3,7 @@
   lib,
   ...
 }:
-lib.mkIf config.home-modules.mail {
+lib.mkIf config.home-modules.mail.enable {
   accounts.email.accounts = let
     realName = "Luks Jordan";
   in {
