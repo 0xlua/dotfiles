@@ -54,8 +54,6 @@ in {
             "text/plain" = "wrap -w 100 | colorize";
             "text/html" = "html | colorize";
             "text/calendar" = "calendar";
-            # TODO: https://man.archlinux.org/man/aerc-config.5.en#EXAMPLES
-            # "application/pdf" = "${pkgs.xpdf}/bin/pdftotext -l 10 -nopgbrk -q  -";
             "image/*" = "viu";
             ".headers" = "colorize";
           };
