@@ -1,5 +1,6 @@
 {
   imports = [
+    ./accounts
     ./common.nix
     ./shell.nix
     ./desktop

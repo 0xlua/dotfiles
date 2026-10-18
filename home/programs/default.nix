@@ -1,5 +1,6 @@
 {
   imports = [
+    ./aerc.nix
     ./common.nix
     ./chat.nix
     ./documents.nix
@@ -9,12 +10,12 @@
     ./gpg.nix
     ./images.nix
     ./llm.nix
-    ./mail.nix
     ./music.nix
     ./rustypaste.nix
     ./ssh.nix
     ./syncthing.nix
     ./terminals.nix
+    ./thunderbird.nix
     ./video.nix
   ];
 }
