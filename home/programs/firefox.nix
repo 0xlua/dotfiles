@@ -14,16 +14,28 @@ lib.mkIf config.home-modules.desktop.enable {
 
   programs.firefox = let
     ext = inputs.firefox-addons.packages.x86_64-linux;
-    extensions = with ext; [bitwarden ublock-origin linkding-extension tridactyl libredirect];
+    extensions = with ext; [bitwarden ublock-origin linkding-extension tridactyl libredirect mailvelope];
   in {
     enable = true;
     configPath = "${config.xdg.configHome}/mozilla/firefox";
-    nativeMessagingHosts = [pkgs.tridactyl-native];
+    nativeMessagingHosts = with pkgs; [
+      tridactyl-native
+      (
+        writeTextDir "lib/mozilla/native-messaging-hosts/gpgmejson.json" (builtins.toJSON {
+          name = "gpgmejson";
+          description = "JavaScript binding for GnuPG";
+          path = lib.getExe' pkgs.gpgme.dev "gpgme-json";
+          type = "stdio";
+          allowed_extensions = with ext; [mailvelope.addonId];
+        })
+      )
+    ];
     policies = {
       DisplayMenuBar = "never";
       SearchBar = "unified";
       TranslateEnabled = false;
       PictureInPicture.Enabled = false;
+      ExtensionSettings.${ext.mailvelope.addonId}.allowed_permissions = ["nativeMessaging"];
       "3rdparty".Extensions = {
         ${ext.ublock-origin.addonId}.adminSettings = {
           userSettings = rec {
