@@ -84,6 +84,8 @@ in {
       ];
     };
 
+    services.dbus.packages = [pkgs.gcr_3];
+
     security.rtkit.enable = true;
 
     services.pipewire = {

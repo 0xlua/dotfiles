@@ -11,8 +11,6 @@ in {
 
     environment.pathsToLink = ["/share/applications" "/share/xdg-desktop-portal"];
 
-    services.dbus.packages = [pkgs.gcr_3];
-
     services.greetd = {
       enable = true;
       useTextGreeter = true;
