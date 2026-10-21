@@ -4,7 +4,7 @@
   ...
 }: {
   programs.aerc = {
-    enable = true;
+    inherit (config.home-modules.mail) enable;
     extraConfig = {
       hooks.mail-received = "notify-send \"New mail from $AERC_FROM_NAME\" \"$AERC_SUBJECT\"";
       compose.address-book-cmd = "khard email --parsable --remove-first-line %s";

@@ -4,7 +4,7 @@
   ...
 }: {
   programs.thunderbird = {
-    enable = !config.home-modules.desktop.preferLessGuis;
+    enable = with config.home-modules; (mail.enable && !desktop.preferLessGuis);
     package = pkgs.thunderbird-latest;
     profiles.lua = {
       isDefault = true;
