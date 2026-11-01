@@ -16,7 +16,6 @@ in {
     boot = {
       # Lanzaboote currently replaces the systemd-boot module.
       loader.systemd-boot.enable = lib.mkForce false;
-      initrd.systemd.enable = true;
       lanzaboote = {
         enable = true;
         pkiBundle = "/var/lib/sbctl";
