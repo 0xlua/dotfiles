@@ -5,7 +5,7 @@
 }: let
   cfg = config.modules.roles.laptop;
 in {
-  imports = [./eduroam.nix];
+  imports = [./eduroam.nix ./mobyklick.nix];
   options.modules.roles.laptop = {
     enable = lib.mkEnableOption "the laptop role";
   };
