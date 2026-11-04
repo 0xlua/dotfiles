@@ -10,7 +10,7 @@ in {
   config = lib.mkIf cfg.enable {
     programs.rust-motd.settings.service_status.atuin = config.virtualisation.oci-containers.containers.atuin.serviceName;
     virtualisation.oci-containers.containers.atuin = {
-      image = "ghcr.io/atuinsh/atuin:18.18";
+      image = "ghcr.io/atuinsh/atuin:18.24";
       autoStart = true;
       user = "1000";
       capabilities.ALL = false;
@@ -27,6 +27,7 @@ in {
         ATUIN_DB_URI = "sqlite:///config/atuin.db";
         ATUIN_HOST = "0.0.0.0";
         ATUIN_OPEN_REGISTRATION = "false";
+        ATUIN_TRUSTED_PROXIES = "10.88.0.0/16";
       };
       volumes = ["/home/lua/podman/atuin:/config"];
     };
