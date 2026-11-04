@@ -12,7 +12,7 @@
         "text/plain" = "wrap -w 100 | colorize";
         "text/html" = "html | colorize";
         "text/calendar" = "calendar";
-        "image/*" = "viu";
+        "image/*" = "viu -t -w 80 -";
         ".headers" = "colorize";
       };
       openers = {
