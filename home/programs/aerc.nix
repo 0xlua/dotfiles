@@ -58,6 +58,7 @@
         "H" = ":collapse-folder<Enter>";
         "L" = ":expand-folder<Enter>";
         "tf" = ":toggle-folder<Enter>";
+        "tr" = ":read -t<Enter>";
         "v" = ":mark -t<Enter>";
         "x" = ":mark -t<Enter>:next<Enter>";
         "V" = ":mark -v<Enter>";
