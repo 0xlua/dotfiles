@@ -230,7 +230,7 @@ lib.mkIf (config.home-modules.desktop.compositor == "niri") {
         keyboard.xkb = {
           layout = "us";
           variant = "intl";
-          options = "caps:escape";
+          options = "caps:escape,compose:ralt";
         };
         touchpad = {
           tap = {};
