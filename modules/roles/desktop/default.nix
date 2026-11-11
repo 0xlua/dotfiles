@@ -51,6 +51,8 @@ in {
 
     programs.yubikey-manager.enable = true;
 
+    programs.yubikey-touch-detector.enable = true;
+
     programs.appimage = {
       enable = true;
       binfmt = true;
