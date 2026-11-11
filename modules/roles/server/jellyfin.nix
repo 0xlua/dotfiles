@@ -26,6 +26,7 @@ in {
         "/home/lua/podman/jellyfin:/config"
         "/home/lua/media/movies:/data/movies"
         "/home/lua/media/tv:/data/tv"
+        "/home/lua/media/youtube:/data/youtube"
       ];
     };
   };

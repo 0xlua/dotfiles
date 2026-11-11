@@ -48,6 +48,7 @@
         arr.radarr.enable = true;
         arr.sonarr.enable = true;
         arr.bazarr.enable = true;
+        arr.ytdl-sub.enable = true;
       };
     };
   };
