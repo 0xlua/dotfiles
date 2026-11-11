@@ -107,7 +107,6 @@
       inlayHints.enable = true;
       servers = {
         biome.enable = true;
-        denols.enable = true;
         markdown_oxide.enable = true;
         nil_ls.enable = true;
         ruff = {inherit (config.programs.ruff) enable;};
@@ -143,8 +142,8 @@
         settings = {
           formatters_by_ft = {
             "_" = ["trim_whitespace"];
-            javascript = ["biome" "denofmt"];
-            typescript = ["biome" "denofmt"];
+            javascript = ["biome"];
+            typescript = ["biome"];
             lua = ["stylua"];
             nix = ["alejandra"];
             rust = ["rustfmt"];

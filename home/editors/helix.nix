@@ -42,28 +42,13 @@
         {
           name = "typescript";
           auto-format = true;
-          language-servers = [{name = "deno-lsp";} "biome"];
+          language-servers = ["biome"];
         }
       ];
       language-server = {
         biome = {
           command = "biome";
           args = ["lsp-proxy"];
-        };
-        deno-lsp = {
-          command = "deno";
-          args = ["lsp"];
-          config.deno = {
-            enable = true;
-            unstable = true;
-            suggest.imports.hosts = {"https://deno.land" = true;};
-            inlayHints.parameterNames.enabled = "all";
-            inlayHints.parameterTypes.enabled = true;
-            inlayHints.variableTypes.enabled = true;
-            inlayHints.propertyDeclarationTypes.enabled = true;
-            inlayHints.functionLikeReturnTypes.enabled = true;
-            inlayHints.enumMemberValues.enabled = true;
-          };
         };
         rumdl = {
           command = "rumdl";

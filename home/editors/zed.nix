@@ -1,7 +1,7 @@
 {config, ...}: {
   programs.zed-editor = {
     inherit (config.home-modules.desktop) enable;
-    extensions = ["deno" "biome" "nix" "sql" "typst" "html" "markdown-oxide" "latex"];
+    extensions = ["biome" "nix" "sql" "typst" "html" "markdown-oxide" "latex"];
     userSettings = {
       auto_update = false;
       disable_ai = true;
@@ -15,7 +15,6 @@
           exportPdf = "onSave";
           outputPath = "$root/$name";
         };
-        deno.settings = config.programs.helix.languages.language-server.deno-lsp.config;
       };
       languages = {
         Python = {
