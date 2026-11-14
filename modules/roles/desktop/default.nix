@@ -101,6 +101,13 @@ in {
 
     services.udisks2.enable = true;
 
+    modules.unfreePackages = ["corefonts"];
+
+    fonts = {
+      enableDefaultPackages = true;
+      packages = with pkgs; [corefonts];
+    };
+
     stylix = {
       image = ../../../files/wallpaper/patagonia.jpg;
       polarity = "dark";
