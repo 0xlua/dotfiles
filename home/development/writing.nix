@@ -25,7 +25,7 @@ in {
         treemd # markdown viewer
         pandoc # document converter
         bibiman # BibLaTeX TUI
-        # zotero # research sources
+        zotero # research sources
       ]
       ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) typesetter;
 

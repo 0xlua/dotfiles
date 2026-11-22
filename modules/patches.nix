@@ -8,4 +8,10 @@
   config,
   ...
 }: {
+  # Zotero 10 requires Firefox 140 ESR, which is EOL
+  # Zotero 11 will upgrade to 153 ESR, this can be removed then
+  modules.unfreePackages = ["firefox-esr-140-bin-unwrapped"];
+  nixpkgs.config.permittedInsecurePackages = [
+    "firefox-esr-140-bin-unwrapped-140.17.0esr"
+  ];
 }
