@@ -24,6 +24,8 @@ in {
 
         treemd # markdown viewer
         pandoc # document converter
+        bibiman # BibLaTeX TUI
+        # zotero # research sources
       ]
       ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) typesetter;
 
@@ -41,7 +43,7 @@ in {
     };
 
     programs.papis = {
-      enable = false;
+      enable = true;
       libraries = {};
       settings = {
         editor = "hx";
