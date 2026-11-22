@@ -7,6 +7,8 @@
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
   home.packages = with pkgs; [
+    feather
+
     # file viewer
     viu # images
     doxx # docx
