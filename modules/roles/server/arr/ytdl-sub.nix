@@ -21,7 +21,7 @@ in {
         readWritePaths = [path];
         subscriptions = {
           "__preset__" = {overrides.tv_show_directory = path;};
-          "Jellyfin TV Show by Date | Only Recent | Max 2160p" = {
+          "Jellyfin TV Show by Date | Only Recent Archive | Max 2160p" = {
             "Linus Tech Tips" = "https://www.youtube.com/@LinusTechTips";
             "Tom Scott" = "https://www.youtube.com/@TomScottGo";
             "Practical Engineering" = "https://www.youtube.com/@PracticalEngineeringChannel";
