@@ -45,7 +45,7 @@ in {
           "pkg.jsn.cam/caddy-defender@v0.10.1"
           "github.com/mholt/caddy-l4@v0.1.2"
         ];
-        hash = "sha256-EpsXrbMCgjCm3lH8jhHZJjyvCKJBYappVs3Z92aJHlo=";
+        hash = "sha256-WYX4p+kvyA0wjDJPl2c1zGCkVw3Qx4NaAhJjetRy5TI=";
       };
       imageFile = pkgs.dockerTools.buildImage {
         name = "caddy";
