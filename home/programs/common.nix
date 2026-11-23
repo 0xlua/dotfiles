@@ -6,33 +6,33 @@
 }: {
   imports = [inputs.sops-nix.homeManagerModules.sops];
 
-  home.packages = with pkgs; [
-    feather
+  home.packages = with pkgs;
+    [
+      # file viewer
+      viu # images
+      doxx # docx
+      hygg # pdf
+      xleak # xlsx
 
-    # file viewer
-    viu # images
-    doxx # docx
-    hygg # pdf
-    xleak # xlsx
+      # system
+      dysk
+      ncdu
 
-    # system
-    dysk
-    ncdu
+      # tools
+      ouch # archiving
+      edir # bulk rename
+      managarr # *arr
+      magic-wormhole-rs
+      dig # dns lookup
 
-    # tools
-    ouch # archiving
-    edir # bulk rename
-    managarr # *arr
-    magic-wormhole-rs
-    dig # dns lookup
+      # logs
+      tailspin
+      hl-log-viewer
 
-    # logs
-    tailspin
-    hl-log-viewer
-
-    # encryption
-    age
-  ];
+      # encryption
+      age
+    ]
+    ++ lib.lists.optional (with config.home-modules.desktop; (enable && !preferLessGuis)) feather; # Monero Wallet
 
   sops.secrets = {
     "miniflux/token_eilmeldung".mode = "0440";
