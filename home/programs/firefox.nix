@@ -105,7 +105,7 @@ lib.mkIf config.home-modules.desktop.enable {
         "network.protocol-handler.external.bitwarden" = true;
       };
       search = {
-        default = "ddg";
+        default = "ddglitep";
         force = true;
       };
     };
