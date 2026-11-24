@@ -41,27 +41,21 @@ in {
         "multi_scrobbler/koito_api_key".mode = "0440";
         "multi_scrobbler/listenbrainz_api_key".mode = "0440";
         "multi_scrobbler/listenbrainz_source_token".mode = "0440";
-        "multi_scrobbler/lastfm_api_key".mode = "0440";
+        "multi_scrobbler/admin_pw".mode = "0440";
       };
       templates."msEnv".content = ''
         KOITO_API_KEY=${config.sops.placeholder."multi_scrobbler/koito_api_key"}
         LISTENBRAINZ_API_KEY=${config.sops.placeholder."multi_scrobbler/listenbrainz_api_key"}
         LISTENBRAINZ_SOURCE_TOKEN=${config.sops.placeholder."multi_scrobbler/listenbrainz_source_token"}
-        LASTFM_API_KEY=${config.sops.placeholder."multi_scrobbler/lastfm_api_key"}
+        ADMIN_SETUP_PW=${config.sops.placeholder."multi_scrobbler/admin_pw"}
       '';
     };
 
     virtualisation.oci-containers.containers.multiscrobbler = {
       image = "ghcr.io/foxxmd/multi-scrobbler:latest";
       autoStart = true;
-      # user = "1000:100";
-      capabilities = {
-        # ALL = false;
-        CHOWN = true;
-        SETGID = true;
-        SETUID = true;
-        DAC_OVERRIDE = true;
-      };
+      user = "1000:100";
+      capabilities.ALL = false;
       extraOptions = [
         "--health-cmd=[\"curl\", \"-fsS\", \"http://localhost:4110/api/health\"]"
         "--health-interval=30s"
@@ -75,9 +69,6 @@ in {
       environment = {
         DATA_DIR = "/msData";
         TZ = "Europe/Berlin";
-        PUID = "1000";
-        PGID = "100";
-        # S6_READ_ONLY_ROOT = "1";
       };
       ports = ["9078:9078/tcp"];
       labels."io.containers.autoupdate" = "registry";
