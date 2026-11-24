@@ -32,7 +32,10 @@
       # encryption
       age
     ]
-    ++ lib.lists.optional (with config.home-modules.desktop; (enable && !preferLessGuis)) feather; # Monero Wallet
+    ++ lib.lists.optionals (with config.home-modules.desktop; (enable && !preferLessGuis)) [
+      feather # Monero Wallet
+      drawio # Diagram Editor
+    ];
 
   sops.secrets = {
     "miniflux/token_eilmeldung".mode = "0440";
