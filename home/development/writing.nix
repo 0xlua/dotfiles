@@ -29,14 +29,19 @@ in {
       ]
       ++ lib.lists.optional (!config.home-modules.desktop.preferLessGuis) typesetter;
 
-    xdg.configFile = {
-      "rumdl/rumdl.toml".source = (pkgs.formats.toml {}).generate "rumdl-config" {
+    xdg.configFile = let
+      tomlFormat = pkgs.formats.toml {};
+    in {
+      "bibiman/bibiman.toml".source =
+        tomlFormat.generate "bibiman-config" {
+        };
+      "rumdl/rumdl.toml".source = tomlFormat.generate "rumdl-config" {
         global = {
           cache-dir = "~/.cache/rumdl";
           extend-enable = ["MD060"];
         };
       };
-      "moxide/settings.toml".source = (pkgs.formats.toml {}).generate "markdown-oxide" {
+      "moxide/settings.toml".source = tomlFormat.generate "markdown-oxide" {
         include_md_extension_md_link = true;
         include_md_extension_wikilink = true;
       };
